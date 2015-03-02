@@ -1,0 +1,75 @@
+/*
+=================================== Yelp Directory Container / General
+*/
+
+#yelp-directory {
+	width: 100%;
+}
+
+.locale {
+	color: HSLA(11, 91%, 41%, 1);
+}
+
+/*
+=================================== Start Repeating Element
+*/
+a {
+	color: HSLA(11, 91%, 41%, 1);
+}
+a:hover {
+	color: HSLA(11, 91%, 41%, 1);
+	text-decoration: none;
+}
+
+.see-more {
+	font-style: italic;
+}
+
+.ajc-listing {
+	height: 180px;
+	border-top: 1px solid #EEEEEE;
+	box-sizing: initial;
+}
+
+.ajc-thumbnail {
+	width: 100px;
+}
+.place-listing {
+	height: 240px;
+	border-top: 1px solid #EEEEEE;
+	box-sizing: initial;
+}
+
+.restaurant-thumbnail {
+	/*padding: 20px 0 0 0;*/
+}
+
+.listing-info {
+	width: 80%;
+	padding: 20px 0 0 0;
+	float: right;
+}
+
+.restaurant-name {
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+.review-snippet {
+	color: black;
+	padding: 1rem;
+}
+
+.rating {
+}	
+
+.rating-stars {
+	padding: 0;
+	margin: 0;
+}
+
+.review-count {
+	font-weight: bold;
+	font-size: 20px;
+	color: HSLA(216, 82%, 52%, 1);
+}
