@@ -6,6 +6,8 @@
 		.factory('MapiFactory', ['$http', '$window', '$resource', '$q',
 			function ($http, $window, $resource, $q) {
 
+				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q=';
+
 				// In case you need a random string of numbers
 				var randomString = function (length, chars) {
 					var result = '';
@@ -18,10 +20,9 @@
 				// To pull data from API
 				var getData = function (name) {
 					var deferred = $q.defer();
-
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					$.getJSON('https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q=' + name, function (data) {
+					$.getJSON(url + '"' + name + '"', function (data) {
 						deferred.resolve(data);
 					});
 
@@ -29,8 +30,18 @@
 
 				};
 
+				var getTextData = function (query) {
+					var deferred = $q.defer();
+					var filter = 'f=categories:"/News"';
+					$.getJSON(url + '"' + query + '"' + filter, function (data) {
+						deferred.resolve(data);
+					});
+					return deferred.promise;
+				};
+
 				return {
-					getData: getData   
+					getData: getData,
+					getTextData: getTextData 
 	      };
 
 			} // end function block

@@ -13,12 +13,6 @@
 	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory',
 	  	function ($scope, $window, $rootScope, $http, MapiFactory) {
 
-	  		// MapiFactory.getData().then( function (data) {
-	  		// 	console.log(data);
-	  		// 	$scope.authorData = data.entities;
-	  		// 	$scope.pages = data.links;
-	  		// });
-
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
 					'John Kessler',
@@ -38,8 +32,24 @@
 				$scope.selectedQuery = function (name) {
 					MapiFactory.getData(name).then( function (data) {
 						console.log(data);
+						$scope.authorData = {};
+						$scope.pages = {};
 						$scope.authorData = data.entities;
 	  				$scope.pages = data.links;
+	  				$scope.$digest();
+					})
+				};
+
+				$scope.searchByQuery = function (query) {
+					MapiFactory.getTextData(query).then( function (data) {
+						console.log(data);
+						$scope.authorData = {};
+						$scope.pages = {};
+						$scope.authorData = data.entities;
+	  				$scope.pages = data.links;
+	  				$scope.searchForm.$setPristine();
+	  				// console.log(queryString);
+	  				$scope.queryString = {} && '';
 					})
 				};
 
