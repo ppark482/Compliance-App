@@ -6,16 +6,17 @@
    * @ngdoc overview
    * @name decaturApp
    * @description
-   * # decaturApp
+   * # complianceApp
    *
    * Main module of the application.
    */
   angular
-    .module('decaturApp', [
+    .module('complianceApp', [
       'ngAnimate',
       'ngCookies',
       'ngResource',
-      'ngRoute'
+      'ngRoute',
+      'mm.foundation'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider
@@ -32,9 +33,6 @@
           controller: 'AboutCtrl'
         })
         .otherwise({ redirectTo: '/'});
-
-         // use the HTML5 History API
-        // $locationProvider.html5Mode(true);
 
     }); // end config
 

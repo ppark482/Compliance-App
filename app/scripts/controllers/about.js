@@ -8,7 +8,7 @@
 	 * # AboutCtrl
 	 * Controller of the decaturApp
 	 */
-	angular.module('decaturApp')
+	angular.module('complianceApp')
 	  .controller('AboutCtrl', function () {
 
 	  });

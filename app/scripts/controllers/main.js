@@ -9,19 +9,30 @@
 	 * # MainCtrl
 	 * Controller of the decaturApp
 	 */
-	angular.module('decaturApp')
-	  .controller('MainCtrl', ['$scope', 'YelpApi', '$window', '$rootScope', '$http', 'AjcFeed',
-	  	function ($scope, YelpApi, $window, $rootScope, $http, AjcFeed) {
+	angular.module('complianceApp')
+	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory',
+	  	function ($scope, $window, $rootScope, $http, MapiFactory) {
 
-	  	AjcFeed.loadFeed().then(function (results) {
-	  		$scope.ajc = results.feed.entries;
-	  	});
+	  		MapiFactory.getData().then( function (data) {
+	  			console.log(data);
+	  			$scope.authorData = data.entities;
+	  		});
 
-	  	YelpApi.retrieveYelp('', function (data) {
-	  		$window.restaurants = data.businesses;
-	  		$scope.restaurants = $window.restaurants;
-	  		// console.log($scope.restaurants);
-	  	});
+	  		$scope.linkItems = [	  			
+	  			'Helena Oliviero',
+					'John Kessler',
+					'Shelia Poole',
+					'Howard Pousner',
+					'Bob Townsend',
+					'Jill Vejnoska',
+					'Gracie Bonds Staples',
+					'Nedra Rhone',
+					'Bo Emerson',
+					'Mark Davis',
+					'Lori Johnston',
+					'H.M. Cauley',
+					'Michelle C. Brooks'
+					]
 
 	  	} // end function block
 

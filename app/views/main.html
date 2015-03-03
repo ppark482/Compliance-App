@@ -1,48 +1,32 @@
-<section id="ajc-content">
-	<h2>AJC Restaurant Reviews in <span class="locale">Decatur</span></h2>
-	<!-- <p class='target'></p> -->
-	<ul>
-		<li ng-repeat="feed in ajc" class="ajc-listing">
-			<img class="ajc-thumbnail" src="{{ feed.mediaGroups[0].contents[0].url }}"></img>
-			<ul class="listing-info">
-				<li class="restaurant-name"><a href="{{ feed.link }}" target="_blank">{{ feed.title }}</a></li>
-				<li class="review-snippet">
+<section class="row">
+	<div>
+	  <a class="button dropdown" dropdown-toggle="#group-toggle">Authors</a>
+	  <ul id="group-toggle" class="f-dropdown">
+	    <li ng-repeat="label in linkItems">
+	      <a href="{{url}}" target="_blank">{{label}}</a>
+	    </li>
+	  </ul>
 
-					{{ feed.contentSnippet }} <span><a class="see-more" href="{{ feed.link }}" target="_blank">more ...</a></span>
+	  <ul class="inline-list">
+	  	<li ng-repeat="single in authorData">
+	  		<div class="large-4 columns">
+		  		<h4>{{ single.headline }}</h4>
+		  	</div>
+		  	<div class="large-2 columns small-3">
+		  		<p>{{ single.by[0].name }}</p>
+		  	</div>
+		  	<div class="large-2 columns">
+		  		<span ng-repeat="category in single.categories">{{ category }}</br></span>
+		  	</div>
+		  	<div class="large-2 columns">
+		  		{{ single.pub_date }}
+	  		</div>
+				<a class="large-2 columns" ng-href="{{ single.canonical_url }}">Link</a>
+	  	</li>
+	  </ul>
 
-				</li>
-				<li><p>By: {{ feed.author }}</p></li>
-				</ul>
-		</li>
-	</ul>
+	</div>
 </section>
 
 
-<section id="yelp-directory">	
-	<h2>Top Rated Restaurants in <span class="locale">Decatur</span></h2>
-	<ul>
 
-		<li ng-repeat="place in restaurants | orderBy : '-rating'" class="place-listing">
-			<a href="{{ place.url }}" target="_blank">
-				<img class="restaurant-thumbnail" src="{{ place.image_url }}">
-				<ul class="listing-info">
-					<li class="restaurant-name">{{ place.name }}</li>
-					<li>Phone: {{ place.display_phone }}</li>
-					<li>Address:
-						{{ place.location.display_address[0] }},
-						{{ place.location.display_address[2] }}
-					</li>
-					<li>Categories: <span ng-repeat="category in place.categories">/ {{ category[0] }} /</span></li>
-					<li class="review-snippet">{{ place.snippet_text }}</li>
-					<li class="rating">Rating: 
-						<img class="rating-stars" src="{{ place.rating_img_url }}"> based on <span class="review-count">{{ place.review_count }}</span> Reviews
-					</li>
-				</ul>
-			</a>
-		</li>
-
-		<!--  Below Image/Link Required By Yelp.com -->
-		<img src="https://s3-media1.fl.yelpcdn.com/assets/2/www/img/1589098a542f/developers/Powered_By_Yelp_White.png">
-	</ul>
-
-</section>

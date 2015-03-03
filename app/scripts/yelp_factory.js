@@ -2,7 +2,7 @@
 
 	'use strict';
 
-	angular.module('decaturApp')
+	angular.module('complianceApp')
 		.factory('YelpApi', ['$http', '$window',
 			function ($http, $window) {
 

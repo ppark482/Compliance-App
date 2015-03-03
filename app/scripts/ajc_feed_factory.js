@@ -2,7 +2,7 @@
 
 	'use strict';
 
-	angular.module('decaturApp')
+	angular.module('complianceApp')
 		.factory('AjcFeed', ['$http', '$window', '$q',
 			function ($http, $window, $q) {
 
