@@ -13,15 +13,11 @@
 	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory',
 	  	function ($scope, $window, $rootScope, $http, MapiFactory) {
 
-	  		MapiFactory.getData().then( function (data) {
-	  			console.log(data);
-	  			$scope.authorData = data.entities;
-	  			$scope.pages = data.links;
-	  		});
-
-	  		$scope.goToLink = function (url) {
-	  			window.location = url;
-	  		};
+	  		// MapiFactory.getData().then( function (data) {
+	  		// 	console.log(data);
+	  		// 	$scope.authorData = data.entities;
+	  		// 	$scope.pages = data.links;
+	  		// });
 
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
@@ -37,7 +33,15 @@
 					'Lori Johnston',
 					'H.M. Cauley',
 					'Michelle C. Brooks'
-					]
+					];
+
+				$scope.selectedQuery = function (name) {
+					MapiFactory.getData(name).then( function (data) {
+						console.log(data);
+						$scope.authorData = data.entities;
+	  				$scope.pages = data.links;
+					})
+				};
 
 	  	} // end function block
 

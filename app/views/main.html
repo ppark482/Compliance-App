@@ -1,9 +1,9 @@
 <section class="row">
 	<div>
-	  <a class="button dropdown" dropdown-toggle="#group-toggle">Authors</a>
+	  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
 	  <ul id="group-toggle" class="f-dropdown">
-	    <li ng-repeat="label in linkItems">
-	      <a href="{{url}}" target="_blank">{{label}}</a>
+	    <li ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
+	      {{label}}
 	    </li>
 	  </ul>
 
