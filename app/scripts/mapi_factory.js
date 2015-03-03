@@ -21,7 +21,7 @@
 
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					$.getJSON('https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q=' + name + '&index=1000', function (data) {
+					$.getJSON('https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q=' + name, function (data) {
 						deferred.resolve(data);
 					});
 

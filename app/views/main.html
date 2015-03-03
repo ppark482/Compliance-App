@@ -18,25 +18,32 @@
 
 	  	<li class="row border-bottom" ng-repeat="single in authorData">
 
-	  		<div class="large-4 medium-4 columns">
-		  		<h4 class="subheader">{{ single.headline }}</h4>
+	  		<div class="large-4 medium-4 columns small-text">
+		  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
+		  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
 		  	</div>
 
-		  	<div class="large-2 medium-2 columns">
-		  		<p>{{ single.by[0].name }}</p>
+		  	<div class="large-2 medium-2 columns small-text">
+		  		<div ng-show="single.by[0].name">{{ single.by[0].name }}</div>
+
+		  		<div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
 		  	</div>
 
-		  	<div class="large-2 medium-2 columns">
-		  		<span class="category" ng-repeat="category in single.categories">{{ category }}</br></span>
+		  	<div class="large-2 medium-2 columns small-text">
+		  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }}</br></span>
+		  		<div class="red" ng-show="!single.categories">** No Categories Provided **</div>
 		  	</div>
 
-		  	<div class="large-2 medium-2 columns">
+		  	<div class="large-2 medium-2 columns small-text">
 		  		{{ single.pub_date }}
 	  		</div>
 
-				<div class="large-2 medium-2 columns">
+				<div ng-show="single.canonical_url" class="large-2 medium-2 columns small-text">
 					{{single.canonical_url}}
 				</div>
+				<div class="red" ng-show="!single.canonical_url" class="large-2 medium-2 columns small-text">** No URL Provided **
+				</div>
+
 	  	</li>
 	  </ul>
 
