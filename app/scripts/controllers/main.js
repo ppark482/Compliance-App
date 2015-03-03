@@ -16,7 +16,12 @@
 	  		MapiFactory.getData().then( function (data) {
 	  			console.log(data);
 	  			$scope.authorData = data.entities;
+	  			$scope.pages = data.links;
 	  		});
+
+	  		$scope.goToLink = function (url) {
+	  			window.location = url;
+	  		};
 
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
@@ -36,6 +41,19 @@
 
 	  	} // end function block
 
-	  ]); // end controller
+	  ]) // end controller
+
+	  .directive('stopEvent', function () {
+
+	  	return {
+	  		restrict: 'A',
+	  		link: function (scope, element, attr) {
+	  			element.bind('click', function (e) {
+	  				e.stopPropagation();
+	  			});
+	  		}
+	  	};
+
+	  }); // end directive
 
 }()); // end iife

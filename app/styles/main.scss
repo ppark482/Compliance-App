@@ -8,3 +8,14 @@ body {
 ul, li {
   list-style-type: none;
 }
+
+.border-bottom {
+  border-bottom: 1px solid HSLA(221, 61%, 34%, .5);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.category {
+  font-size: 10px;
+  color: HSLA(199, 68%, 52%, 1);
+}

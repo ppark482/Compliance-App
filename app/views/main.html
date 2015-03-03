@@ -7,24 +7,45 @@
 	    </li>
 	  </ul>
 
-	  <ul class="inline-list">
-	  	<li ng-repeat="single in authorData">
-	  		<div class="large-4 columns">
-		  		<h4>{{ single.headline }}</h4>
+	  <ul>
+	  	<li class="row border-bottom">
+	  		<div class="large-4 medium-4 columns">Headline</div>
+	  		<div class="large-2 medium-2 columns">Byline</div>
+	  		<div class="large-2 medium-2 columns">Categories</div>
+	  		<div class="large-2 medium-2 columns">Published</div>
+	  		<div class="large-2 medium-2 columns">Story URL</div>
+	  	</li>
+
+	  	<li class="row border-bottom" ng-repeat="single in authorData">
+
+	  		<div class="large-4 medium-4 columns">
+		  		<h4 class="subheader">{{ single.headline }}</h4>
 		  	</div>
-		  	<div class="large-2 columns small-3">
+
+		  	<div class="large-2 medium-2 columns">
 		  		<p>{{ single.by[0].name }}</p>
 		  	</div>
-		  	<div class="large-2 columns">
-		  		<span ng-repeat="category in single.categories">{{ category }}</br></span>
+
+		  	<div class="large-2 medium-2 columns">
+		  		<span class="category" ng-repeat="category in single.categories">{{ category }}</br></span>
 		  	</div>
-		  	<div class="large-2 columns">
+
+		  	<div class="large-2 medium-2 columns">
 		  		{{ single.pub_date }}
 	  		</div>
-				<a class="large-2 columns" ng-href="{{ single.canonical_url }}">Link</a>
+
+				<div class="large-2 medium-2 columns">
+					{{single.canonical_url}}
+				</div>
 	  	</li>
 	  </ul>
 
+	  <ul class="pagination">
+	  	<li class="arrow unavailable"><a href="">&laquo;</a></li>
+  	  <!-- <li class="current"><a href="">1</a></li> -->
+  	  <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li>
+		  <li class="arrow"><a href="">&raquo;</a></li>
+	  </ul>
 	</div>
 </section>
 
