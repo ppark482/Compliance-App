@@ -19,16 +19,17 @@
 
 	  <ul>
 	  	<li class="row border-bottom" ng-show="authorData">
-	  		<div class="large-4 medium-4 columns">Headline</div>
+	  		<div class="large-3 medium-3 columns">Headline</div>
 	  		<div class="large-2 medium-2 columns">Byline</div>
 	  		<div class="large-2 medium-2 columns">Categories</div>
+	  		<div class="large-2 medium-2 columns">Topics</div>
 	  		<div class="large-2 medium-2 columns">Published</div>
-	  		<div class="large-2 medium-2 columns">Story URL</div>
+	  		<div class="large-1 medium-1 columns">Story URL</div>
 	  	</li>
 
 	  	<li class="row border-bottom" ng-repeat="single in authorData">
 
-	  		<div class="large-4 medium-4 columns small-text">
+	  		<div class="large-3 medium-3 columns small-text">
 		  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
 		  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
 		  	</div>
@@ -45,13 +46,18 @@
 		  	</div>
 
 		  	<div class="large-2 medium-2 columns small-text">
+		  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }}</br></span>
+		  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
+		  	</div>
+
+		  	<div class="large-2 medium-2 columns small-text">
 		  		{{ single.pub_date }}
 	  		</div>
 
-				<div ng-show="single.canonical_url" class="large-2 medium-2 columns small-text">
+				<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
 					{{single.canonical_url}}
 				</div>
-				<div class="red" ng-show="!single.canonical_url" class="large-2 medium-2 columns small-text">** No URL Provided **
+				<div class="red" ng-show="!single.canonical_url" class="large-1 medium-1 columns small-text">** No URL Provided **
 				</div>
 
 	  	</li>
