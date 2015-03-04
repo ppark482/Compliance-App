@@ -1,5 +1,13 @@
 @import "yelp_directory";
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
 /* endbower */
+
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
 
 body {
   padding: 0;
@@ -7,6 +15,14 @@ body {
 
 ul, li {
   list-style-type: none;
+}
+
+.author-group {
+  padding: 15px;
+  border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
+  &:last-child {
+    border: none;
+  }
 }
 
 .border-bottom {

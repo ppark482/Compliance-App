@@ -5,8 +5,8 @@
 
 	  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
 	  <ul id="group-toggle" class="f-dropdown">
-	    <li ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
-	      {{label}}
+	    <li class="author-group" ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
+	       {{label}}<span class="entypo-right-thin right"></span>
 	    </li>
 	  </ul>
 
