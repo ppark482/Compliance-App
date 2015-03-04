@@ -30,10 +30,11 @@
 
 				};
 
+
 				var getTextData = function (query) {
 					var deferred = $q.defer();
 					var filter = 'f=categories:"/News"';
-					$.getJSON(url + '"' + query + '"' + filter, function (data) {
+					$.getJSON(url + '"' + query + '"' + '&page=2', function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;

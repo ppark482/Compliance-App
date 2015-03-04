@@ -36,20 +36,19 @@
 						$scope.pages = {};
 						$scope.authorData = data.entities;
 	  				$scope.pages = data.links;
-	  				$scope.$digest();
 					})
 				};
 
 				$scope.searchByQuery = function (query) {
+					console.log(query);
 					MapiFactory.getTextData(query).then( function (data) {
 						console.log(data);
 						$scope.authorData = {};
 						$scope.pages = {};
 						$scope.authorData = data.entities;
 	  				$scope.pages = data.links;
-	  				$scope.searchForm.$setPristine();
-	  				// console.log(queryString);
 	  				$scope.queryString = {} && '';
+	  				$scope.searchForm.$setPristine();
 					})
 				};
 
