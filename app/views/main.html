@@ -1,92 +1,89 @@
 <section class="row">
-	<div>
 <!-- 		<a href="#" class="button info" ng-click="getPuppies()">10 Pages of Puppies</a> -->
-		<!-- Author Dropdown Box	-->
+	<!-- Author Dropdown Box	-->
 
-	  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
-	  <ul id="group-toggle" class="f-dropdown">
-	    <li class="author-group" ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
-	       {{label}}<span class="entypo-right-thin right"></span>
-	    </li>
-	  </ul>
+  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
+  <ul id="group-toggle" class="f-dropdown">
+    <li class="author-group" ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
+       {{label}}<span class="entypo-right-thin right"></span>
+    </li>
+  </ul>
 
-	  <!-- End Author Dropdown Box	-->
+  <!-- End Author Dropdown Box	-->
+  <p class="pleft15">or</p>
+  <!-- Search Bar -->
 
-	  <!-- Search Bar -->
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <form name="searchForm" class="large-8 medium-10 small-12 columns" ng-submit="searchByQuery(queryString)">
+	        <input type="text" placeholder="Search By Text" ng-model="queryString">
+        </form>
+      </div>
+    </div>
+  </div> 
 
-	  <div class="row">
-	    <div class="large-12 columns">
-	      <div class="row collapse">
-	        <form name="searchForm" class="large-8 medium-10 small-12 columns" ng-submit="searchByQuery(queryString)">
-		        <input type="text" placeholder="Search By Text" ng-model="queryString">
-	        </form>
-	      </div>
-	    </div>
-	  </div> 
+  <!-- End Search Bar -->
 
-	  <!-- End Search Bar -->
+  <!-- Results Feed	-->
 
-	  <!-- Results Feed	-->
+  <ul>
+  	<li class="row border-bottom column-labels subheader" ng-show="authorData">
+  		<div class="large-3 medium-3 columns">Headline</div>
+  		<div class="large-2 medium-2 columns">Byline</div>
+  		<div class="large-2 medium-2 columns">Categories</div>
+  		<div class="large-2 medium-2 columns">Topics</div>
+  		<div class="large-2 medium-2 columns"><a href="" ng-click="reverse=!reverse;order('content_modified', reverse)">Modified<span class="entypo-up-open" ng-show="!reverse"></span><span class="entypo-down-open" ng-show="reverse"></span></a></div>
+  		<div class="large-1 medium-1 columns">Story URL</div>
+  	</li>
 
-	  <ul>
-	  	<li class="row border-bottom" ng-show="authorData">
-	  		<div class="large-3 medium-3 columns">Headline</div>
-	  		<div class="large-2 medium-2 columns">Byline</div>
-	  		<div class="large-2 medium-2 columns">Categories</div>
-	  		<div class="large-2 medium-2 columns">Topics</div>
-	  		<div class="large-2 medium-2 columns">Published</div>
-	  		<div class="large-1 medium-1 columns">Story URL</div>
-	  	</li>
-
-	  	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
+  	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
 <!-- ================================================== -->
-	  		<div class="large-3 medium-3 columns small-text">
-		  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
-		  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
-		  	</div>
+  		<div class="large-3 medium-3 columns small-text">
+	  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
+	  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
+	  	</div>
 <!-- ================================================== -->
-		  	<div class="large-2 medium-2 columns small-text">
-		  		<div ng-show="single.by[0].name">{{ single.by[0].name }}</div>
+	  	<div class="large-2 medium-2 columns small-text">
+	  		<div ng-show="single.by[0].name">{{ single.by[0].name }}</div>
+	  		<div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
+	  	</div>
 <!-- ================================================== -->
-		  		<div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
-		  	</div>
+	  	<div class="large-2 medium-2 columns small-text">
+	  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }}</br></span>
+	  		<div class="red" ng-show="!single.categories">** No Categories Provided **</div>
+	  	</div>
 <!-- ================================================== -->
-		  	<div class="large-2 medium-2 columns small-text">
-		  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }}</br></span>
-		  		<div class="red" ng-show="!single.categories">** No Categories Provided **</div>
-		  	</div>
+	  	<div class="large-2 medium-2 columns small-text">
+	  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }}</br></span>
+	  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
+	  	</div>
 <!-- ================================================== -->
-		  	<div class="large-2 medium-2 columns small-text">
-		  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }}</br></span>
-		  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
-		  	</div>
+	  	<div class="large-2 medium-2 columns small-text">
+	  		{{ single.content_modified | date:"MM/dd/yyyy @ h:mma" }}
+  		</div>
 <!-- ================================================== -->
-		  	<div class="large-2 medium-2 columns small-text">
-		  		{{ single.pub_date }}
-	  		</div>
+			<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
+				{{single.canonical_url}}
+			</div>
+			<div class="red" ng-show="!single.canonical_url" class="large-1 medium-1 columns small-text">** No URL Provided **
+			</div>
 <!-- ================================================== -->
-				<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
-					{{single.canonical_url}}
-				</div>
-				<div class="red" ng-show="!single.canonical_url" class="large-1 medium-1 columns small-text">** No URL Provided **
-				</div>
-<!-- ================================================== -->
-	  	</li>
-	  </ul>
+  	</li>
+  </ul>
 
-	  <!--  End Feed	-->
-	  <!--  Pagination	-->
+  <!--  End Feed	-->
+  <!--  Pagination	-->
 
-	  <ul class="pagination" ng-show="authorData">
-	  	<li class="arrow unavailable"><a href="">&laquo;</a></li>
-  	  <!-- <li class="current"><a href="">1</a></li> -->
-  	  <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li>
-		  <li class="arrow"><a href="">&raquo;</a></li>
-	  </ul>
+  <ul class="pagination" ng-show="authorData">
+  	<li class="arrow unavailable"><a href="">&laquo;</a></li>
+	  <!-- <li class="current"><a href="">1</a></li> -->
+	  <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li>
+	  <li class="arrow"><a href="">&raquo;</a></li>
+  </ul>
 
-	  <!--  End Pagination	-->
+  <!--  End Pagination	-->
 
-	</div>
 </section>
 
 

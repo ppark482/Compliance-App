@@ -11,6 +11,7 @@
 
 body {
   padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 ul, li {
@@ -24,6 +25,12 @@ ul, li {
     border: none;
   }
 }
+
+.column-labels {
+  font-size: 12px;
+  padding-top: 15px;
+}
+
 
 .border-bottom {
   border-bottom: 1px solid HSLA(221, 61%, 34%, .5);
@@ -47,6 +54,11 @@ h4 {
 .category {
   font-size: 10px;
   color: HSLA(199, 68%, 52%, 1);
+}
+
+.pleft15 {
+  padding-left: 15px;
+  color: #6f6f6f;
 }
 
 /* Animate Population of Feed =============================== */

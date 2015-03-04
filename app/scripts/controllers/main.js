@@ -10,8 +10,8 @@
 	 * Controller of the decaturApp
 	 */
 	angular.module('complianceApp')
-	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory',
-	  	function ($scope, $window, $rootScope, $http, MapiFactory) {
+	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory', '$filter',
+	  	function ($scope, $window, $rootScope, $http, MapiFactory, $filter) {
 
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
@@ -58,6 +58,14 @@
 						console.log(data);
 					})
 				};
+
+				var orderBy = $filter('orderBy');
+
+				$scope.order = function (predicate, reverse) {
+					$scope.authorData = orderBy($scope.authorData, predicate, reverse);
+				};
+
+				$scope.order('-content_modified', false);
 
 	  	} // end function block
 

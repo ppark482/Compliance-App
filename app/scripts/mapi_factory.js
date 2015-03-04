@@ -22,7 +22,7 @@
 					var deferred = $q.defer();
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					$.getJSON(url + '"' + name + '"' + '&page=10', function (data) {
+					$.getJSON(url + '"' + name + '"' +'&f=categories:"/News"', function (data) {
 						deferred.resolve(data);
 					});
 
