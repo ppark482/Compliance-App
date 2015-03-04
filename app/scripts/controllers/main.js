@@ -29,13 +29,17 @@
 					'Michelle C. Brooks'
 					];
 
-				$scope.selectedQuery = function (name) {
-					MapiFactory.getData(name).then( function (data) {
-						console.log(data);
+				var scopeEm = function (data) {
 						$scope.authorData = {};
 						$scope.pages = {};
 						$scope.authorData = data.entities;
 	  				$scope.pages = data.links;
+	  			};
+
+				$scope.selectedQuery = function (name) {
+					MapiFactory.getData(name).then( function (data) {
+						console.log(data);
+						scopeEm(data);
 					})
 				};
 
@@ -43,12 +47,15 @@
 					console.log(query);
 					MapiFactory.getTextData(query).then( function (data) {
 						console.log(data);
-						$scope.authorData = {};
-						$scope.pages = {};
-						$scope.authorData = data.entities;
-	  				$scope.pages = data.links;
+						scopeEm(data);
 	  				$scope.queryString = {} && '';
 	  				$scope.searchForm.$setPristine();
+					})
+				};
+
+				$scope.getPuppies = function () {
+					MapiFactory.getPuppies().then( function (data) {
+						console.log(data);
 					})
 				};
 

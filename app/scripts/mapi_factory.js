@@ -22,7 +22,7 @@
 					var deferred = $q.defer();
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					$.getJSON(url + '"' + name + '"' + '&count=50', function (data) {
+					$.getJSON(url + '"' + name + '"' + '&page=10', function (data) {
 						deferred.resolve(data);
 					});
 
@@ -30,7 +30,7 @@
 
 				};
 
-
+				// To search for inputted text
 				var getTextData = function (query) {
 					var deferred = $q.defer();
 					var filter = 'f=categories:"/News"';
@@ -40,9 +40,19 @@
 					return deferred.promise;
 				};
 
+				// To get 10 pages of puppies
+				var getPuppies = function () {
+					var deferred = $q.defer();
+					$.getJSON('https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q="puppies"&page=10&format=json', function (data) {
+						deferred.resolve(data);
+					});
+					return deferred.promise;
+				}
+
 				return {
 					getData: getData,
-					getTextData: getTextData 
+					getTextData: getTextData,
+					getPuppies: getPuppies
 	      };
 
 			} // end function block

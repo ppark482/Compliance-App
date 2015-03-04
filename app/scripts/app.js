@@ -16,7 +16,8 @@
       'ngCookies',
       'ngResource',
       'ngRoute',
-      'mm.foundation'
+      'mm.foundation',
+      'angular-loading-bar'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider

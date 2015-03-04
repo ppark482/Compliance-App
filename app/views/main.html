@@ -1,5 +1,8 @@
 <section class="row">
 	<div>
+<!-- 		<a href="#" class="button info" ng-click="getPuppies()">10 Pages of Puppies</a> -->
+		<!-- Author Dropdown Box	-->
+
 	  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
 	  <ul id="group-toggle" class="f-dropdown">
 	    <li ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
@@ -7,15 +10,23 @@
 	    </li>
 	  </ul>
 
+	  <!-- End Author Dropdown Box	-->
+
+	  <!-- Search Bar -->
+
 	  <div class="row">
-    <div class="large-12 columns">
-      <div class="row collapse">
-        <form name="searchForm" class="small-6 columns" ng-submit="searchByQuery(queryString)">
-          <input type="text" placeholder="Search By Text" ng-model="queryString">
-        </form>
-      </div>
-    </div>
-  </div>
+	    <div class="large-12 columns">
+	      <div class="row collapse">
+	        <form name="searchForm" class="large-8 medium-10 small-12 columns" ng-submit="searchByQuery(queryString)">
+		        <input type="text" placeholder="Search By Text" ng-model="queryString">
+	        </form>
+	      </div>
+	    </div>
+	  </div> 
+
+	  <!-- End Search Bar -->
+
+	  <!-- Results Feed	-->
 
 	  <ul>
 	  	<li class="row border-bottom" ng-show="authorData">
@@ -27,41 +38,44 @@
 	  		<div class="large-1 medium-1 columns">Story URL</div>
 	  	</li>
 
-	  	<li class="row border-bottom" ng-repeat="single in authorData">
-
+	  	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
+<!-- ================================================== -->
 	  		<div class="large-3 medium-3 columns small-text">
 		  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
 		  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
 		  	</div>
-
+<!-- ================================================== -->
 		  	<div class="large-2 medium-2 columns small-text">
 		  		<div ng-show="single.by[0].name">{{ single.by[0].name }}</div>
-
+<!-- ================================================== -->
 		  		<div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
 		  	</div>
-
+<!-- ================================================== -->
 		  	<div class="large-2 medium-2 columns small-text">
 		  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }}</br></span>
 		  		<div class="red" ng-show="!single.categories">** No Categories Provided **</div>
 		  	</div>
-
+<!-- ================================================== -->
 		  	<div class="large-2 medium-2 columns small-text">
 		  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }}</br></span>
 		  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
 		  	</div>
-
+<!-- ================================================== -->
 		  	<div class="large-2 medium-2 columns small-text">
 		  		{{ single.pub_date }}
 	  		</div>
-
+<!-- ================================================== -->
 				<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
 					{{single.canonical_url}}
 				</div>
 				<div class="red" ng-show="!single.canonical_url" class="large-1 medium-1 columns small-text">** No URL Provided **
 				</div>
-
+<!-- ================================================== -->
 	  	</li>
 	  </ul>
+
+	  <!--  End Feed	-->
+	  <!--  Pagination	-->
 
 	  <ul class="pagination" ng-show="authorData">
 	  	<li class="arrow unavailable"><a href="">&laquo;</a></li>
@@ -69,6 +83,9 @@
   	  <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li>
 		  <li class="arrow"><a href="">&raquo;</a></li>
 	  </ul>
+
+	  <!--  End Pagination	-->
+
 	</div>
 </section>
 
