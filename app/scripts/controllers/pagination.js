@@ -9,8 +9,16 @@
 	 * Controller of the decaturApp
 	 */
 	angular.module('complianceApp')
-	  .controller('AboutCtrl', function () {
+	  .controller('PaginationCtrl', ['$scope', 
 
-	  });
+	  	function ($scope) {
+
+		  	$scope.nextPage = function (link) {
+		  		console.log(link);
+		  	};
+
+	  	} // end function block
+	  	
+	  ]); // end controller
 
 }()); // end iif

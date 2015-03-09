@@ -1,5 +1,5 @@
 <section class="row">
-<!-- 		<a href="#" class="button info" ng-click="getPuppies()">10 Pages of Puppies</a> -->
+
 	<!-- Author Dropdown Box	-->
 
   <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
@@ -33,7 +33,10 @@
   		<div class="large-2 medium-2 columns">Byline</div>
   		<div class="large-2 medium-2 columns">Categories</div>
   		<div class="large-2 medium-2 columns">Topics</div>
-  		<div class="large-2 medium-2 columns"><a href="" ng-click="reverse=!reverse;order('content_modified', reverse)">Modified<span class="entypo-up-open" ng-show="!reverse"></span><span class="entypo-down-open" ng-show="reverse"></span></a></div>
+  		<div class="large-2 medium-2 columns">
+        <a href="" ng-click="reverse=!reverse;order('content_modified', reverse)">Modified
+        <span class="entypo-up-open" ng-show="!reverse"></span>
+        <span class="entypo-down-open" ng-show="reverse"></span></a></div>
   		<div class="large-1 medium-1 columns">Story URL</div>
   	</li>
 
@@ -76,11 +79,11 @@
   <!--  End Feed	-->
   <!--  Pagination	-->
 
-  <ul class="pagination" ng-show="authorData">
-  	<li class="arrow unavailable"><a href="">&laquo;</a></li>
+  <ul class="pagination" ng-show="authorData" ng-controller="PaginationCtrl">
+  	<li class="arrow unavailable"><a href="">&laquo; Previous 25</a></li>
 	  <!-- <li class="current"><a href="">1</a></li> -->
-	  <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li>
-	  <li class="arrow"><a href="">&raquo;</a></li>
+	  <!-- <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li> -->
+	  <li class="arrow"><a href="/" ng-click="nextPage(pages[1].href)">Next 25 &raquo;</a></li>
   </ul>
 
   <!--  End Pagination	-->

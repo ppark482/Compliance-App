@@ -6,6 +6,8 @@
 		.factory('MapiFactory', ['$http', '$window', '$resource', '$q',
 			function ($http, $window, $resource, $q) {
 
+				// using Nodejitsu's jsonp.js library
+				// to get around CORS and callback wrapping issue
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 
 				// GUIDs for Reference: https://docs.google.com/spreadsheets/d/1nQGfsblYTK0QfLErthkMjgirIEmYtsLGCe4dlDruQT8/edit?pli=1#gid=0
@@ -22,12 +24,14 @@
 				// To pull data from API
 				var getData = function (name) {
 					var deferred = $q.defer();
-					// using Nodejitsu's jsonp.js library
-					// to get around CORS and callback wrapping issue
-					var query = encodeURIComponent('?s=by:"' + name + '"');
-					var timeRange = encodeURIComponent('&f=content_modified:[NOW-2MONTHS TO NOW]');
+
+					// Replace any duplicate whitespaces with single white space
+					var cleanName = name.replace(/\s+/g, ' ');
+					var query = encodeURIComponent('?s=by:"' + cleanName + '"');
+					var timeRange = encodeURIComponent('&f=content_modified:[* TO NOW]');
+					var sortByRecent = encodeURIComponent('&sort_by=content_modified');
 					// var storyLimit = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"');
-					$.getJSON(url + query + timeRange, function (data) {
+					$.getJSON(url + query + timeRange + sortByRecent, function (data) {
 						deferred.resolve(data);
 					});
 

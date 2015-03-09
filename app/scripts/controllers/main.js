@@ -53,12 +53,6 @@
 					})
 				};
 
-				$scope.getPuppies = function () {
-					MapiFactory.getPuppies().then( function (data) {
-						console.log(data);
-					})
-				};
-
 				var orderBy = $filter('orderBy');
 
 				$scope.order = function (predicate, reverse) {
