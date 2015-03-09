@@ -25,7 +25,7 @@
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
 					var query = encodeURIComponent('?s=by:"' + name + '"');
-					var timeRange = encodeURIComponent('&f=content_modified:[NOW-1MONTH TO NOW]');
+					var timeRange = encodeURIComponent('&f=content_modified:[NOW-2MONTHS TO NOW]');
 					// var storyLimit = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"');
 					$.getJSON(url + query + timeRange, function (data) {
 						deferred.resolve(data);
@@ -38,11 +38,8 @@
 				// To search for inputted text
 				var getTextData = function (query) {
 					var deferred = $q.defer();
-					// var filter = encodeURIComponent('&s=categories:"/News"');
-					// var filter2 = encodeURIComponent('+AND+topics:"food"');
-					// var filterRecent = encodeURIComponent('&s=content_modified:[2015-02-01]');
-					var moreResults = encodeURIComponent('&count=100');
-					$.getJSON(url + '"' + query + '"' + moreResults, function (data) {
+
+					$.getJSON(url + '?q=' + '"' + query + '"', function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
