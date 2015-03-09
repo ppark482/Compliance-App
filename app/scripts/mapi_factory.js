@@ -24,7 +24,7 @@
 					var deferred = $q.defer();
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					var query = encodeURIComponent('?q="' + name + '"');
+					var query = encodeURIComponent('?s=by:"' + name + '"');
 					// var storyLimit = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"');
 					$.getJSON(url + query, function (data) {
 						deferred.resolve(data);
