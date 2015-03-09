@@ -22,7 +22,10 @@
 					var deferred = $q.defer();
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					$.getJSON(url + '"' + name + '"' +'&f=categories:"/News"', function (data) {
+					// $.getJSON(encodeURI(url + '"' + name + '"' +'&f=content_modified:[NOW TO *]'), function (data) {
+					// 	deferred.resolve(data);
+					// });
+					$.getJSON(encodeURI(url + '"' + name + '"' +'&f=categories:"/News"'), function (data) {
 						deferred.resolve(data);
 					});
 
@@ -33,8 +36,11 @@
 				// To search for inputted text
 				var getTextData = function (query) {
 					var deferred = $q.defer();
-					var filter = 'f=categories:"/News"';
-					$.getJSON(url + '"' + query + '"' + '&page=2', function (data) {
+					var filter = encodeURIComponent('&f=categories:"/News"');
+					var filter2 = encodeURIComponent('+AND+topics:"food"');
+					var filterRecent = encodeURIComponent('+AND+pub_date:[* TO NOW]');
+					var moreResults = encodeURIComponent('&count=100&page=2');
+					$.getJSON(url + '"' + query + '"' + filter + filter2 + moreResults, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;

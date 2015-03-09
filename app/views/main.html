@@ -59,9 +59,10 @@
 	  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
 	  	</div>
 <!-- ================================================== -->
-	  	<div class="large-2 medium-2 columns small-text">
+	  	<div ng-show="single.content_modified" class="large-2 medium-2 columns small-text">
 	  		{{ single.content_modified | date:"MM/dd/yyyy @ h:mma" }}
   		</div>
+      <div class="red" ng-show="!single.content_modified" class="large-2 medium-2 columns small-text">** No URL Provided **</div>
 <!-- ================================================== -->
 			<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
 				{{single.canonical_url}}
