@@ -36,13 +36,17 @@
 	  				$scope.pages = data.links;
 	  			};
 
+	  		// Gets Data For Selected Author
 				$scope.selectedQuery = function (name) {
 					MapiFactory.getData(name).then( function (data) {
 						console.log(data);
 						scopeEm(data);
+						$scope.searchAuthorName = {} && '';
+						$scope.searchAuthorForm.$setPristine();
 					})
 				};
 
+				// Gets Data For Inputted Text
 				$scope.searchByQuery = function (query) {
 					console.log(query);
 					MapiFactory.getTextData(query).then( function (data) {
@@ -53,6 +57,7 @@
 					})
 				};
 
+				// Controls the Modified By Order
 				var orderBy = $filter('orderBy');
 
 				$scope.order = function (predicate, reverse) {

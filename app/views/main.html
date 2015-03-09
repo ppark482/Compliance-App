@@ -14,10 +14,13 @@
   <!-- Search Bar -->
 
   <div class="row">
-    <div class="large-12 columns">
+    <div class="large-8 columns">
       <div class="row collapse">
-        <form name="searchForm" class="large-8 medium-10 small-12 columns" ng-submit="searchByQuery(queryString)">
+        <form name="searchForm" class="large-12 medium-12 small-12 columns" ng-submit="searchByQuery(queryString)">
 	        <input type="text" placeholder="Search By Text" ng-model="queryString">
+        </form>
+        <form name="searchAuthorForm" class="large-12 medium-12 small-12 columns" ng-submit="selectedQuery(searchAuthorName)">
+          <input type="text" placeholder="Search By Author i.e. Jake Jakeman" ng-model="searchAuthorName">
         </form>
       </div>
     </div>
