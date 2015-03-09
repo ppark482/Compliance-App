@@ -6,7 +6,9 @@
 		.factory('MapiFactory', ['$http', '$window', '$resource', '$q',
 			function ($http, $window, $resource, $q) {
 
-				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/?q=';
+				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
+
+				// GUIDs for Reference: https://docs.google.com/spreadsheets/d/1nQGfsblYTK0QfLErthkMjgirIEmYtsLGCe4dlDruQT8/edit?pli=1#gid=0
 
 				// In case you need a random string of numbers
 				var randomString = function (length, chars) {
@@ -22,10 +24,9 @@
 					var deferred = $q.defer();
 					// using Nodejitsu's jsonp.js library
 					// to get around CORS and callback wrapping issue
-					// $.getJSON(encodeURI(url + '"' + name + '"' +'&f=content_modified:[NOW TO *]'), function (data) {
-					// 	deferred.resolve(data);
-					// });
-					$.getJSON(encodeURI(url + '"' + name + '"' +'&f=categories:"/News"'), function (data) {
+					var query = encodeURIComponent('?q="' + name + '"');
+					// var storyLimit = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"');
+					$.getJSON(url + query, function (data) {
 						deferred.resolve(data);
 					});
 
@@ -36,11 +37,11 @@
 				// To search for inputted text
 				var getTextData = function (query) {
 					var deferred = $q.defer();
-					var filter = encodeURIComponent('&f=categories:"/News"');
-					var filter2 = encodeURIComponent('+AND+topics:"food"');
-					var filterRecent = encodeURIComponent('+AND+pub_date:[* TO NOW]');
-					var moreResults = encodeURIComponent('&count=100&page=2');
-					$.getJSON(url + '"' + query + '"' + filter + filter2 + moreResults, function (data) {
+					// var filter = encodeURIComponent('&s=categories:"/News"');
+					// var filter2 = encodeURIComponent('+AND+topics:"food"');
+					// var filterRecent = encodeURIComponent('&s=content_modified:[2015-02-01]');
+					var moreResults = encodeURIComponent('&count=100');
+					$.getJSON(url + '"' + query + '"' + moreResults, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
