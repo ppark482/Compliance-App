@@ -32,15 +32,15 @@
 
   <ul>
   	<li class="row border-bottom column-labels subheader" ng-show="authorData">
-  		<div class="large-3 medium-3 columns">Headline</div>
-  		<div class="large-2 medium-2 columns">Byline</div>
+  		<div class="large-3 medium-3 columns">Headline / Author</div>
   		<div class="large-2 medium-2 columns">Categories</div>
   		<div class="large-2 medium-2 columns">Topics</div>
   		<div class="large-2 medium-2 columns">
         <a href="" ng-click="reverse=!reverse;order('content_modified', reverse)">Modified
         <span class="entypo-up-open" ng-show="!reverse"></span>
         <span class="entypo-down-open" ng-show="reverse"></span></a></div>
-  		<div class="large-1 medium-1 columns">Story URL</div>
+  		<div class="large-1 medium-1 columns">Premium</div>
+      <div class="large-2 medium-2 columns">Story URL</div>
   	</li>
 
   	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
@@ -48,11 +48,10 @@
   		<div class="large-3 medium-3 columns small-text">
 	  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
 	  		<h4 class="red" ng-show="!single.headline">** No Headline Provided **</h4>
-	  	</div>
-<!-- ================================================== -->
-	  	<div class="large-2 medium-2 columns small-text">
-	  		<div ng-show="single.by[0].name">{{ single.by[0].name }}</div>
-	  		<div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
+        <div class="author-byline">
+          <div ng-show="single.by[0].name">by: {{ single.by[0].name }}</div>
+          <div class="red" ng-show="!single.by[0].name || single.by[0].name === ' ' || single.by[0].name === ''">** No Author Provided **</div>
+        </div>
 	  	</div>
 <!-- ================================================== -->
 	  	<div class="large-2 medium-2 columns small-text">
@@ -70,10 +69,14 @@
   		</div>
       <div class="red" ng-show="!single.content_modified" class="large-2 medium-2 columns small-text">** No Date Provided **</div>
 <!-- ================================================== -->
-			<div ng-show="single.canonical_url" class="large-1 medium-1 columns small-text">
+      <div class="large-1 medium-1 columns small-text">
+        {{single.premium}}
+      </div>
+<!-- ================================================== -->
+			<div ng-show="single.canonical_url" class="large-2 medium-2 columns small-text">
 				{{single.canonical_url}}
 			</div>
-			<div class="red" ng-show="!single.canonical_url" class="large-1 medium-1 columns small-text">** No URL Provided **
+			<div class="red" ng-show="!single.canonical_url" class="large-2 medium-2 columns small-text">** No URL Provided **
 			</div>
 <!-- ================================================== -->
   	</li>
