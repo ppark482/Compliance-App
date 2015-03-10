@@ -13,6 +13,10 @@
 	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory', '$filter', '$location', '$anchorScroll',
 	  	function ($scope, $window, $rootScope, $http, MapiFactory, $filter, $location, $anchorScroll) {
 
+	  		$scope.goToDashboard = function () {
+	  			$location.path('/');
+	  		};
+
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
 					'John Kessler',

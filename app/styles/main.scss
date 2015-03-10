@@ -18,6 +18,16 @@ ul, li {
   list-style-type: none;
 }
 
+/*
+=================================== Dashboard Styling
+*/
+
+.daily-report {
+}
+
+/*
+=================================== Search Page Styling
+*/
 .author-group, .topic-group {
   padding: 15px;
   border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
@@ -73,7 +83,9 @@ h4 {
   color: #6f6f6f;
 }
 
-/* Animate Population of Feed =============================== */
+/*
+=================================== Animate Population of Feed
+*/
 .reveal-animation.ng-enter {
   -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
   animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */

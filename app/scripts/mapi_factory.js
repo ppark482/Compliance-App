@@ -11,6 +11,10 @@
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
 
+				// need to prepend +AND+ if appending to filter
+				// prepend &f= if appending to another query or search
+				var noImages = encodeURIComponent('-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"');
+
 				// GUIDs for Reference: https://docs.google.com/spreadsheets/d/1nQGfsblYTK0QfLErthkMjgirIEmYtsLGCe4dlDruQT8/edit?pli=1#gid=0
 
 				// In case you need a random string of numbers
@@ -29,7 +33,7 @@
 					// Replace any duplicate whitespaces with single white space
 					var cleanName = name.replace(/\s+/g, ' ');
 					var query = encodeURIComponent('?s=by:"' + cleanName + '"');
-					$.getJSON(url + query + sortByRecent, function (data) {
+					$.getJSON(url + query + sortByRecent + '&f=' + noImages, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
@@ -39,7 +43,7 @@
 				var getTopicData = function (topic) {
 					var deferred = $q.defer();
 					var query = encodeURIComponent('?f=topics:"' + topic + '"');
-					$.getJSON(url + query, function (data) {
+					$.getJSON(url + query + '+AND+' + noImages, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
@@ -49,7 +53,7 @@
 				var getTextData = function (query) {
 					var deferred = $q.defer();
 
-					$.getJSON(url + '?q=' + '"' + query + '"', function (data) {
+					$.getJSON(url + '?q=' + '"' + query + '"' + sortByRecent +'&f=' + noImages, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;

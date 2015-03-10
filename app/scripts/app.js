@@ -22,16 +22,16 @@
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl'
+          templateUrl: 'views/dashboard.html',
+          controller: 'DashboardCtrl'
         })
         .when('/map', {
           templateUrl: 'views/map.html',
           controller: 'MapCtrl'
         })
-        .when('/about', {
-          templateUrl: 'views/about.html',
-          controller: 'AboutCtrl'
+        .when('/search', {
+          templateUrl: 'views/main.html',
+          controller: 'MainCtrl'
         })
         .otherwise({});
 

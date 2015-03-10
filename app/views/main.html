@@ -1,6 +1,10 @@
 <section class="row">
+  <button class="info" ng-click="goToDashboard()">Back to Dashboard</button>
 
-	<!-- Author Dropdown Box	-->
+  <p class="pleft15">Select topic or author from drop down lists. Or search by string of text or by author name below.</p>
+  <p class="pleft15">The API maybe slow during certain times of the day, please be patient <span class="entypo-thumbs-up">.</span></p>
+	
+  <!-- Author Dropdown Box	-->
 
   <a class="button dropdown" dropdown-toggle="#group-toggle">Search By Author</a>
   <ul id="group-toggle" class="f-dropdown">
@@ -21,8 +25,6 @@
   </ul>
 
   <!-- End Topic Dropdown Box  -->
-
-  <p class="pleft15">or</p>
 
   <!-- Search Bars -->
   <div class="row">
@@ -101,8 +103,6 @@
   <ul class="pagination inline-list" ng-show="authorData">
   	<li class="arrow text-left" ng-hide="!pages[2].href"><button ng-click="nextPage(pages[2].href)">&laquo; Previous 25</button></li>
     <li><button anchor-smooth-scroll>Top <span class="entypo-up-thin"></span></button></li>
-	  <!-- <li class="current"><a href="">1</a></li> -->
-	  <!-- <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li> -->
 	  <li class="arrow"><button ng-click="nextPage(pages[1].href)" scroll-on-click>Next 25 &raquo;</button></li>
   </ul>
 
