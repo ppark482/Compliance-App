@@ -57,6 +57,15 @@
 					})
 				};
 
+				// Gets Next or Previous Page
+				$scope.nextPage = function (url) {
+					console.log(url);
+					MapiFactory.getNextPage(url).then( function (data) {
+						console.log(data);
+						scopeEm(data);
+					})
+				};
+
 				// Controls the Modified By Order
 				var orderBy = $filter('orderBy');
 

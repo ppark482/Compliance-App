@@ -70,11 +70,11 @@
       <div class="red" ng-show="!single.content_modified" class="large-2 medium-2 columns small-text">** No Date Provided **</div>
 <!-- ================================================== -->
       <div class="large-1 medium-1 columns small-text">
-        {{single.premium}}
+        <div class="text-center" ng-class="{ premium: single.premium === 'premium', free: single.premium === 'free'}">{{single.premium}}</div>
       </div>
 <!-- ================================================== -->
 			<div ng-show="single.canonical_url" class="large-2 medium-2 columns small-text">
-				{{single.canonical_url}}
+				<div>{{single.canonical_url}}</div>
 			</div>
 			<div class="red" ng-show="!single.canonical_url" class="large-2 medium-2 columns small-text">** No URL Provided **
 			</div>
@@ -85,11 +85,11 @@
   <!--  End Feed	-->
   <!--  Pagination	-->
 
-  <ul class="pagination" ng-show="authorData" ng-controller="PaginationCtrl">
-  	<li class="arrow unavailable"><a href="">&laquo; Previous 25</a></li>
+  <ul class="pagination" ng-show="authorData">
+  	<li class="arrow text-left" ng-hide="!pages[2].href"><button ng-click="nextPage(pages[2].href)">&laquo; Previous 25</button></li>
 	  <!-- <li class="current"><a href="">1</a></li> -->
 	  <!-- <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li> -->
-	  <li class="arrow"><a href="/" ng-click="nextPage(pages[1].href)">Next 25 &raquo;</a></li>
+	  <li class="arrow text-right"><button ng-click="nextPage(pages[1].href)">Next 25 &raquo;</button></li>
   </ul>
 
   <!--  End Pagination	-->
