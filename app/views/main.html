@@ -2,7 +2,7 @@
 
 	<!-- Author Dropdown Box	-->
 
-  <a class="button dropdown" dropdown-toggle="#group-toggle">Pick An Author</a>
+  <a class="button dropdown" dropdown-toggle="#group-toggle">Search By Author</a>
   <ul id="group-toggle" class="f-dropdown">
     <li class="author-group" ng-repeat="label in linkItems" ng-click="selectedQuery(label)">
        {{label}}<span class="entypo-right-thin right"></span>
@@ -13,7 +13,7 @@
 
   <!-- Topic Dropdown Box  -->
 
-  <a class="button dropdown" dropdown-toggle="#topic-toggle">Pick A Topic</a>
+  <a class="button dropdown" dropdown-toggle="#topic-toggle">Search By Topic</a>
   <ul id="topic-toggle" class="f-dropdown">
     <li class="topic-group" ng-repeat="topic in topicList" ng-click="selectedTopic(topic)">
        {{topic}}<span class="entypo-right-thin right"></span>
@@ -42,7 +42,7 @@
 
   <!-- Results Feed	-->
 
-  <ul>
+  <ul id="top">
   	<li class="row border-bottom column-labels subheader" ng-show="authorData">
   		<div class="large-3 medium-3 columns label">Headline / Author</div>
   		<div class="large-2 medium-2 columns label">Categories</div>
@@ -56,7 +56,7 @@
       <div class="large-2 medium-2 columns label">Story URL</div>
   	</li>
 
-  	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
+  	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData" scroll-on-click>
 <!-- ================================================== -->
   		<div class="large-3 medium-3 columns small-text">
 	  		<h4 class="subheader" ng-show="single.headline">{{ single.headline }}</h4>
@@ -98,11 +98,12 @@
   <!--  End Feed	-->
   <!--  Pagination	-->
 
-  <ul class="pagination " ng-show="authorData">
+  <ul class="pagination inline-list" ng-show="authorData">
   	<li class="arrow text-left" ng-hide="!pages[2].href"><button ng-click="nextPage(pages[2].href)">&laquo; Previous 25</button></li>
+    <li><button anchor-smooth-scroll>Top <span class="entypo-up-thin"></span></button></li>
 	  <!-- <li class="current"><a href="">1</a></li> -->
 	  <!-- <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li> -->
-	  <li class="arrow text-right"><button ng-click="nextPage(pages[1].href)">Next 25 &raquo;</button></li>
+	  <li class="arrow"><button ng-click="nextPage(pages[1].href)" scroll-on-click>Next 25 &raquo;</button></li>
   </ul>
 
   <!--  End Pagination	-->

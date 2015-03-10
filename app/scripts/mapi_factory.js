@@ -32,9 +32,17 @@
 					$.getJSON(url + query + sortByRecent, function (data) {
 						deferred.resolve(data);
 					});
-
 					return deferred.promise;
+				};
 
+				// To pull data from API for Topics List
+				var getTopicData = function (topic) {
+					var deferred = $q.defer();
+					var query = encodeURIComponent('?f=topics:"' + topic + '"');
+					$.getJSON(url + query, function (data) {
+						deferred.resolve(data);
+					});
+					return deferred.promise;
 				};
 
 				// To search for inputted text
@@ -58,9 +66,10 @@
 				};
 
 				return {
-					getData: getData,
-					getTextData: getTextData,
-					getNextPage: getNextPage
+					getData: 					getData,
+					getTextData: 			getTextData,
+					getNextPage: 			getNextPage,
+					getTopicData: 		getTopicData
 	      };
 
 			} // end function block

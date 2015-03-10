@@ -10,8 +10,8 @@
 	 * Controller of the decaturApp
 	 */
 	angular.module('complianceApp')
-	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory', '$filter',
-	  	function ($scope, $window, $rootScope, $http, MapiFactory, $filter) {
+	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory', '$filter', '$location', '$anchorScroll',
+	  	function ($scope, $window, $rootScope, $http, MapiFactory, $filter, $location, $anchorScroll) {
 
 	  		$scope.linkItems = [	  			
 	  			'Helena Oliviero',
@@ -34,7 +34,6 @@
 					'ajc-localgovt',
 					'restaurants'
 				];
-				console.log($scope.topicList);
 
 				var scopeEm = function (data) {
 						$scope.authorData = {};
@@ -55,7 +54,10 @@
 
 				// Gets Data For Selected Topic
 				$scope.selectedTopic = function (topic) {
-					console.log(topic);
+					MapiFactory.getTopicData(topic).then( function (data) {
+						console.log(data);
+						scopeEm(data);
+					})
 				};
 
 				// Gets Data For Inputted Text
@@ -87,6 +89,13 @@
 
 				$scope.order('-content_modified', false);
 
+				// Back to Top Button
+				$scope.backToTop = function () {
+					// Setting DOM element to go to
+					$location.hash('top');
+					$anchorScroll();
+				};
+
 	  	} // end function block
 
 	  ]) // end controller
@@ -102,6 +111,16 @@
 	  		}
 	  	};
 
-	  }); // end directive
+	  }) // end directive
+	  .directive('scrollOnClick', function() {
+		  return {
+		    restrict: 'A',
+		    link: function(scope, $elm) {
+		      $elm.on('click', function() {
+		        $("body").animate({scrollTop: $elm.offset().top}, "slow");
+		      });
+		    }
+		  }
+		}); // end directive
 
 }()); // end iife
