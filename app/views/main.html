@@ -10,6 +10,18 @@
   </ul>
 
   <!-- End Author Dropdown Box	-->
+
+  <!-- Topic Dropdown Box  -->
+
+  <a class="button dropdown" dropdown-toggle="#topic-toggle">Pick A Topic</a>
+  <ul id="topic-toggle" class="f-dropdown">
+    <li class="topic-group" ng-repeat="topic in topicList" ng-click="selectedTopic(topic)">
+       {{topic}}<span class="entypo-right-thin right"></span>
+    </li>
+  </ul>
+
+  <!-- End Topic Dropdown Box  -->
+
   <p class="pleft15">or</p>
 
   <!-- Search Bars -->
@@ -32,15 +44,16 @@
 
   <ul>
   	<li class="row border-bottom column-labels subheader" ng-show="authorData">
-  		<div class="large-3 medium-3 columns">Headline / Author</div>
-  		<div class="large-2 medium-2 columns">Categories</div>
-  		<div class="large-2 medium-2 columns">Topics</div>
-  		<div class="large-2 medium-2 columns">
-        <a href="" ng-click="reverse=!reverse;order('content_modified', reverse)">Modified
+  		<div class="large-3 medium-3 columns label">Headline / Author</div>
+  		<div class="large-2 medium-2 columns label">Categories</div>
+  		<div class="large-2 medium-2 columns label">Topics</div>
+  		<div class="large-2 medium-2 columns label">
+        <span ng-click="reverse=!reverse;order('content_modified', reverse)">Modified
         <span class="entypo-up-open" ng-show="!reverse"></span>
-        <span class="entypo-down-open" ng-show="reverse"></span></a></div>
-  		<div class="large-1 medium-1 columns">Premium</div>
-      <div class="large-2 medium-2 columns">Story URL</div>
+        <span class="entypo-down-open" ng-show="reverse"></span></span>
+      </div>
+  		<div class="large-1 medium-1 columns label">Premium</div>
+      <div class="large-2 medium-2 columns label">Story URL</div>
   	</li>
 
   	<li class="row border-bottom reveal-animation" ng-repeat="single in authorData">
@@ -85,7 +98,7 @@
   <!--  End Feed	-->
   <!--  Pagination	-->
 
-  <ul class="pagination" ng-show="authorData">
+  <ul class="pagination " ng-show="authorData">
   	<li class="arrow text-left" ng-hide="!pages[2].href"><button ng-click="nextPage(pages[2].href)">&laquo; Previous 25</button></li>
 	  <!-- <li class="current"><a href="">1</a></li> -->
 	  <!-- <li class="arrow" ng-repeat="link in pages"><a href="{{link.href}}">{{$index + 1}}</a></li> -->

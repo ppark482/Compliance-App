@@ -27,7 +27,14 @@
 					'Lori Johnston',
 					'H.M. Cauley',
 					'Michelle C. Brooks'
-					];
+				];
+
+				$scope.topicList = [
+					'ajc-features',
+					'ajc-localgovt',
+					'restaurants'
+				];
+				console.log($scope.topicList);
 
 				var scopeEm = function (data) {
 						$scope.authorData = {};
@@ -44,6 +51,11 @@
 						$scope.searchAuthorName = {} && '';
 						$scope.searchAuthorForm.$setPristine();
 					})
+				};
+
+				// Gets Data For Selected Topic
+				$scope.selectedTopic = function (topic) {
+					console.log(topic);
 				};
 
 				// Gets Data For Inputted Text

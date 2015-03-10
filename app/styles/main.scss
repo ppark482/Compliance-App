@@ -18,7 +18,7 @@ ul, li {
   list-style-type: none;
 }
 
-.author-group {
+.author-group, .topic-group {
   padding: 15px;
   border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
   &:last-child {
@@ -30,7 +30,6 @@ ul, li {
   font-size: 12px;
   padding-top: 15px;
 }
-
 
 .border-bottom {
   border-bottom: 1px solid HSLA(221, 61%, 34%, .5);
