@@ -24,23 +24,21 @@ ul, li {
 
 .daily-report {
   padding: 1rem 3rem;
-  margin: 5px 0;
+  margin: 15px 0;
   background-color: HSLA(213, 20%, 36%, 1);
   color: HSLA(0, 0%, 90%, 1);
   // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
 }
 
 .daily-cards {
-  // padding: 0 3rem; 
-  // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
-  border-radius: 2px;
-  margin: 0;
+  margin: 0 0 15px 0;
+  overflow: auto;
 }
 
 .vcard {
   background-color: HSLA(213, 20%, 36%, 1);
   border-radius: 2px;
-  // min-width: 155px;
+  margin: 0;
 }
 
 .card-count {
@@ -53,6 +51,14 @@ ul, li {
   text-align: center;
   color: HSLA(0, 0%, 90%, 1);
   border-bottom: 3px solid HSLA(11, 91%, 41%, 1);
+}
+
+.info-table {
+  background-color: HSLA(0, 0%, 90%, 1);
+  margin: 0;
+  padding: 2%;
+  clear: both;
+  border-radius: 2px;
 }
 
 /*
