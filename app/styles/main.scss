@@ -33,14 +33,18 @@ ul, li {
   border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
 }
 
+.vcard {
+}
+
 .card-count {
-  color: red;
+  color: HSLA(199, 68%, 52%, 1);
   text-align: center;
   font-size: 3rem;
 }
 
 .one, .two, .three, .four, .five {
   text-align: center;
+  border-bottom: 3px solid HSLA(11, 91%, 41%, 1);
 }
 
 /*
