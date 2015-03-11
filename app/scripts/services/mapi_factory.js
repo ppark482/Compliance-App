@@ -10,7 +10,6 @@
 				// to get around CORS and callback wrapping issue
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
-
 				// need to prepend +AND+ if appending to filter
 				// prepend &f= if appending to another query or search
 				var noImages = encodeURIComponent('-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"');
@@ -29,7 +28,6 @@
 				// To pull data from API for Authors List
 				var getData = function (name) {
 					var deferred = $q.defer();
-
 					// Replace any duplicate whitespaces with single white space
 					var cleanName = name.replace(/\s+/g, ' ');
 					var query = encodeURIComponent('?s=by:"' + cleanName + '"');

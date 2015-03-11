@@ -30,20 +30,24 @@ ul, li {
 
 .daily-cards {
   padding: 0 3rem; 
-  border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
+  // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
 }
 
 .vcard {
+  background-color: HSLA(213, 20%, 36%, 1);
+  border-radius: 1px;
+  min-width: 155px;
 }
 
 .card-count {
-  color: HSLA(199, 68%, 52%, 1);
+  color: HSLA(0, 0%, 90%, 1);
   text-align: center;
   font-size: 3rem;
 }
 
 .one, .two, .three, .four, .five {
   text-align: center;
+  color: HSLA(0, 0%, 90%, 1);
   border-bottom: 3px solid HSLA(11, 91%, 41%, 1);
 }
 
@@ -103,6 +107,14 @@ h4 {
 .pleft15 {
   padding-left: 15px;
   color: #6f6f6f;
+}
+
+/*
+=================================== Footer
+*/
+
+.footer {
+  padding-top: 15px;
 }
 
 /*
