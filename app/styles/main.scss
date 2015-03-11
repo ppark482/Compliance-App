@@ -24,19 +24,23 @@ ul, li {
 
 .daily-report {
   padding: 1rem 3rem;
-  margin: 1rem 0 1rem 0;
-  border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
+  margin: 5px 0;
+  background-color: HSLA(213, 20%, 36%, 1);
+  color: HSLA(0, 0%, 90%, 1);
+  // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
 }
 
 .daily-cards {
-  padding: 0 3rem; 
+  // padding: 0 3rem; 
   // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
+  border-radius: 2px;
+  margin: 0;
 }
 
 .vcard {
   background-color: HSLA(213, 20%, 36%, 1);
-  border-radius: 1px;
-  min-width: 155px;
+  border-radius: 2px;
+  // min-width: 155px;
 }
 
 .card-count {
