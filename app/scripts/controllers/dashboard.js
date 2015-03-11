@@ -11,6 +11,7 @@
 
 				DashboardFactory.getDailyData().then( function (data) {
 					console.log(data);
+					$scope.stories = data.entities;
 				});
 
 

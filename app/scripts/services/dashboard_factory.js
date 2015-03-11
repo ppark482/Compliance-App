@@ -1,4 +1,4 @@
-(function(){ 
+(function () { 
 
 	angular.module('complianceApp')
 		.factory('DashboardFactory', ['$http', '$window', '$resource', '$q',
@@ -25,14 +25,16 @@
 					yesterday.setDate(yesterday.getDate()-1);
 					// convert yesterday to UTC
 					yesterday = yesterday.toISOString();
-					return encodeURIComponent('&f=content_modified:[' + yesterday + ' TO ' + today + ']');
+					return encodeURIComponent('?s=content_modified:[' + yesterday + ' TO ' + today + ']');
 				}; // end getDates
 
 				// get daily values
 				var getDailyData = function () {
 					var deferred = $q.defer();
 					var dateRange = getDates();
-					$.getJSON(url + dateRange + sortByRecent, function (data) {
+					// var count = encodeURIComponent('&count=300');
+					var ajcStories = encodeURIComponent('&f=provider:"Publish This"');
+					$.getJSON(url + dateRange + sortByRecent + ajcStories, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
