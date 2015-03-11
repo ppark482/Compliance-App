@@ -9,6 +9,8 @@
 					$location.path('search');
 				};
 
+				$scope.today = DashboardFactory.getTheDate();
+
 				DashboardFactory.getDailyData().then( function (data) {
 					console.log(data);
 					$scope.stories = data.entities;

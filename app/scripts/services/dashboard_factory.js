@@ -13,6 +13,35 @@
 				// prepend &f= if appending to another query or search
 				var noImages = encodeURIComponent('-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"');
 
+				// Get the day of the week
+				var getTheDate = function () {
+					var date = new Date();
+					var day = date.getDay();
+					switch (day) {
+						case 0:
+							return'Sunday';
+							break;
+						case 1:
+							return'Monday';
+							break;
+						case 2:
+							return'Tuesday';
+							break;
+						case 3:
+							return'Wednesday';
+							break;
+						case 4:
+							return'Thursday';
+							break;
+						case 5:
+							return'Friday';
+							break;
+						default:
+							return'Saturday';
+					}
+					return day;
+				};
+
 				var getDates = function () {
 					// get today's date
 					var getToday = function () {
@@ -34,14 +63,15 @@
 					var dateRange = getDates();
 					// var count = encodeURIComponent('&count=300');
 					var ajcStories = encodeURIComponent('&f=provider:"Publish This"');
-					$.getJSON(url + dateRange + sortByRecent + ajcStories, function (data) {
+					$.getJSON(url + dateRange + sortByRecent, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
 				}; // end getDailyDate
 
 				return {
-					getDailyData : getDailyData
+					getTheDate		: getTheDate,
+					getDailyData 	: getDailyData
 				};
 
 			} // end function block
