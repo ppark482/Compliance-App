@@ -12,11 +12,16 @@
 				// Displays what the date is
 				$scope.today = DashboardFactory.getTheDate();
 
+				var scopeEm = function (data) {
+					$scope.pages = data.links;
+					$scope.resultsCount = $scope.stories.length;
+				}
+
 				// Gets initial round of results
 				DashboardFactory.getAJCstories().then( function (data) {
 					console.log(data);
 					$scope.stories = data.entities;
-					$scope.pages = data.links;
+					scopeEm(data);
 				});
 
 				// Updates scope with more results on click of load more
@@ -25,7 +30,7 @@
 						angular.forEach(data.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						$scope.pages = data.links;
+						scopeEm(data);
 					});
 				};
 
