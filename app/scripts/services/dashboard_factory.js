@@ -15,31 +15,34 @@
 
 				// Get the day of the week
 				var getTheDate = function () {
-					var date = new Date();
-					var day = date.getDay();
+					var today = new Date();
+					var year = today.getFullYear();
+					var date = today.getDate()
+					var month = today.getMonth() + 1; // getMonth() returns an integer between 0 & 11
+					var day = today.getDay();
+					var fullDate = ', ' + month + '/' + date + '/' + year;
 					switch (day) {
 						case 0:
-							return'Sunday';
+							return 'Sunday' + fullDate;
 							break;
 						case 1:
-							return'Monday';
+							return 'Monday' + fullDate;
 							break;
 						case 2:
-							return'Tuesday';
+							return 'Tuesday' + fullDate;
 							break;
 						case 3:
-							return'Wednesday';
+							return 'Wednesday' + fullDate;
 							break;
 						case 4:
-							return'Thursday';
+							return 'Thursday' + fullDate;
 							break;
 						case 5:
-							return'Friday';
+							return 'Friday' + fullDate;
 							break;
 						default:
-							return'Saturday';
+							return 'Saturday' + fullDate;
 					}
-					return day;
 				};
 
 				var getDates = function () {

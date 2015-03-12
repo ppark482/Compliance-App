@@ -1,4 +1,4 @@
-<section class="row large-12">
+<section class="large-12">
 	<button ng-click="goToSearch()">Search</button>
 	<p class="daily-report"><span class="entypo-calendar"> {{ today }}</span></p>
 
@@ -29,19 +29,20 @@
 </section>
 
 <table class="large-12 info-table">
-  <caption>Recently Published</caption>
   <tr>
+  	<th scope="column"></th>
     <th scope="column">Provider Name</th>
     <th scope="column">Date Modified</th>
     <th scope="column">Headline</th>
   </tr>
   <tr ng-repeat="s in stories">
+  	<th>{{ $index + 1 }}</th>
   	<th>{{ s.provider.name }}</th>
   	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
   	<th>{{ s.headline }}</th>
   </tr>	
 </table>
-<button class="large-12" ng-click="loadMore(pages[1].href)">Load More</button>
+<button class="large-12 medium-12 small-12" ng-click="loadMore(pages[1].href)">Load More</button>
 
 
 

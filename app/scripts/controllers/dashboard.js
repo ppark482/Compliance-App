@@ -10,6 +10,7 @@
 				};
 
 				$scope.today = DashboardFactory.getTheDate();
+				console.log($scope.today);
 
 				// DashboardFactory.getDailyData().then( function (data) {
 				// 	console.log(data);
@@ -24,16 +25,12 @@
 
 				$scope.loadMore = function (url) {
 					MapiFactory.getNextPage(url).then( function (data) {
-						console.log(data);
 						angular.forEach(data.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						console.log($scope.stories);
 						$scope.pages = data.links;
 					});
 				};
-
-
 
 			} // end function block
 
