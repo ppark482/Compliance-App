@@ -25,6 +25,8 @@ ul, li {
   padding: 0;
   background-color: HSLA(0, 0%, 0%, 0);
   position: fixed;
+  height: 100%;
+  min-width: 148px;
 }
 
 .daily-report {
@@ -40,6 +42,10 @@ ul, li {
   overflow: auto;
 }
 
+.viewport {
+  position: relative;
+  left: 148px;
+}
 .vcard {
   background-color: HSLA(213, 20%, 36%, 1);
   border-radius: 2px;
@@ -65,13 +71,9 @@ ul, li {
   padding: 2%;
   clear: both;
   border-radius: 2px;
-  position: relative;
-  top: 205px;
 }
 
 .load-more {
-  position: relative;
-  top: 205px;
 }
 
 /*

@@ -9,20 +9,17 @@
 					$location.path('search');
 				};
 
+				// Displays what the date is
 				$scope.today = DashboardFactory.getTheDate();
-				console.log($scope.today);
 
-				// DashboardFactory.getDailyData().then( function (data) {
-				// 	console.log(data);
-				// 	$scope.stories = data.entities;
-				// });
-
+				// Gets initial round of results
 				DashboardFactory.getAJCstories().then( function (data) {
 					console.log(data);
 					$scope.stories = data.entities;
 					$scope.pages = data.links;
 				});
 
+				// Updates scope with more results on click of load more
 				$scope.loadMore = function (url) {
 					MapiFactory.getNextPage(url).then( function (data) {
 						angular.forEach(data.entities, function (x) {

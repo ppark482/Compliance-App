@@ -1,9 +1,5 @@
 <nav data-magellan-expedition="fixed">
-	<div class="icon-bar six-up">
-		<a class="item" ng-click="goToSearch()">
-			<span>Search</span>
-			<label class="card-count entypo-search"></label>
-		</a>
+	<div class="icon-bar vertical five-up">
 		<a class="item">
 			<span>AJC Stories</span>
 			<label class="card-count">10</label>
@@ -25,53 +21,25 @@
 			<label class="card-count">10</label>
 		</a>
 	</div>
-	<div class="daily-report"><span class="entypo-calendar"> {{ today }}</span></div>
 </nav>
-<!-- <section class="large-12">
-	<button ng-click="goToSearch()">Search</button>
-	<p class="daily-report"><span class="entypo-calendar"> {{ today }}</span></p>
-
-	<section class="large-12">
-		<ul class="large-12 daily-cards">
-			<li class="large-3 medium-3 small-12 vcard column">
-				<h4 class="fn card-title">AJC STORIES</h4>
-				<p class="card-count">10</p>
-			</li>
-			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn card-title">PHOTO GALLERY</h4>
-				<p class="card-count">10</p>
-			</li>
-			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn card-title">WORDPRESS VIP</h4>
-				<p class="card-count">10</p>
-			</li>
-			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn card-title">PUBLISH THIS</h4>
-				<p class="card-count">10</p>
-			</li>
-			<li class="large-3 medium-3 small-12 vcard column">
-				<h4 class="fn card-title">AP STORIES</h4>
-				<p class="card-count">10</p>
-			</li>
-		</ul>
-	</section>
-</section> -->
-
-<table class="large-12 info-table">
-  <tr>
-  	<th scope="column"></th>
-    <th scope="column">Provider Name</th>
-    <th scope="column">Date Modified</th>
-    <th scope="column">Headline</th>
-  </tr>
-  <tr ng-repeat="s in stories" class="reveal-animation">
-  	<th>{{ $index + 1 }}</th>
-  	<th>{{ s.provider.name }}</th>
-  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
-  	<th>{{ s.headline }}</th>
-  </tr>	
-</table>
-<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More</button>
-
-
-
+<div class="viewport">
+	<button class="" ng-click="goToSearch()">
+		<span>Search</span>
+		<span class="entypo-search"></span>
+	</button>
+	<table class="large-12 info-table">
+	  <tr>
+	  	<th scope="column"></th>
+	    <th scope="column">Provider Name</th>
+	    <th scope="column">Date Modified</th>
+	    <th scope="column">Headline</th>
+	  </tr>
+	  <tr ng-repeat="s in stories" class="reveal-animation">
+	  	<th>{{ $index + 1 }}</th>
+	  	<th>{{ s.provider.name }}</th>
+	  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
+	  	<th>{{ s.headline }}</th>
+	  </tr>	
+	</table>
+	<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More <span class="entypo-cw"></span></button>
+</div>
