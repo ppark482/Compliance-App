@@ -37,10 +37,11 @@
   </tr>
   <tr ng-repeat="s in stories">
   	<th>{{ s.provider.name }}</th>
-  	<th>{{ s.content_modified }}</th>
+  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
   	<th>{{ s.headline }}</th>
   </tr>	
 </table>
+<button class="large-12" ng-click="loadMore(pages[1].href)">Load More</button>
 
 
 
