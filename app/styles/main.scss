@@ -28,41 +28,43 @@ ul, li {
   height: 100%;
   min-width: 148px;
 }
-
+.card-count {
+  color: HSLA(0, 0%, 90%, 1);
+  text-align: center;
+  font-size: 3rem;
+}
 .daily-report {
-  padding: 1rem 3rem;
-  // margin: 15px 0;
+  padding: 0;
   background-color: HSLA(213, 20%, 36%, 1);
   color: HSLA(0, 0%, 90%, 1);
-  // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
 }
 
-.daily-cards {
-  margin: 0 0 15px 0;
-  overflow: auto;
+.search-button {
+  margin: 0;
+}
+
+.quick-info {
+  position: relative;
+  margin-left: 1rem;
+}
+.icon {
+  color: black;
+  margin: 0 .5rem; 
 }
 
 .viewport {
   position: relative;
   left: 148px;
 }
-.vcard {
-  background-color: HSLA(213, 20%, 36%, 1);
-  border-radius: 2px;
-  margin: 0;
+
+.second-nav {
+  position: fixed;
+  z-index: 500;
 }
 
-.card-count {
-  color: HSLA(0, 0%, 90%, 1);
-  text-align: center;
-  font-size: 3rem;
-}
-
-.card-title {
-  text-align: center;
-  padding-bottom: 10px;
-  color: HSLA(0, 0%, 90%, 1);
-  border-bottom: 3px solid HSLA(11, 91%, 41%, 1);
+.data-view {
+  position: relative;
+  top: 51px;
 }
 
 .info-table {
@@ -71,6 +73,7 @@ ul, li {
   padding: 2%;
   clear: both;
   border-radius: 2px;
+
 }
 
 .load-more {

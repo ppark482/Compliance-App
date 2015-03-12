@@ -22,24 +22,40 @@
 		</a>
 	</div>
 </nav>
-<div class="viewport">
-	<button class="" ng-click="goToSearch()">
-		<span>Search</span>
-		<span class="entypo-search"></span>
-	</button>
-	<table class="large-12 info-table">
-	  <tr>
-	  	<th scope="column"></th>
-	    <th scope="column">Provider Name</th>
-	    <th scope="column">Date Modified</th>
-	    <th scope="column">Headline</th>
-	  </tr>
-	  <tr ng-repeat="s in stories" class="reveal-animation">
-	  	<th>{{ $index + 1 }}</th>
-	  	<th>{{ s.provider.name }}</th>
-	  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
-	  	<th>{{ s.headline }}</th>
-	  </tr>	
-	</table>
-	<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More <span class="entypo-cw"></span></button>
-</div>
+
+<div class="viewport large-10">
+
+	<section class="large-12 second-nav">
+		<div class="daily-report">
+			<button class="search-button" ng-click="goToSearch()">
+				<span>Search</span>
+				<span class="entypo-search"></span>
+			</button>
+			<span class="quick-info">
+				<span class="entypo-calendar icon"></span>
+				<span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
+				<span class="entypo-list icon"></span> 
+				<span>Results Count: {{ 25 }}</span>	
+			</span>
+		</div>
+	</section>
+
+	<div class="data-view">
+		<table class="large-12 info-table">
+		  <tr>
+		  	<th scope="column"></th>
+		    <th scope="column">Provider Name</th>
+		    <th scope="column">Date Modified</th>
+		    <th scope="column">Headline</th>
+		  </tr>
+		  <tr ng-repeat="s in stories" class="reveal-animation">
+		  	<th>{{ $index + 1 }}</th>
+		  	<th>{{ s.provider.name }}</th>
+		  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
+		  	<th>{{ s.headline }}</th>
+		  </tr>	
+		</table>
+		<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More <span class="entypo-cw"></span></button>
+	</div> <!-- end data view  -->
+
+</div> <!-- end viewport  -->
