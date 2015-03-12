@@ -11,7 +11,12 @@
 
 				$scope.today = DashboardFactory.getTheDate();
 
-				DashboardFactory.getDailyData().then( function (data) {
+				// DashboardFactory.getDailyData().then( function (data) {
+				// 	console.log(data);
+				// 	$scope.stories = data.entities;
+				// });
+
+				DashboardFactory.getAJCstories().then( function (data) {
 					console.log(data);
 					$scope.stories = data.entities;
 				});

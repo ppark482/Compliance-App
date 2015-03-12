@@ -50,7 +50,6 @@
 				// To search for inputted text
 				var getTextData = function (query) {
 					var deferred = $q.defer();
-
 					$.getJSON(url + '?q=' + '"' + query + '"' + sortByRecent +'&f=' + noImages, function (data) {
 						deferred.resolve(data);
 					});
@@ -68,10 +67,10 @@
 				};
 
 				return {
-					getData: 					getData,
-					getTextData: 			getTextData,
-					getNextPage: 			getNextPage,
-					getTopicData: 		getTopicData
+					getData				: getData,
+					getTextData		: getTextData,
+					getNextPage		: getNextPage,
+					getTopicData	: getTopicData
 	      };
 
 			} // end function block

@@ -60,8 +60,8 @@
 				// get daily values
 				var getDailyData = function () {
 					var deferred = $q.defer();
-					var dateRange = getDates();
 					// var count = encodeURIComponent('&count=300');
+					var dateRange = getDates();
 					var ajcStories = encodeURIComponent('&f=provider:"Publish This"');
 					$.getJSON(url + dateRange + sortByRecent, function (data) {
 						deferred.resolve(data);
@@ -69,9 +69,21 @@
 					return deferred.promise;
 				}; // end getDailyDate
 
+				// get AJC Stories
+				var getAJCstories = function () {
+					var deferred = $q.defer();
+					var dateRange = getDates();
+					var query = encodeURIComponent('?q="WordPress VIP"');
+					$.getJSON(url + query + dateRange + sortByRecent, function (data) {
+						deferred.resolve(data);
+					});
+					return deferred.promise;
+				};
+
 				return {
 					getTheDate		: getTheDate,
-					getDailyData 	: getDailyData
+					getDailyData 	: getDailyData,
+					getAJCstories	: getAJCstories
 				};
 
 			} // end function block

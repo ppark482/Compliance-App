@@ -47,8 +47,9 @@ ul, li {
   font-size: 3rem;
 }
 
-.one, .two, .three, .four, .five {
+.card-title {
   text-align: center;
+  padding-bottom: 10px;
   color: HSLA(0, 0%, 90%, 1);
   border-bottom: 3px solid HSLA(11, 91%, 41%, 1);
 }

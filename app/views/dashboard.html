@@ -5,38 +5,42 @@
 	<section class="large-12">
 		<ul class="large-12 daily-cards">
 			<li class="large-3 medium-3 small-12 vcard column">
-				<h4 class="fn one">AJC STORIES</h4>
+				<h4 class="fn card-title">AJC STORIES</h4>
 				<p class="card-count">10</p>
 			</li>
 			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn two">PHOTO GALLERY</h4>
+				<h4 class="fn card-title">PHOTO GALLERY</h4>
 				<p class="card-count">10</p>
 			</li>
 			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn three">WORDPRESS VIP</h4>
+				<h4 class="fn card-title">WORDPRESS VIP</h4>
 				<p class="card-count">10</p>
 			</li>
 			<li class="large-2 medium-2 small-12 vcard column">
-				<h4 class="fn four">PUBLISH THIS</h4>
+				<h4 class="fn card-title">PUBLISH THIS</h4>
 				<p class="card-count">10</p>
 			</li>
 			<li class="large-3 medium-3 small-12 vcard column">
-				<h4 class="fn five">AP STORIES</h4>
+				<h4 class="fn card-title">AP STORIES</h4>
 				<p class="card-count">10</p>
 			</li>
 		</ul>
 	</section>
-
-	<section class="large-12 info-table">
-		<ul>
-			<li ng-repeat="s in stories">
-				<div class="label large-2">{{ s.provider.name }}</div>
-				<div class="label large-3">{{ s.content_modified }}</div>
-				<div class="label large-6">{{ s.headline }}</div>
-			</li>
-		</ul>
-	</section>
-
-
-
 </section>
+
+<table class="large-12 info-table">
+  <caption>Recently Published</caption>
+  <tr>
+    <th scope="column">Provider Name</th>
+    <th scope="column">Date Modified</th>
+    <th scope="column">Headline</th>
+  </tr>
+  <tr ng-repeat="s in stories">
+  	<th>{{ s.provider.name }}</th>
+  	<th>{{ s.content_modified }}</th>
+  	<th>{{ s.headline }}</th>
+  </tr>	
+</table>
+
+
+
