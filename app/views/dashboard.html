@@ -1,4 +1,33 @@
-<section class="large-12">
+<nav data-magellan-expedition="fixed">
+	<div class="icon-bar six-up">
+		<a class="item" ng-click="goToSearch()">
+			<span>Search</span>
+			<label class="card-count entypo-search"></label>
+		</a>
+		<a class="item">
+			<span>AJC Stories</span>
+			<label class="card-count">10</label>
+		</a>
+		<a class="item">
+			<span>Photo Gallery</span>
+			<label class="card-count">10</label>
+		</a>
+		<a class="item">
+			<span>WordPress VIP</span>
+			<label class="card-count">10</label>
+		</a>
+		<a class="item">
+			<span>Publish This</span>
+			<label class="card-count">10</label>
+		</a>
+		<a class="item">
+			<span>AP Stories</span>
+			<label class="card-count">10</label>
+		</a>
+	</div>
+	<div class="daily-report"><span class="entypo-calendar"> {{ today }}</span></div>
+</nav>
+<!-- <section class="large-12">
 	<button ng-click="goToSearch()">Search</button>
 	<p class="daily-report"><span class="entypo-calendar"> {{ today }}</span></p>
 
@@ -26,7 +55,7 @@
 			</li>
 		</ul>
 	</section>
-</section>
+</section> -->
 
 <table class="large-12 info-table">
   <tr>
@@ -35,14 +64,14 @@
     <th scope="column">Date Modified</th>
     <th scope="column">Headline</th>
   </tr>
-  <tr ng-repeat="s in stories">
+  <tr ng-repeat="s in stories" class="reveal-animation">
   	<th>{{ $index + 1 }}</th>
   	<th>{{ s.provider.name }}</th>
   	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
   	<th>{{ s.headline }}</th>
   </tr>	
 </table>
-<button class="large-12 medium-12 small-12" ng-click="loadMore(pages[1].href)">Load More</button>
+<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More</button>
 
 
 

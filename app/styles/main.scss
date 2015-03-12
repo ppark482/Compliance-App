@@ -21,10 +21,15 @@ ul, li {
 /*
 =================================== Dashboard Styling
 */
+[data-magellan-expedition], [data-magellan-expedition-clone] {
+  padding: 0;
+  background-color: HSLA(0, 0%, 0%, 0);
+  position: fixed;
+}
 
 .daily-report {
   padding: 1rem 3rem;
-  margin: 15px 0;
+  // margin: 15px 0;
   background-color: HSLA(213, 20%, 36%, 1);
   color: HSLA(0, 0%, 90%, 1);
   // border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
@@ -60,6 +65,13 @@ ul, li {
   padding: 2%;
   clear: both;
   border-radius: 2px;
+  position: relative;
+  top: 205px;
+}
+
+.load-more {
+  position: relative;
+  top: 205px;
 }
 
 /*
