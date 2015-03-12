@@ -12,16 +12,13 @@
 				// Displays what the date is
 				$scope.today = DashboardFactory.getTheDate();
 
-				var scopeEm = function (data) {
-					$scope.pages = data.links;
-					$scope.resultsCount = $scope.stories.length;
-				}
-
 				// Gets initial round of results
 				DashboardFactory.getAJCstories().then( function (data) {
 					console.log(data);
 					$scope.stories = data.entities;
-					scopeEm(data);
+					$scope.pages = data.links;
+					$scope.resultsCount = $scope.stories.length;
+					modifyCounts($scope.stories);
 				});
 
 				// Updates scope with more results on click of load more
@@ -30,8 +27,21 @@
 						angular.forEach(data.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						scopeEm(data);
+					$scope.pages = data.links;
+					$scope.resultsCount = $scope.stories.length;
+					modifyCounts($scope.stories);
 					});
+				};
+
+				var modifyCounts = function (data) {
+					console.log(data.length);
+					var providerCounts = DashboardFactory.modifyCounts(data);
+					console.log(providerCounts);
+					$scope.ajcStories 			= providerCounts.ajc_stories.length;
+					$scope.photo_galleries 	= providerCounts.photo_galleries.length;
+					$scope.wp_vip 					= providerCounts.wp_vip.length;
+					$scope.publish_this 		= providerCounts.publish_this.length;
+					$scope.ap_stories 			= providerCounts.ap_stories.length;
 				};
 
 			} // end function block

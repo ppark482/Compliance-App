@@ -2,23 +2,28 @@
 	<div class="icon-bar vertical five-up">
 		<a class="item">
 			<span>AJC Stories</span>
-			<label class="card-count">10</label>
+			<label class="card-count" ng-hide="ajcStories">0</label>
+			<label class="card-count" ng-show="ajcStories">{{ ajcStories }}</label>
 		</a>
 		<a class="item">
 			<span>Photo Gallery</span>
-			<label class="card-count">10</label>
+			<label class="card-count" ng-hide="photo_galleries">0</label>
+			<label class="card-count" ng-show="photo_galleries">{{ photo_galleries }}</label>
 		</a>
 		<a class="item">
 			<span>WordPress VIP</span>
-			<label class="card-count">10</label>
+			<label class="card-count" ng-hide="wp_vip">0</label>
+			<label class="card-count" ng-show="wp_vip">{{ wp_vip }}</label>
 		</a>
 		<a class="item">
 			<span>Publish This</span>
-			<label class="card-count">10</label>
+			<label class="card-count" ng-hide="publish_this">0</label>
+			<label class="card-count" ng-show="publish_this">{{ publish_this }}</label>
 		</a>
 		<a class="item">
 			<span>AP Stories</span>
-			<label class="card-count">10</label>
+			<label class="card-count" ng-hide="ap_stories">0</label>
+			<label class="card-count" ng-show="ap_stories">{{ ap_stories }}</label>
 		</a>
 	</div>
 </nav>

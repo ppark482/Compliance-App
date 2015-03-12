@@ -83,10 +83,34 @@
 					return deferred.promise;
 				};
 
+				// modify count displays
+				var modifyCounts = function (data) {
+					var providerCounts = {
+						ajc_stories 		: [],
+						photo_galleries : [],
+						wp_vip 					: [],
+						publish_this 		: [],
+						ap_stories 			: []
+					};
+					angular.forEach(data, function (x) {
+						if (x.provider.name === "WordPress VIP") {
+							providerCounts.wp_vip.push(x);
+						} else if (x.provider.name === "PublishThis") {
+							providerCounts.publish_this.push(x);
+						} else if (x.provider.name === "www.ajc.com") {
+							providerCounts.ajc_stories.push(x);
+						} else if (x.provider.name === "The Associated Press") {
+							providerCounts.ap_stories.push(x);
+						} 
+					});
+					return providerCounts;
+				};
+
 				return {
 					getTheDate		: getTheDate,
 					getDailyData 	: getDailyData,
-					getAJCstories	: getAJCstories
+					getAJCstories	: getAJCstories,
+					modifyCounts 	: modifyCounts
 				};
 
 			} // end function block
