@@ -30,18 +30,19 @@
 
 <div class="viewport large-10">
 
-	<section class="large-12 second-nav">
+	<section class="large-12 medium-12 small-12 second-nav">
 		<div class="daily-report">
 			<button class="search-button" ng-click="goToSearch()">
 				<span>Search</span>
 				<span class="entypo-search"></span>
 			</button>
-			<span class="quick-info">
+
+			<div class="quick-info large-10 medium-8 small-8">
 				<span class="entypo-calendar icon"></span>
 				<span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
 				<span class="entypo-list icon"></span> 
 				<span>Results Count: {{ resultsCount }}</span>	
-			</span>
+			</div>
 		</div>
 	</section>
 
@@ -53,7 +54,7 @@
 		    <th scope="column">Date Modified</th>
 		    <th scope="column">Headline</th>
 		  </tr>
-		  <tr ng-repeat="s in stories" class="reveal-animation">
+		  <tr ng-repeat="s in stories" class="page-list-item">
 		  	<th>{{ $index + 1 }}</th>
 		  	<th>{{ s.provider.name }}</th>
 		  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>

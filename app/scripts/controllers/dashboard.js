@@ -33,10 +33,9 @@
 					});
 				};
 
+				// Modifies counts on left bar
 				var modifyCounts = function (data) {
-					console.log(data.length);
 					var providerCounts = DashboardFactory.modifyCounts(data);
-					console.log(providerCounts);
 					$scope.ajcStories 			= providerCounts.ajc_stories.length;
 					$scope.photo_galleries 	= providerCounts.photo_galleries.length;
 					$scope.wp_vip 					= providerCounts.wp_vip.length;
