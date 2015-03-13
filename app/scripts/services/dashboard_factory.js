@@ -76,8 +76,8 @@
 				var getAJCstories = function () {
 					var deferred = $q.defer();
 					var dateRange = getDates();
-					var query = encodeURIComponent('?q="WordPress VIP"');
-					$.getJSON(url + query + dateRange + sortByRecent, function (data) {
+					var query = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"&f=provider_name:"www.ajc.com"');
+					$.getJSON(url + dateRange + query + sortByRecent + '&f=' + noImages, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
