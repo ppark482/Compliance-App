@@ -93,13 +93,15 @@
 						ap_stories 			: []
 					};
 					angular.forEach(data, function (x) {
-						if (x.provider.name === "WordPress VIP") {
+						if (x.provider.name === 'WordPress VIP') {
 							providerCounts.wp_vip.push(x);
-						} else if (x.provider.name === "PublishThis") {
+						} else if (x.provider.name === 'PublishThis') {
 							providerCounts.publish_this.push(x);
-						} else if (x.provider.name === "www.ajc.com") {
+						} else if (x.provider.name === 'www.ajc.com') {
 							providerCounts.ajc_stories.push(x);
-						} else if (x.provider.name === "The Associated Press") {
+						}	else if (x.provider.name === 'The Atlanta Journal-Constitution') {
+							providerCounts.ajc_stories.push(x);
+						}	else if (x.provider.name === 'The Associated Press') {
 							providerCounts.ap_stories.push(x);
 						} 
 					});

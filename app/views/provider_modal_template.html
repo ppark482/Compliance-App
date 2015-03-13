@@ -1,16 +1,13 @@
 <div ng-controller="ProviderModalCtrl">
 	<h3 class="label">{{ providers[0].provider.name }}</h3>
-	<tabset vertical="true" type="navType">
 
-		<tab heading="By Authors">
-			<div ng-repeat="(key, value) in authors" class="row">
+		<ul heading="By Authors">
+			<li ng-repeat="(key, value) in authors" class="row">
 				<div class="large-5 column">{{ key }}</div>
 				<div class="large-1 column entypo-play"></div>
 				<div class="large-6 column">{{ value.length }}</div>
-			</div>
-		</tab>
-
-	</tabset>
+			</li>
+		</ul>
 
 
 	<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
