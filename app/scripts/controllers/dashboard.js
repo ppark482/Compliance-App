@@ -43,10 +43,6 @@
 					$scope.ap_stories 			= providerCounts.ap_stories;
 				};
 
-				$scope.openModal = function (provider) {
-					console.log(provider);
-				};
-
 			} // end function block
 
 		]);
