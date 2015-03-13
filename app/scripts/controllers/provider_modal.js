@@ -34,7 +34,6 @@
 				$scope.providers = items;
 
 				$scope.authors = ProviderModalFactory.getAuthors();
-				console.log($scope.authors);
 
 				$scope.ok = function () {
 					$modalInstance.close($scope.selected.item);
@@ -65,7 +64,11 @@
 				var authorCount = function (array) {
 					// Pull author names and how many of each author there are
 					authors = _.groupBy(array, function (x) {
-						return x.by[0].name;
+						if (!x.by) {
+							return 'No Author';
+						} else {
+							return x.by[0].name;	
+						}
 					});
 				};
 
