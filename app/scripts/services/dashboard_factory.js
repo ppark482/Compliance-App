@@ -52,12 +52,13 @@
 					};
 					// convert today's date to UTC
 					var today = getToday().toISOString();
-					// subtract a day from today
-					var yesterday = new Date(today);
-					yesterday.setDate(yesterday.getDate()-1);
+					// get beginning of today
+					var start = new Date(today);
+					start.setHours(0,0,0,0);
+					console.log(start);
 					// convert yesterday to UTC
-					yesterday = yesterday.toISOString();
-					return encodeURIComponent('?s=content_modified:[' + yesterday + ' TO ' + today + ']');
+					start = start.toISOString();
+					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
 				// get daily values
