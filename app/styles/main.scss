@@ -28,6 +28,9 @@ ul, li {
   height: 100%;
   min-width: 148px;
 }
+.item {
+  z-index: 9999;
+}
 .card-count {
   color: HSLA(0, 0%, 90%, 1);
   text-align: center;

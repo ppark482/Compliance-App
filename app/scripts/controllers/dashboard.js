@@ -36,11 +36,15 @@
 				// Modifies counts on left bar
 				var modifyCounts = function (data) {
 					var providerCounts = DashboardFactory.modifyCounts(data);
-					$scope.ajcStories 			= providerCounts.ajc_stories.length;
-					$scope.photo_galleries 	= providerCounts.photo_galleries.length;
-					$scope.wp_vip 					= providerCounts.wp_vip.length;
-					$scope.publish_this 		= providerCounts.publish_this.length;
-					$scope.ap_stories 			= providerCounts.ap_stories.length;
+					$scope.ajcStories 			= providerCounts.ajc_stories;
+					$scope.photo_galleries 	= providerCounts.photo_galleries;
+					$scope.wp_vip 					= providerCounts.wp_vip;
+					$scope.publish_this 		= providerCounts.publish_this;
+					$scope.ap_stories 			= providerCounts.ap_stories;
+				};
+
+				$scope.openModal = function (provider) {
+					console.log(provider);
 				};
 
 			} // end function block

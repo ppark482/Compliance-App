@@ -1,42 +1,44 @@
-<nav data-magellan-expedition="fixed">
+<!-- Left Vertical Side Bar ============================================================= -->
+<nav data-magellan-expedition="fixed" stop-event>
 	<div class="icon-bar vertical five-up">
-		<a class="item">
+		<a class="item" ng-click="openModal(ajcStories)">
 			<span>AJC Stories</span>
 			<label class="card-count" ng-hide="ajcStories">0</label>
-			<label class="card-count" ng-show="ajcStories">{{ ajcStories }}</label>
+			<label class="card-count" ng-show="ajcStories">{{ ajcStories.length }}</label>
 		</a>
-		<a class="item">
+		<a class="item" ng-click="openModal(photo_galleries)">
 			<span>Photo Gallery</span>
 			<label class="card-count" ng-hide="photo_galleries">0</label>
-			<label class="card-count" ng-show="photo_galleries">{{ photo_galleries }}</label>
+			<label class="card-count" ng-show="photo_galleries">{{ photo_galleries.length }}</label>
 		</a>
-		<a class="item">
+		<a class="item" ng-click="openModal(wp_vip)">
 			<span>WordPress VIP</span>
 			<label class="card-count" ng-hide="wp_vip">0</label>
-			<label class="card-count" ng-show="wp_vip">{{ wp_vip }}</label>
+			<label class="card-count" ng-show="wp_vip">{{ wp_vip.length }}</label>
 		</a>
-		<a class="item">
+		<a class="item" ng-click="openModal(publish_this)">
 			<span>Publish This</span>
 			<label class="card-count" ng-hide="publish_this">0</label>
-			<label class="card-count" ng-show="publish_this">{{ publish_this }}</label>
+			<label class="card-count" ng-show="publish_this">{{ publish_this.length }}</label>
 		</a>
-		<a class="item">
+		<a class="item" ng-click="openModal(ap_stories)">
 			<span>AP Stories</span>
 			<label class="card-count" ng-hide="ap_stories">0</label>
-			<label class="card-count" ng-show="ap_stories">{{ ap_stories }}</label>
+			<label class="card-count" ng-show="ap_stories">{{ ap_stories.length }}</label>
 		</a>
 	</div>
 </nav>
 
+<!-- ViewPort ============================================================================ -->
 <div class="viewport large-10">
 
-	<section class="large-12 medium-12 small-12 second-nav">
+	<section class="large-12 medium-12 small-12 second-nav"> <!-- pseudo nav bar  -->
+
 		<div class="daily-report">
 			<button class="search-button" ng-click="goToSearch()">
 				<span>Search</span>
 				<span class="entypo-search"></span>
 			</button>
-
 			<div class="quick-info large-10 medium-8 small-8">
 				<span class="entypo-calendar icon"></span>
 				<span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
@@ -46,7 +48,7 @@
 		</div>
 	</section>
 
-	<div class="data-view">
+	<div class="data-view"> <!-- 																			Feed viewer -->
 		<table class="large-12 info-table">
 		  <tr>
 		  	<th scope="column"></th>
