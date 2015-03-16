@@ -17,7 +17,7 @@
       'ngResource',
       'ngRoute',
       'mm.foundation',
-      'angular-loading-bar'
+      'cgBusy'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider

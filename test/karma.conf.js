@@ -29,8 +29,8 @@ module.exports = function(config) {
       'bower_components/oauth-signature/dist/oauth-signature.js',
       'bower_components/jsonproxy/jsonp.js',
       'bower_components/angular-foundation/mm-foundation-tpls.js',
-      'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/underscore/underscore.js',
+      'bower_components/angular-busy/dist/angular-busy.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

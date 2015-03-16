@@ -26,7 +26,7 @@
 
 				// Updates scope with more results on click of load more
 				$scope.loadMore = function (url) {
-					MapiFactory.getNextPage(url).then( function (data) {
+					$scope.busy = MapiFactory.getNextPage(url).then( function (data) {
 						console.log(data);
 						var newData = DashboardFactory.filterResults(data);
 						angular.forEach(newData.entities, function (x) {
@@ -40,18 +40,29 @@
 						console.log($scope.stories);
 					});
 				};
+
+				// Counts for autoLoad
+				var aLcount = 2;
 				
 				// Auto Load next set of data until end of date range
 				var autoLoad = function (data) {
-					MapiFactory.getNextPage(data.links[1].href).then( function (data) {
+					$scope.busy = MapiFactory.getNextPage(data.links[1].href).then( function (data) {
 						var newData = DashboardFactory.filterResults(data);
 						angular.forEach(newData.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						$scope.stories = _.unique($scope.stories);
+						$scope.stories = _.unique($scope.stories); // removes duplicate links
 						$scope.pages = newData.links;
 						$scope.resultsCount = $scope.stories.length;
 						modifyCounts($scope.stories);
+						// starts loop
+						aLcount++;
+						// auto loads first # of pages
+						// setting aLcount range at 20 yields ~ 220 results
+						// setting aLcount higher will slow down or crash browser
+						if(aLcount < 100) {
+							autoLoad(data);
+						}
 					});
 				};
 

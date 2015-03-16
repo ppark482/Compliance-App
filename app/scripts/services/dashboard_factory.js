@@ -77,6 +77,16 @@
 					return deferred.promise;
 				};
 
+				// Cycle Pagination
+				var getPages = function (url) {
+					var deferred = $q.defer();
+					var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
+					$.getJSON(moddedUrl, function (data) {
+						deferred.resolve(data);
+					});
+					return deferred.promise;
+				};
+
 				// Further filter results
 				// Query seems to drop parameters if there are too many parameters
 				// Add all new filters to this function block
