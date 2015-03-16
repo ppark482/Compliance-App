@@ -69,20 +69,11 @@
 					var deferred = $q.defer();
 					var dateRange = getDates();
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"');
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
+						console.log(data);
 						var filteredData = filterResults(data);
 						deferred.resolve(filteredData);
-					});
-					return deferred.promise;
-				};
-
-				// Cycle Pagination
-				var getPages = function (url) {
-					var deferred = $q.defer();
-					var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
-					$.getJSON(moddedUrl, function (data) {
-						deferred.resolve(data);
 					});
 					return deferred.promise;
 				};

@@ -173,11 +173,11 @@ h4 {
 
 .page-list-item.ng-enter-stagger,
 .page-list-item.ng-leave-stagger {
-    -webkit-transition-delay: 0.1s;
-    -moz-transition-delay: 0.1s;
-    -ms-transition-delay: 0.1s;
-    -o-transition-delay: 0.1s;
-    transition-delay: 0.1s;
+    -webkit-transition-delay: 0.01s;
+    -moz-transition-delay: 0.01s;
+    -ms-transition-delay: 0.01s;
+    -o-transition-delay: 0.01s;
+    transition-delay: 0.01s;
 
     -webkit-transition-duration: 0;
     -moz-transition-duration: 0;
@@ -187,11 +187,11 @@ h4 {
 }
 
 .page-list-item.ng-enter {
-    -webkit-transition:0.1s linear all;
-    -moz-transition:0.1s linear all;
-    -ms-transition:0.1s linear all;
-    -o-transition:0.1s linear all;
-    transition:0.1s linear all;
+    -webkit-transition:0.01s linear all;
+    -moz-transition:0.01s linear all;
+    -ms-transition:0.01s linear all;
+    -o-transition:0.01s linear all;
+    transition:0.01s linear all;
 
     -ms-opacity: 0;
     opacity: 0;
@@ -204,11 +204,11 @@ h4 {
 }
 
 .page-list-item.ng-leave {
-    -webkit-transition:0.1s linear all;
-    -moz-transition:0.1s linear all;
-    -ms-transition:0.1s linear all;
-    -o-transition:0.1s linear all;
-    transition:0.1s linear all;
+    -webkit-transition:0.01s linear all;
+    -moz-transition:0.01s linear all;
+    -ms-transition:0.01s linear all;
+    -o-transition:0.01s linear all;
+    transition:0.01s linear all;
 
     -ms-opacity: 1;
     opacity: 1;
