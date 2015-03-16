@@ -53,13 +53,14 @@
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
-				// using Nodejitsu's jsonp.js library
-				// to get around CORS and callback wrapping issue
+								// using Nodejitsu's jsonp.js library
+								// to get around CORS and callback wrapping issue
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
-				// need to prepend +AND+ if appending to filter
-				// prepend &f= if appending to another query or search
-				// filters out images and videos
+							// need to prepend +AND+ if appending to filter
+							// prepend &f= if appending to another query or search
+							// attempts to filter out images and videos
+							// some queries here seem to get dropped or ignored
 				var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
 				// gets AJC Stories from www.ajc.com OR PublishThis
@@ -70,7 +71,6 @@
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
 					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
-						console.log(data);
 						var filteredData = filterResults(data);
 						deferred.resolve(filteredData);
 					});
@@ -81,12 +81,17 @@
 				// Query seems to drop parameters if there are too many parameters
 				// Add all new filters to this function block
 				var filterResults = function (data) {
-					console.log(data);
 					var noPics = _.reject(data.entities, function (x) {
 						return x.details.django_ct === "photos.medleyphoto";
 					});
+					var noVids = _.reject(noPics, function (x) {
+						return x.details.django_ct === "videos.vendorvideoplaylist";
+					})
+					var noStaff = _.reject(noVids, function (x) {
+						return x.details.django_ct === "staff.medleystaffmember";
+					});
 					var dataObj = {
-						entities : noPics,
+						entities : noStaff,
 						links : data.links,
 					};
 					return dataObj;
