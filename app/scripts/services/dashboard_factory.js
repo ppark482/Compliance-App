@@ -61,7 +61,7 @@
 							// prepend &f= if appending to another query or search
 							// attempts to filter out images and videos
 							// some queries here seem to get dropped or ignored
-				var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
+				// var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
 				// gets AJC Stories from www.ajc.com OR PublishThis
 				// OR WordPress VIP OR The Atlanta Journal-Constitution
