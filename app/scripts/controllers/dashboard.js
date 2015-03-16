@@ -16,10 +16,8 @@
 
 				// Gets initial round of data
 				DashboardFactory.getAJCstories().then( function (data) {
-					console.log(data);
 					$scope.stories = data.entities;
 					$scope.pages = data.links;
-					console.log(data.links);
 					$scope.resultsCount = $scope.stories.length;
 					modifyCounts($scope.stories);
 					autoLoad(data);
@@ -27,31 +25,32 @@
 
 				// Updates scope with more results on click of load more
 				$scope.loadMore = function (url) {
-						MapiFactory.getNextPage(url).then( function (data) {
-							angular.forEach(data.entities, function (x) {
-								$scope.stories.push(x);
-							});
-						$scope.pages = data.links;
-						$scope.resultsCount = $scope.stories.length;
-						modifyCounts($scope.stories);
+					MapiFactory.getNextPage(url).then( function (data) {
+						angular.forEach(data.entities, function (x) {
+							$scope.stories.push(x);
 						});
+					$scope.pages = data.links;
+					$scope.resultsCount = $scope.stories.length;
+					modifyCounts($scope.stories);
+					});
 				};
 				
 				// Auto Load next set of data until end of date range
 				var autoLoad = function (data) {
 					MapiFactory.getNextPage(data.links[1].href).then( function (data) {
-						angular.forEach(data.entities, function (x) {
+						var newData = DashboardFactory.filterResults(data);
+						angular.forEach(newData.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						$scope.pages = data.links;
-						console.log(data.links);
+						$scope.pages = newData.links;
 						$scope.resultsCount = $scope.stories.length;
 						modifyCounts($scope.stories);
-						});
+					});
 				};
 
 				// Modifies counts on left bar
 				var modifyCounts = function (data) {
+					console.log(data);
 					var providerCounts = DashboardFactory.modifyCounts(data);
 					$scope.ajcStories 			= providerCounts.ajc_stories;
 					$scope.photo_galleries 	= providerCounts.photo_galleries;

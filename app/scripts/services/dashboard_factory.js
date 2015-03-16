@@ -60,7 +60,7 @@
 				// need to prepend +AND+ if appending to filter
 				// prepend &f= if appending to another query or search
 				// filters out images and videos
-				var noImages = encodeURIComponent('(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+OR+-details_django_ct:"photos.medleyphoto"+OR+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
+				var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
 				// gets AJC Stories from www.ajc.com OR PublishThis
 				// OR WordPress VIP OR The Atlanta Journal-Constitution
@@ -68,11 +68,28 @@
 					var deferred = $q.defer();
 					var dateRange = getDates();
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
-					var query = encodeURIComponent('(provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution")');
-					$.getJSON(url + dateRange + '&f=' + noImages + '+AND+&f='+ query + sortByRecent, function (data) {
-						deferred.resolve(data);
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"');
+					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
+						console.log(data);
+						var filteredData = filterResults(data);
+						deferred.resolve(filteredData);
 					});
 					return deferred.promise;
+				};
+
+				// Further filter results
+				// Query seems to drop parameters if there are too many parameters
+				// Add all new filters to this function block
+				var filterResults = function (data) {
+					console.log(data);
+					var noPics = _.reject(data.entities, function (x) {
+						return x.details.django_ct === "photos.medleyphoto";
+					});
+					var dataObj = {
+						entities : noPics,
+						links : data.links,
+					};
+					return dataObj;
 				};
 
 				// modify count displays
@@ -103,7 +120,8 @@
 				return {
 					getTheDate		: getTheDate,
 					getAJCstories	: getAJCstories,
-					modifyCounts 	: modifyCounts
+					modifyCounts 	: modifyCounts,
+					filterResults : filterResults
 				};
 
 			} // end function block
