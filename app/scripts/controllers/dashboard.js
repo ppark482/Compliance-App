@@ -53,14 +53,24 @@
 						});
 						$scope.stories = _.unique($scope.stories); // removes duplicate links
 						$scope.pages = newData.links;
+
+						// keeping track of the time since:
+						if($scope.stories[$scope.stories.length - 1].content_modified) {
+							$scope.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
+						};
+						// keeping track of the results count
 						$scope.resultsCount = $scope.stories.length;
+						// keeping track of the number of stories
+						// stories for each provider category
 						modifyCounts($scope.stories);
 						// starts loop
 						aLcount++;
 						// auto loads first # of pages
-						// setting aLcount range at 20 yields ~ 220 results
-						// setting aLcount higher will slow down or crash browser
-						if(aLcount < 100) {
+						// setting aLcount range at 300 yields ~ 5000 results
+						// in one test, 300 provided results from 4:35PM back to 12AM
+						// retrieving results at 300 took about 10 mins
+						// setting aLcount higher will take longer/slow down the app
+						if(aLcount < 300) {
 							autoLoad(data);
 						}
 					});
