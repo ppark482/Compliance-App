@@ -53,19 +53,6 @@
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
-				// get daily values
-				var getDailyData = function () {
-					var deferred = $q.defer();
-					// var count = encodeURIComponent('&count=300');
-					var dateRange = getDates();
-					var ajcStories = encodeURIComponent('&f=provider:"Publish This"');
-					$.getJSON(url + dateRange + sortByRecent, function (data) {
-						deferred.resolve(data);
-					});
-					return deferred.promise;
-				}; // end getDailyDate
-
-
 				// using Nodejitsu's jsonp.js library
 				// to get around CORS and callback wrapping issue
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
@@ -114,7 +101,6 @@
 
 				return {
 					getTheDate		: getTheDate,
-					getDailyData 	: getDailyData,
 					getAJCstories	: getAJCstories,
 					modifyCounts 	: modifyCounts
 				};
