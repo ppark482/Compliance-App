@@ -5,14 +5,6 @@
 
 			function ($http, $window, $resource, $q) {
 
-				// using Nodejitsu's jsonp.js library
-				// to get around CORS and callback wrapping issue
-				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
-				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
-				// need to prepend +AND+ if appending to filter
-				// prepend &f= if appending to another query or search
-				var noImages = encodeURIComponent('-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"');
-
 				// Get the day of the week
 				var getTheDate = function () {
 					var today = new Date();
@@ -73,11 +65,22 @@
 					return deferred.promise;
 				}; // end getDailyDate
 
-				// get AJC Stories
+
+				// using Nodejitsu's jsonp.js library
+				// to get around CORS and callback wrapping issue
+				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
+				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
+				// need to prepend +AND+ if appending to filter
+				// prepend &f= if appending to another query or search
+				// filters out images and videos
+				var noImages = encodeURIComponent('(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto")');
+
+				// gets AJC Stories from www.ajc.com OR PublishThis
+				// OR WordPress VIP OR The Atlanta Journal-Constitution
 				var getAJCstories = function () {
 					var deferred = $q.defer();
 					var dateRange = getDates();
-					var query = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"&f=provider_name:"www.ajc.com"');
+					var query = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"&f=(provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution")');
 					$.getJSON(url + dateRange + query + sortByRecent + '&f=' + noImages, function (data) {
 						deferred.resolve(data);
 					});
