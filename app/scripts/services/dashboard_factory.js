@@ -60,15 +60,16 @@
 				// need to prepend +AND+ if appending to filter
 				// prepend &f= if appending to another query or search
 				// filters out images and videos
-				var noImages = encodeURIComponent('(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto")');
+				var noImages = encodeURIComponent('(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+OR+-details_django_ct:"photos.medleyphoto"+OR+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
 				// gets AJC Stories from www.ajc.com OR PublishThis
 				// OR WordPress VIP OR The Atlanta Journal-Constitution
 				var getAJCstories = function () {
 					var deferred = $q.defer();
 					var dateRange = getDates();
-					var query = encodeURIComponent('&f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"&f=(provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution")');
-					$.getJSON(url + dateRange + query + sortByRecent + '&f=' + noImages, function (data) {
+					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
+					var query = encodeURIComponent('(provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution")');
+					$.getJSON(url + dateRange + '&f=' + noImages + '+AND+&f='+ query + sortByRecent, function (data) {
 						deferred.resolve(data);
 					});
 					return deferred.promise;
