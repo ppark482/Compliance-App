@@ -103,9 +103,12 @@
 					var noListORama = _.reject(noStaff, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/list_o_rama.externalfeed/";
 					});
+					var noAutoLists = _.reject(noListORama, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
+					});
 					var dataObj = {
 						// change me for new filter
-						entities : noListORama,
+						entities : noAutoLists,
 						links : data.links,
 					};
 					return dataObj;
@@ -143,7 +146,6 @@
 							providerCounts.ap_stories.push(x);
 						}
 					});
-					console.log(providerCounts.photo_galleries);
 					return providerCounts;
 				};
 

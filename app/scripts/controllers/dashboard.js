@@ -6,7 +6,6 @@
 			function ($scope, $location, DashboardFactory, MapiFactory) {
 
 				var autoLoad;
-				$scope.hideFeed = false;
 
 				$scope.goToSearch = function () {
 					$location.path('search');
@@ -16,14 +15,16 @@
 				$scope.today = DashboardFactory.getTheDate();
 
 				// Gets initial round of data
-				DashboardFactory.getAJCstories().then( function (data) {
-					// data is filtered before being passed to DashboardCtrl
-					$scope.stories = data.entities;
-					$scope.pages = data.links;
-					$scope.resultsCount = $scope.stories.length;
-					modifyCounts($scope.stories);
-					autoLoad(data);
-				});
+				$scope.getTodaysFeed = function () {
+					DashboardFactory.getAJCstories().then( function (data) {
+						// data is filtered before being passed to DashboardCtrl
+						$scope.stories = data.entities;
+						$scope.pages = data.links;
+						$scope.resultsCount = $scope.stories.length;
+						modifyCounts($scope.stories);
+						autoLoad(data);
+					});
+				};
 
 				// Updates scope with more results on click of load more
 				$scope.loadMore = function (url) {
@@ -79,17 +80,8 @@
 						if(aLcount < 10) {
 							autoLoad(data);
 						}
-						console.log($scope.stories);
 					});
 				};
-
-				// listens to hide viewport
-				// $broadcast located in provider_modal.js
-				$scope.$on('full-details', function () {
-					$scope.hideFeed = true;
-					console.log('uh');
-					console.log(hideFeed);
-				});
 
 				// Modifies counts on left bar
 				var modifyCounts = function (data) {

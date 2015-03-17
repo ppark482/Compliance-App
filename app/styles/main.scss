@@ -41,19 +41,19 @@ ul, li {
   color: HSLA(0, 0%, 90%, 1);
 }
 
-.search-button {
+.search-button, .calendar {
   margin: 0;
 }
 
 .quick-info {
   position: relative;
-  margin-left: 1rem;
+  // margin-left: 1rem;
   display: inline-block;
-  padding: .8rem 2rem .8rem 2rem;
+  padding: .8rem 2rem .8rem 0;
 }
 .icon {
   color: black;
-  margin: 0 .5rem; 
+  margin: 0;
 }
 
 .viewport {
@@ -77,11 +77,8 @@ ul, li {
   padding: 2%;
   clear: both;
   border-radius: 2px;
-
 }
 
-.load-more {
-}
 
 /*
 =================================== Search Page Styling

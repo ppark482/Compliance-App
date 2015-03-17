@@ -40,8 +40,10 @@
 				<span class="entypo-search"></span>
 			</button>
 			<div class="quick-info large-10 medium-8 small-8">
-				<span class="entypo-calendar icon"></span>
-				<span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
+				<button class="success calendar" ng-click="getTodaysFeed()">
+					<span class="entypo-calendar icon"></span>
+					<span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
+				</button>
 				<span class="entypo-list icon"></span> 
 				<span>Results Count: {{ resultsCount }}</span>
 				<span class="entypo-bell icon"></span> 
@@ -50,11 +52,7 @@
 		</div>
 	</section>
 
-	<div class="data-view" ng-show="hideFeed">
-		<detailed-provider></detailed-provider>
-	</div>
-
-	<div class="data-view" ng-hide="hideFeed"> <!-- Feed viewer -->
+	<div class="data-view"> <!-- Feed viewer -->
 		<table class="large-12 info-table">
 		  <tr>
 		  	<th scope="column"></th>

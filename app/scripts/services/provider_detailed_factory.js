@@ -21,19 +21,5 @@
 				}
 
 			} // end function block
-		]) // end factory
-
-		.directive('detailedProvider',
-
-			function () {
-
-				return {
-					restrict: 'E',
-					require: '^ngModel',
-					controller: 'ProviderDetailedCtrl',
-					templateUrl: 'views/provider_detailed_template.html'
-				}
-			} // end function block
-
-		); // end directive
+		]); // end factory
 }()); // end iife
