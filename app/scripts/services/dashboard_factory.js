@@ -73,7 +73,7 @@
 					var deferred = $q.defer();
 					var dateRange = getDates();
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"');
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						console.log(data);
 						var filteredData = filterResults(data);
@@ -81,22 +81,31 @@
 					});
 					return deferred.promise;
 				};
-
+////////////////////////////////////////////////////////////////////////////////
 				// Further filter results
 				// Query seems to drop parameters if there are too many parameters
 				// Add all new filters to this function block
+				// Don't forget to change dataObj.entities
+////////////////////////////////////////////////////////////////////////////////
 				var filterResults = function (data) {
 					var noPics = _.reject(data.entities, function (x) {
 						return x.details.django_ct === "photos.medleyphoto";
 					});
-					var noVids = _.reject(noPics, function (x) {
-						return x.details.django_ct === "videos.vendorvideoplaylist";
-					})
-					var noStaff = _.reject(noVids, function (x) {
+					var noVids = _.reject(data.entities, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/videos.vendorvideo/";
+					});
+					var noVidLists = _.reject(noVids, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/";
+					});
+					var noStaff = _.reject(noVidLists, function (x) {
 						return x.details.django_ct === "staff.medleystaffmember";
 					});
+					var noListORama = _.reject(noStaff, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/list_o_rama.externalfeed/";
+					});
 					var dataObj = {
-						entities : noStaff,
+						// change me for new filter
+						entities : noListORama,
 						links : data.links,
 					};
 					return dataObj;

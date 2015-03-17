@@ -3,12 +3,13 @@
 
 		<ul heading="By Authors">
 			<li ng-repeat="(key, value) in authors" class="row">
-				<div class="large-5 column">{{ key }}</div>
-				<div class="large-1 column entypo-play"></div>
-				<div class="large-6 column">{{ value.length }}</div>
+				<div class="large-5 column small-text">{{ key }}</div>
+				<div class="large-1 column entypo-play small-text"></div>
+				<div class="large-6 column small-text">{{ value.length }}</div>
 			</li>
 		</ul>
 
 
 	<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
 </div>
+
