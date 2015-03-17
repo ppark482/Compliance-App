@@ -6,6 +6,7 @@
 			function ($scope, $location, DashboardFactory, MapiFactory) {
 
 				var autoLoad;
+				$scope.hideFeed = false;
 
 				$scope.goToSearch = function () {
 					$location.path('search');
@@ -81,6 +82,14 @@
 						console.log($scope.stories);
 					});
 				};
+
+				// listens to hide viewport
+				// $broadcast located in provider_modal.js
+				$scope.$on('full-details', function () {
+					$scope.hideFeed = true;
+					console.log('uh');
+					console.log(hideFeed);
+				});
 
 				// Modifies counts on left bar
 				var modifyCounts = function (data) {

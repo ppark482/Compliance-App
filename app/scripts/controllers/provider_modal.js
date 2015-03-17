@@ -27,16 +27,23 @@
 
 		]) // end controller
 
-		.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', 'ProviderModalFactory',
+		.controller('ModalInstanceCtrl', ['$scope', '$rootScope', '$modalInstance', 'items', 'ProviderModalFactory', 'ProviderDetailedFactory',
 			
-			function ($scope, $modalInstance, items, ProviderModalFactory) {
+			function ($scope, $rootScope, $modalInstance, items, ProviderModalFactory, ProviderDetailedFactory) {
 
+				// array of provider objects found in modal
 				$scope.providers = items;
 
+				// gets authors' names and how many articles from each
 				$scope.authors = ProviderModalFactory.getAuthors();
 
-				$scope.noAuthor = function (key) {
-					console.log(key);
+				// on click routes to a full detail page of the provider
+				$scope.fullDetails = function () {
+					// pass to factory provider objects
+					ProviderDetailedFactory.fullDetails(items);
+					$rootScope.$broadcast('full-details');
+					// close the modal too
+					$modalInstance.dismiss('cancel');
 				};
 
 				$scope.ok = function () {

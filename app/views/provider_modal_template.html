@@ -1,7 +1,7 @@
 <div ng-controller="ProviderModalCtrl" class="row">
 	<div class="panel">
 		<h3>{{ providers[0].provider.name }}</h3>
-		<button class="right">Full Details</button>
+		<button class="right" ng-click="fullDetails()">Full Details</button>
 	</div>
 
 		<ul>
@@ -10,13 +10,11 @@
 				<div class="large-3 large-offset-1 medium-3 medium-offset-1 small-3 small-offset-1 end column small-text"># of Articles</div>
 			</li>
 			<li ng-repeat="(key, value) in authors" class="row">
-				<div class="large-5 medium-3 small-3 column small-text" ng-class="{red: No Author}">{{ key }}</div>
+				<div class="large-5 medium-3 small-3 column small-text">{{ key }}</div>
 				<div class="large-1 medium-2 small-3 column entypo-play small-text"></div>
-				<div class="large-3 medium-3 small-3 end column small-text" ng-class="{red: No Author}">{{ value.length }}</div>
+				<div class="large-3 medium-3 small-3 end column small-text">{{ value.length }}</div>
 			</li>
 		</ul>
-
-
 	<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
 </div>
 
