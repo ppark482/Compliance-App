@@ -27,17 +27,22 @@
 				// Updates scope with more results on click of load more
 				$scope.loadMore = function (url) {
 					$scope.busy = MapiFactory.getNextPage(url).then( function (data) {
-						console.log(data);
 						var newData = DashboardFactory.filterResults(data);
 						angular.forEach(newData.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						$scope.stories = _.unique($scope.stories);
+						$scope.stories = _.unique($scope.stories); // removes duplicate links
 						$scope.pages = newData.links;
-						console.log($scope.pages);
+
+						// keeping track of the time since:
+						if($scope.stories[$scope.stories.length - 1].content_modified) {
+							$scope.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
+						};
+						// keeping track of the results count
 						$scope.resultsCount = $scope.stories.length;
+						// keeping track of the number of stories
+						// stories for each provider category
 						modifyCounts($scope.stories);
-						console.log($scope.stories);
 					});
 				};
 
@@ -70,6 +75,7 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
+
 						if(aLcount < 10) {
 							autoLoad(data);
 						}

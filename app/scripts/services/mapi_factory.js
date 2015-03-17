@@ -8,7 +8,9 @@
 
 				// using Nodejitsu's jsonp.js library
 				// to get around CORS and callback wrapping issue
-				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
+				// var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
+				// local json proxy
+				var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
 				// need to prepend +AND+ if appending to filter
 				// prepend &f= if appending to another query or search
@@ -59,7 +61,9 @@
 				// Cycle Pagination
 				var getNextPage = function (url) {
 					var deferred = $q.defer();
-					var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
+					// var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
+					// local json proxy
+					var moddedUrl = 'http://localhost:8000/?url=' + encodeURIComponent(url);
 					$.getJSON(moddedUrl, function (data) {
 						deferred.resolve(data);
 					});
