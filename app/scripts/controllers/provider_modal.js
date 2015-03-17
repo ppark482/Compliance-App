@@ -35,6 +35,10 @@
 
 				$scope.authors = ProviderModalFactory.getAuthors();
 
+				$scope.noAuthor = function (key) {
+					console.log(key);
+				};
+
 				$scope.ok = function () {
 					$modalInstance.close($scope.selected.item);
 				};
