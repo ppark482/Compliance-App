@@ -40,11 +40,13 @@
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
 							$scope.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
 						};
+						console.log($scope.stories.length);
 						// keeping track of the results count
 						$scope.resultsCount = $scope.stories.length;
 						// keeping track of the number of stories
 						// stories for each provider category
 						modifyCounts($scope.stories);
+						console.log($scope.stories);
 					});
 				};
 
