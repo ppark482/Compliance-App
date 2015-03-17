@@ -73,7 +73,7 @@
 					var deferred = $q.defer();
 					var dateRange = getDates();
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						console.log(data);
 						var filteredData = filterResults(data);
@@ -89,9 +89,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 				var filterResults = function (data) {
 					var noPics = _.reject(data.entities, function (x) {
-						return x.details.django_ct === "photos.medleyphoto";
+						return x.item_class === "https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/";
 					});
-					var noVids = _.reject(data.entities, function (x) {
+					var noVids = _.reject(noPics, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/videos.vendorvideo/";
 					});
 					var noVidLists = _.reject(noVids, function (x) {
@@ -120,19 +120,30 @@
 						publish_this 		: [],
 						ap_stories 			: []
 					};
+					var isPhotoGallery = function (x) {
+						if (x.item_class === "https://cv.cmgdigital.com/item_class/composite/photos.medleygallery/") {
+							providerCounts.photo_galleries.push(x);
+						}
+					};
 					angular.forEach(data, function (x) {
 						if (x.provider.name === 'WordPress VIP') {
+							isPhotoGallery(x);
 							providerCounts.wp_vip.push(x);
 						} else if (x.provider.name === 'PublishThis') {
+							isPhotoGallery(x);
 							providerCounts.publish_this.push(x);
 						} else if (x.provider.name === 'www.ajc.com') {
+							isPhotoGallery(x);
 							providerCounts.ajc_stories.push(x);
 						}	else if (x.provider.name === 'The Atlanta Journal-Constitution') {
+							isPhotoGallery(x);
 							providerCounts.ajc_stories.push(x);
 						}	else if (x.provider.name === 'The Associated Press') {
+							isPhotoGallery(x);
 							providerCounts.ap_stories.push(x);
-						} 
+						}
 					});
+					console.log(providerCounts.photo_galleries);
 					return providerCounts;
 				};
 
