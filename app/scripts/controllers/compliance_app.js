@@ -34,24 +34,16 @@
 					$rootScope.$broadcast('get-feed');
 				};
 
+				$scope.getSelectedDate = function () {
+					DashboardFactory.selectedDates($scope.date);
+					$rootScope.$broadcast('get-feed');
+				};
+
 				$scope.pickDateOptions = {
 					max: new Date(),
 					onClose: function () {
-						event.stopPropagation();
-						console.log($scope.date);
-						$scope.date = new Date ($scope.date);
-						console.log($scope.date);
-						var start = $scope.date;
-						start.setHours(04, 00, 00, 00);
-						start.toISOString();
-						console.log(start);
-
-						var endDate = $scope.date.getDate() + 1;
-						var end = $scope.date.setDate(endDate);
-						end = new Date(end);
-						end.setHours(03, 59, 59, 59);
-						end.toISOString();
-						console.log(end);
+						var passMe = $scope.date;
+						DashboardFactory.selectedDates(passMe);
 
 						// var start = $scope.date.setHours(04, 00, 00, 00);
 						// console.log(start);

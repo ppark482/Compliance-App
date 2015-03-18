@@ -36,6 +36,31 @@
 							return 'Saturday' + fullDate;
 					}
 				};
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	selectedDates builds query from date selected in calendar
+	getDates builds query from 00:00 today until now
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+				var selectedDateRange;
+
+				var selectedDates = function (passed) {
+					console.log(passed);
+					passed = new Date (passed);
+					console.log(passed);
+					var start = passed;
+					// start.setHours(04, 00, 00, 00);
+					start.setHours(00, 00, 00, 00);
+					start = start.toISOString();
+					var endDate = passed.getDate() + 1;
+					var end = passed.setDate(endDate);
+					end = new Date(end);
+					// end.setHours(03, 59, 59, 59);
+					end.setHours(00, 00, 00, 00);
+					console.log(end);
+					end = end.toISOString();
+					selectedDateRange = encodeURIComponent('?s=content_modified:[' + start + ' TO ' + end + ']');
+				};
 
 				var getDates = function () {
 					// get today's date
@@ -43,23 +68,18 @@
 						return new Date();
 					};
 					// convert today's date to UTC
-					// var today = getToday().toISOString();
+					var today = getToday().toISOString();
 					// get beginning of today
-					// var start = new Date(today);
-					// start.setHours(0,0,0,0);
+					var start = new Date(today);
+					start.setHours(0,0,0,0);
 					// convert yesterday to UTC
-					// start = start.toISOString();
-
-					var start = new Date('2015-03-17T04:00:00Z');
 					start = start.toISOString();
-					var today = new Date('2015-03-18T03:59:59Z');
-					today = today.toISOString();
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 
-	Pass Results Count Data Around
+	Pass Results Count Data Around for sub-nav bar
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var resultsCount;
@@ -72,12 +92,11 @@
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 
-	Pass Time Since Data Around
+	Pass Time Since Data Around for sub-nav bar
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var timeSince;
 				var sendTimeSince = function (time) {
-					console.log(time);
 					timeSince = time;
 				};
 				var getTimeSince = function () {
@@ -106,8 +125,14 @@
 //////////////////////////////////////////////////////////////////////////////*/
 				var getAJCstories = function () {
 					var deferred = $q.defer();
-					var dateRange = getDates();
-					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
+					var dateRange;
+					if (selectedDateRange) {
+						dateRange = selectedDateRange;
+					} else {
+						dateRange = getDates();
+					}
+					console.log(selectedDateRange);
+					console.log(dateRange);
 					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						var filteredData = filterResults(data);
@@ -196,6 +221,7 @@
 
 				return {
 					getTheDate				: getTheDate,
+					selectedDates			: selectedDates,
 					sendCount					: sendCount,
 					getResultsCount		: getResultsCount,
 					sendTimeSince			: sendTimeSince,
