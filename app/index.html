@@ -100,15 +100,15 @@
               <input id="date-picker" type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="options"/>
             </li>
             <li>
-              <button class="success calendar">
+              <button class="success calendar" ng-click="getTodaysFeed()">
                 {{ today | date:"MM/dd/yyyy @ h:mma"}}
               </button>
             </li>
             <li>
-              <button class="info">Results Count: {{ resultsCount }}</button>
+              <button class="info">Results Count: <span ng-hide="!resultsCount">{{ resultsCount }}</span><span ng-hide="resultsCount">0</span></button>
             </li>
             <li>
-              <button class="info">Since: {{ timeSince | date: "h:mma" }}</button>
+              <button class="info">Since: <span ng-hide="!timeSince">{{ timeSince | date: "h:mma" }}</span><span ng-hide="timeSince">--:--</span></button>
             </li>
 
           </ul>
