@@ -8,15 +8,25 @@
 
 	angular.module('complianceApp')
 
-		.controller('ComplianceAppCtrl', ['$scope', '$location', 'DashboardFactory',
+		.controller('ComplianceAppCtrl', ['$scope', '$location', 'DashboardFactory', '$rootScope',
 
-			function ($scope, $location, DashboardFactory) {
+			function ($scope, $location, DashboardFactory, $rootScope) {
 
 				$scope.goToSearch = function () {
 					$location.path('search');
 				};
 
 				$scope.today = DashboardFactory.getTheDate();
+				
+				$rootScope.$on('feed-loaded', function () {
+					$scope.resultsCount = DashboardFactory.getResultsCount();
+					$scope.timeSince = DashboardFactory.getTimeSince();
+				});
+
+				$scope.getTodaysFeed = function () {
+					$rootScope.$broadcast('get-feed');
+				};
+
 				// Modifies counts on left bar
 				var providerCounts = DashboardFactory.getSidebarCounts();
 				$scope.ajcStories 			= providerCounts.ajc_stories;

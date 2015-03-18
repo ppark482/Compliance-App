@@ -53,6 +53,32 @@
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	Pass Results Count Data Around
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+				var resultsCount;
+				var sendCount = function (count) {
+					resultsCount = count;
+				};
+				var getResultsCount = function () {
+					return resultsCount;
+				};
+
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	Pass Time Since Data Around
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+				var timeSince;
+				var sendTimeSince = function (time) {
+					timeSince = time;
+				};
+				var getTimeSince = function () {
+					return timeSince;
+				};
+
 								// using Nodejitsu's jsonp.js library
 								// to get around CORS and callback wrapping issue
 
@@ -67,26 +93,33 @@
 							// some queries here seem to get dropped or ignored
 				// var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
-				// gets AJC Stories from www.ajc.com OR PublishThis
-				// OR WordPress VIP OR The Atlanta Journal-Constitution
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	Gets AJC Stories from www.ajc.com OR PublishThis
+	OR WordPress VIP OR The Atlanta Journal-Constitution
+// 
+//////////////////////////////////////////////////////////////////////////////*/
 				var getAJCstories = function () {
 					var deferred = $q.defer();
 					var dateRange = getDates();
 					// f=item_class:"https://cv.cmgdigital.com/item_class/composite/news.medleystory/"
 					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
-						console.log(data);
 						var filteredData = filterResults(data);
+
 						deferred.resolve(filteredData);
 					});
 					return deferred.promise;
 				};
-////////////////////////////////////////////////////////////////////////////////
-				// Further filter results
-				// Query seems to drop parameters if there are too many parameters
-				// Add all new filters to this function block
-				// Don't forget to change dataObj.entities
-////////////////////////////////////////////////////////////////////////////////
+
+/*//////////////////////////////////////////////////////////////////////////////
+// 				
+	Further filter results
+	Query to API seems to drop parameters if there are too many parameters
+	Add any new filters to this function block
+	Don't forget to change dataObj.entities
+// 
+//////////////////////////////////////////////////////////////////////////////*/
 				var filterResults = function (data) {
 					var noPics = _.reject(data.entities, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/";
@@ -107,9 +140,8 @@
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
 					});
 					var dataObj = {
-						// change me for new filter
-						entities : noAutoLists,
-						links : data.links,
+						entities : noAutoLists, // change me for new filter
+						links : data.links
 					};
 					return dataObj;
 				};
@@ -157,6 +189,10 @@
 
 				return {
 					getTheDate				: getTheDate,
+					sendCount					: sendCount,
+					getResultsCount		: getResultsCount,
+					sendTimeSince			: sendTimeSince,
+					getTimeSince			: getTimeSince,
 					getAJCstories			: getAJCstories,
 					modifyCounts 			: modifyCounts,
 					filterResults 		: filterResults,

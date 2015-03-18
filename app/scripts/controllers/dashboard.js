@@ -1,28 +1,25 @@
 (function(){ 
 
 	angular.module('complianceApp')
-	
-		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory',
 
-			function ($scope, $location, DashboardFactory, MapiFactory) {
+		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope',
+
+			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope) {
 
 				var autoLoad;
 
-				// $scope.goToSearch = function () {
-				// 	$location.path('search');
-				// };
-
-				// Displays what the date is
-				// $scope.today = DashboardFactory.getTheDate();
+				$rootScope.$on('get-feed', function () {
+					getTodaysFeed();
+				});
 
 				// Gets initial round of data
-				$scope.getTodaysFeed = function () {
+				var getTodaysFeed = function () {
 					DashboardFactory.getAJCstories().then( function (data) {
 						// data is filtered before being passed to DashboardCtrl
 						$scope.stories = data.entities;
 						$scope.pages = data.links;
-						$scope.resultsCount = $scope.stories.length;
-						modifyCounts($scope.stories);
+						DashboardFactory.sendCount($scope.stories.length);
+						// modifyCounts($scope.stories);
 						autoLoad(data);
 					});
 				};
@@ -39,14 +36,14 @@
 
 						// keeping track of the time since:
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
-							$scope.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
+							DashboardFactory.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
 						};
-						console.log($scope.stories.length);
 						// keeping track of the results count
-						$scope.resultsCount = $scope.stories.length;
+						DashboardFactory.sendCount($scope.stories.length);
 						// keeping track of the number of stories
 						// stories for each provider category
 						DashboardFactory.modifyCounts($scope.stories);
+						$rootScope.$broadcast('feed-loaded');
 					});
 				};
 
@@ -65,13 +62,14 @@
 
 						// keeping track of the time since:
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
-							$scope.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
+							DashboardFactory.timeSince = $scope.stories[$scope.stories.length - 1].content_modified;
 						};
 						// keeping track of the results count
-						$scope.resultsCount = $scope.stories.length;
+						DashboardFactory.sendCount($scope.stories.length);
 						// keeping track of the number of stories
 						// stories for each provider category
 						DashboardFactory.modifyCounts($scope.stories);
+						$rootScope.$broadcast('feed-loaded');
 						// starts loop
 						aLcount++;
 						// auto loads first # of pages
