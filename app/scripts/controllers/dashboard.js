@@ -1,18 +1,19 @@
 (function(){ 
 
 	angular.module('complianceApp')
+	
 		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory',
 
 			function ($scope, $location, DashboardFactory, MapiFactory) {
 
 				var autoLoad;
 
-				$scope.goToSearch = function () {
-					$location.path('search');
-				};
+				// $scope.goToSearch = function () {
+				// 	$location.path('search');
+				// };
 
 				// Displays what the date is
-				$scope.today = DashboardFactory.getTheDate();
+				// $scope.today = DashboardFactory.getTheDate();
 
 				// Gets initial round of data
 				$scope.getTodaysFeed = function () {
@@ -45,8 +46,7 @@
 						$scope.resultsCount = $scope.stories.length;
 						// keeping track of the number of stories
 						// stories for each provider category
-						modifyCounts($scope.stories);
-						console.log($scope.stories);
+						DashboardFactory.modifyCounts($scope.stories);
 					});
 				};
 
@@ -71,7 +71,7 @@
 						$scope.resultsCount = $scope.stories.length;
 						// keeping track of the number of stories
 						// stories for each provider category
-						modifyCounts($scope.stories);
+						DashboardFactory.modifyCounts($scope.stories);
 						// starts loop
 						aLcount++;
 						// auto loads first # of pages
@@ -86,14 +86,14 @@
 				};
 
 				// Modifies counts on left bar
-				var modifyCounts = function (data) {
-					var providerCounts = DashboardFactory.modifyCounts(data);
-					$scope.ajcStories 			= providerCounts.ajc_stories;
-					$scope.photo_galleries 	= providerCounts.photo_galleries;
-					$scope.wp_vip 					= providerCounts.wp_vip;
-					$scope.publish_this 		= providerCounts.publish_this;
-					$scope.ap_stories 			= providerCounts.ap_stories;
-				};
+				// var modifyCounts = function (data) {
+				// 	var providerCounts = DashboardFactory.modifyCounts(data);
+				// 	$scope.ajcStories 			= providerCounts.ajc_stories;
+				// 	$scope.photo_galleries 	= providerCounts.photo_galleries;
+				// 	$scope.wp_vip 					= providerCounts.wp_vip;
+				// 	$scope.publish_this 		= providerCounts.publish_this;
+				// 	$scope.ap_stories 			= providerCounts.ap_stories;
+				// };
 
 			} // end function block
 

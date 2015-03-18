@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="complianceApp">
+  <body ng-app="complianceApp" ng-controller="ComplianceAppCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="container" ng-controller="DashboardCtrl">
+    <div class="container">
 <!-- Left Vertical Side Bar ============================================================= -->
       <nav data-magellan-expedition="fixed" ng-controller="ProviderModalCtrl" stop-event>
         <div class="icon-bar vertical five-up">
@@ -113,6 +113,7 @@
       <!-- build:js({.tmp,app}) scripts/scripts.js -->
       <script src="scripts/app.js"></script>
       <script src="scripts/controllers/main.js"></script>
+      <script src="scripts/controllers/compliance_app.js"></script>
       <script src="scripts/controllers/dashboard.js"></script>
       <script src="scripts/controllers/provider_modal.js"></script>
       <script src="scripts/controllers/provider_detailed.js"></script>

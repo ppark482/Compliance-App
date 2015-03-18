@@ -114,15 +114,18 @@
 					return dataObj;
 				};
 
+				// object for collecting arrays of sorted objects
+				// use to grab counts of each provider
+				var providerCounts = {
+					ajc_stories 		: [],
+					photo_galleries : [],
+					wp_vip 					: [],
+					publish_this 		: [],
+					ap_stories 			: []
+				};
+
 				// modify count displays
 				var modifyCounts = function (data) {
-					var providerCounts = {
-						ajc_stories 		: [],
-						photo_galleries : [],
-						wp_vip 					: [],
-						publish_this 		: [],
-						ap_stories 			: []
-					};
 					var isPhotoGallery = function (x) {
 						if (x.item_class === "https://cv.cmgdigital.com/item_class/composite/photos.medleygallery/") {
 							providerCounts.photo_galleries.push(x);
@@ -146,14 +149,18 @@
 							providerCounts.ap_stories.push(x);
 						}
 					});
+				};
+
+				var getSidebarCounts = function () {
 					return providerCounts;
 				};
 
 				return {
-					getTheDate		: getTheDate,
-					getAJCstories	: getAJCstories,
-					modifyCounts 	: modifyCounts,
-					filterResults : filterResults
+					getTheDate				: getTheDate,
+					getAJCstories			: getAJCstories,
+					modifyCounts 			: modifyCounts,
+					filterResults 		: filterResults,
+					getSidebarCounts 	: getSidebarCounts
 				};
 
 			} // end function block
