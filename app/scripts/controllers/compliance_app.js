@@ -17,23 +17,24 @@
 				};
 
 				$scope.today = DashboardFactory.getTheDate();
-				
+
 				$rootScope.$on('feed-loaded', function () {
 					$scope.resultsCount = DashboardFactory.getResultsCount();
 					$scope.timeSince = DashboardFactory.getTimeSince();
+					// Modifies counts on left bar
+					var providerCounts = DashboardFactory.getSidebarCounts();
+					$scope.ajcStories 			= providerCounts.ajc_stories;
+					$scope.photo_galleries 	= providerCounts.photo_galleries;
+					$scope.wp_vip 					= providerCounts.wp_vip;
+					$scope.publish_this 		= providerCounts.publish_this;
+					$scope.ap_stories 			= providerCounts.ap_stories;
 				});
 
 				$scope.getTodaysFeed = function () {
 					$rootScope.$broadcast('get-feed');
 				};
 
-				// Modifies counts on left bar
-				var providerCounts = DashboardFactory.getSidebarCounts();
-				$scope.ajcStories 			= providerCounts.ajc_stories;
-				$scope.photo_galleries 	= providerCounts.photo_galleries;
-				$scope.wp_vip 					= providerCounts.wp_vip;
-				$scope.publish_this 		= providerCounts.publish_this;
-				$scope.ap_stories 			= providerCounts.ap_stories;
+
 
 			} // end function block
 

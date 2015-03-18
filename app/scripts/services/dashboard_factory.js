@@ -47,7 +47,6 @@
 					// get beginning of today
 					var start = new Date(today);
 					start.setHours(0,0,0,0);
-					console.log(start);
 					// convert yesterday to UTC
 					start = start.toISOString();
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
@@ -73,6 +72,7 @@
 //////////////////////////////////////////////////////////////////////////////*/
 				var timeSince;
 				var sendTimeSince = function (time) {
+					console.log(time);
 					timeSince = time;
 				};
 				var getTimeSince = function () {
@@ -146,41 +146,43 @@
 					return dataObj;
 				};
 
-				// object for collecting arrays of sorted objects
-				// use to grab counts of each provider
-				var providerCounts = {
-					ajc_stories 		: [],
-					photo_galleries : [],
-					wp_vip 					: [],
-					publish_this 		: [],
-					ap_stories 			: []
-				};
 
+				var providerCounts = {};
 				// modify count displays
 				var modifyCounts = function (data) {
+					// object for collecting arrays of sorted objects
+					// use to grab counts of each provider
+					var tempProviderCounts = {
+						ajc_stories 		: [],
+						photo_galleries : [],
+						wp_vip 					: [],
+						publish_this 		: [],
+						ap_stories 			: []
+					};
 					var isPhotoGallery = function (x) {
 						if (x.item_class === "https://cv.cmgdigital.com/item_class/composite/photos.medleygallery/") {
-							providerCounts.photo_galleries.push(x);
+							tempProviderCounts.photo_galleries.push(x);
 						}
 					};
 					angular.forEach(data, function (x) {
 						if (x.provider.name === 'WordPress VIP') {
 							isPhotoGallery(x);
-							providerCounts.wp_vip.push(x);
+							tempProviderCounts.wp_vip.push(x);
 						} else if (x.provider.name === 'PublishThis') {
 							isPhotoGallery(x);
-							providerCounts.publish_this.push(x);
+							tempProviderCounts.publish_this.push(x);
 						} else if (x.provider.name === 'www.ajc.com') {
 							isPhotoGallery(x);
-							providerCounts.ajc_stories.push(x);
+							tempProviderCounts.ajc_stories.push(x);
 						}	else if (x.provider.name === 'The Atlanta Journal-Constitution') {
 							isPhotoGallery(x);
-							providerCounts.ajc_stories.push(x);
+							tempProviderCounts.ajc_stories.push(x);
 						}	else if (x.provider.name === 'The Associated Press') {
 							isPhotoGallery(x);
-							providerCounts.ap_stories.push(x);
+							tempProviderCounts.ap_stories.push(x);
 						}
 					});
+					providerCounts = tempProviderCounts;
 				};
 
 				var getSidebarCounts = function () {
