@@ -43,12 +43,17 @@
 						return new Date();
 					};
 					// convert today's date to UTC
-					var today = getToday().toISOString();
+					// var today = getToday().toISOString();
 					// get beginning of today
-					var start = new Date(today);
-					start.setHours(0,0,0,0);
+					// var start = new Date(today);
+					// start.setHours(0,0,0,0);
 					// convert yesterday to UTC
+					// start = start.toISOString();
+
+					var start = new Date('2015-03-17T04:00:00Z');
 					start = start.toISOString();
+					var today = new Date('2015-03-18T03:59:59Z');
+					today = today.toISOString();
 					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 

@@ -34,7 +34,28 @@
 					$rootScope.$broadcast('get-feed');
 				};
 
+				$scope.pickDateOptions = {
+					max: new Date(),
+					onClose: function () {
+						console.log($scope.date);
+						$scope.date = new Date ($scope.date);
+						console.log($scope.date);
+						var start = $scope.date;
+						start.setHours(04, 00, 00, 00);
+						start.toISOString();
+						console.log(start);
+						// var start = $scope.date.setHours(04, 00, 00, 00);
+						// console.log(start);
+						// var newDate = $scope.date.getDate() - 1;
+						// console.log(newDate);
+						// var endDate = $scope.date.setDate(newDate);
+						// endDate = new Date(endDate).toISOString();
+						// console.log(endDate);
 
+						// var end = $scope.date.setHours(03, 59, 59, 59);
+						// console.log(end);
+					}
+				};
 
 			} // end function block
 
