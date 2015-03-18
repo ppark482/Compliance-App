@@ -17,7 +17,8 @@
       'ngResource',
       'ngRoute',
       'mm.foundation',
-      'cgBusy'
+      'cgBusy',
+      'angular-datepicker'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider

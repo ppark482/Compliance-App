@@ -12,6 +12,9 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.date.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.time.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -59,22 +62,57 @@
 
         <section class="large-12 medium-12 small-12 second-nav"> <!-- pseudo nav bar  -->
 
-          <div class="daily-report">
+<!--           <div class="daily-report">
             <button class="search-button" ng-click="goToSearch()">
               <span>Search</span>
               <span class="entypo-search"></span>
             </button>
-            <div class="quick-info large-10 medium-8 small-8">
-              <button class="success calendar" ng-click="getTodaysFeed()">
-                <span class="entypo-calendar icon"></span>
-                <span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
+            <ul class="quick-info large-10 medium-8 small-8 inline-list">
+              <li class="large-2 medium-2 small-2 date-picker">
+                <input type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="options"/>
+              </li>
+              ng-click="getTodaysFeed()" 
+              <li>
+                <button class="success calendar">
+                  <span class="entypo-calendar icon"></span>
+                  <span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
+                </button>
+              </li>
+              <li>
+                <span class="entypo-list icon"></span> 
+                <span>Results Count: {{ resultsCount }}</span>
+              </li>
+              <li>
+                <span class="entypo-bell icon"></span> 
+                <span>Since: {{ timeSince | date: "h:mma" }}</span>
+              </li>
+            </ul>
+          </div> -->
+
+          <ul class="daily-report inline-list">
+            <li>
+              <button class="search-button" ng-click="goToSearch()">
+                <span>Search</span>
+                <span class="entypo-search"></span>
               </button>
-              <span class="entypo-list icon"></span> 
-              <span>Results Count: {{ resultsCount }}</span>
-              <span class="entypo-bell icon"></span> 
-              <span>Since: {{ timeSince | date: "h:mma" }}</span>
-            </div>
-          </div>
+            </li>
+            <li>
+              <input id="date-picker" type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="options"/>
+            </li>
+            <li>
+              <button class="success calendar">
+                {{ today | date:"MM/dd/yyyy @ h:mma"}}
+              </button>
+            </li>
+            <li>
+              <button class="info">Results Count: {{ resultsCount }}</button>
+            </li>
+            <li>
+              <button class="info">Since: {{ timeSince | date: "h:mma" }}</button>
+            </li>
+
+          </ul>
+
         </section>
 
         <section ng-view></section>
@@ -104,6 +142,7 @@
     <script src="bower_components/angular-foundation/mm-foundation-tpls.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+    <script src="bower_components/angular-native-picker/build/angular-datepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

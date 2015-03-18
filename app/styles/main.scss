@@ -30,19 +30,11 @@ ul, li {
 .item {
   z-index: 9999;
 }
+
 .card-count {
   color: HSLA(0, 0%, 90%, 1);
   text-align: center;
   font-size: 3rem;
-}
-.daily-report {
-  padding: 0;
-  background-color: HSLA(213, 20%, 36%, 1);
-  color: HSLA(0, 0%, 90%, 1);
-}
-
-.search-button, .calendar {
-  margin: 0;
 }
 
 .quick-info {
@@ -55,15 +47,41 @@ ul, li {
   color: black;
   margin: 0;
 }
-
+/*
+=================================== ViewPort
+*/
 .viewport {
   position: relative;
   left: 148px;
 }
 
+.daily-report {
+  padding: 0;
+  margin: 0;
+  background-color: HSLA(213, 20%, 36%, 1);
+  color: HSLA(0, 0%, 90%, 1);
+  li {
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .second-nav {
   position: fixed;
   z-index: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.search-button, .calendar, .info {
+  margin: 0;
+}
+
+#date-picker {
+  margin: 0;
+  box-shadow: none;
+  height: 100%;
+  padding: 16px 0 17px 1rem;
 }
 
 .data-view {
