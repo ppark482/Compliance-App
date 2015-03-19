@@ -8,9 +8,33 @@
 
 				var autoLoad;
 
+				$scope.pickDateOptions = {
+					max: new Date(),
+					onClose: function () {
+						var passMe = $scope.date;
+						DashboardFactory.selectedDates(passMe);
+
+						// var start = $scope.date.setHours(04, 00, 00, 00);
+						// console.log(start);
+						// var newDate = $scope.date.getDate() - 1;
+						// console.log(newDate);
+						// var endDate = $scope.date.setDate(newDate);
+						// endDate = new Date(endDate).toISOString();
+						// console.log(endDate);
+
+						// var end = $scope.date.setHours(03, 59, 59, 59);
+						// console.log(end);
+					}
+				};
+
 				$rootScope.$on('get-feed', function () {
 					getTodaysFeed();
 				});
+
+				$scope.getSelectedDate = function () {
+					DashboardFactory.selectedDates($scope.date);
+					getTodaysFeed();
+				};
 
 				// Gets initial round of data
 				var getTodaysFeed = function () {
@@ -68,6 +92,7 @@
 						// keeping track of the number of stories
 						// stories for each provider category
 						DashboardFactory.modifyCounts($scope.stories);
+						console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
 						aLcount++;
@@ -76,11 +101,11 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 250) {
+						if(aLcount < 20) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;
-							function ForPrint(input) {
+							function Print(input) {
 								var self 				= this;
 								self.headline 	= input.headline,
 								self.author 		= input.by,
@@ -90,14 +115,11 @@
 								self.topics 		= input.topics
 							};
 							var newArray = [];
-							console.log($scope.stories);
 							var stories = $scope.stories;
 							_.each(stories, function (x) {
-								console.log(x);
-								var forPrint = new ForPrint(x); 
+								var forPrint = new Print(x); 
 								newArray.push(forPrint);
 							});
-							console.log(newArray);
 						}
 					});
 				};

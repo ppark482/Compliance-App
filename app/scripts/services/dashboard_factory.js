@@ -107,9 +107,9 @@
 								// to get around CORS and callback wrapping issue
 
 				// nodejitsu json proxy
-				// var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
+				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				// local json proxy
-				var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
+				// var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
 							// need to prepend +AND+ if appending to filter
 							// prepend &f= if appending to another query or search

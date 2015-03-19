@@ -34,30 +34,6 @@
 					$rootScope.$broadcast('get-feed');
 				};
 
-				$scope.getSelectedDate = function () {
-					DashboardFactory.selectedDates($scope.date);
-					$rootScope.$broadcast('get-feed');
-				};
-
-				$scope.pickDateOptions = {
-					max: new Date(),
-					onClose: function () {
-						var passMe = $scope.date;
-						DashboardFactory.selectedDates(passMe);
-
-						// var start = $scope.date.setHours(04, 00, 00, 00);
-						// console.log(start);
-						// var newDate = $scope.date.getDate() - 1;
-						// console.log(newDate);
-						// var endDate = $scope.date.setDate(newDate);
-						// endDate = new Date(endDate).toISOString();
-						// console.log(endDate);
-
-						// var end = $scope.date.setHours(03, 59, 59, 59);
-						// console.log(end);
-					}
-				};
-
 			} // end function block
 
 		]); // end controller
