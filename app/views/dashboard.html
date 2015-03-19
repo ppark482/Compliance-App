@@ -6,15 +6,21 @@
 		    <th scope="column">Provider Name</th>
 		    <th scope="column">Date Modified</th>
 		    <th scope="column">Headline</th>
+		    <th scope="column">Primary Category</th>
+		    <th scope="column">Byline</th>
 		  </tr>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>
 
 		  <tr ng-repeat="s in stories" class="page-list-item">
-		  	<th>{{ $index + 1 }}</th>
-		  	<th>{{ s.provider.name }}</th>
-		  	<th>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</th>
-		  	<th>{{ s.headline }}</th>
+		  	<td>{{ $index + 1 }}</td>
+		  	<td>{{ s.provider.name }}</td>
+		  	<td>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</td>
+		  	<td>{{ s.headline }}</td>
+		  	<td>{{ s.primary_category }}</td>
+		  	<td>{{ s.by[0].name }}</td>
+		  	<td>{{ s.canonical_url }}</td>
+
 		  </tr>	
 		</table>
 		<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More <span class="entypo-cw"></span></button>

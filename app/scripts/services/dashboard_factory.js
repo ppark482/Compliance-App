@@ -133,7 +133,8 @@
 					}
 					console.log(selectedDateRange);
 					console.log(dateRange);
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					// +OR+provider_name:"The Associated Press"
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						var filteredData = filterResults(data);
 
@@ -151,7 +152,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var filterResults = function (data) {
-					var noPics = _.reject(data.entities, function (x) {
+					var onlyAtl = _.filter(data.entities, function (x) {
+						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/";
+					});
+					var noPics = _.reject(onlyAtl, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/";
 					});
 					var noVids = _.reject(noPics, function (x) {
@@ -173,6 +177,7 @@
 						entities : noAutoLists, // change me for new filter
 						links : data.links
 					};
+					console.log(dataObj);
 					return dataObj;
 				};
 
@@ -201,6 +206,9 @@
 						} else if (x.provider.name === 'PublishThis') {
 							isPhotoGallery(x);
 							tempProviderCounts.publish_this.push(x);
+						}	else if (x.provider.name === 'For the AJC') {
+							isPhotoGallery(x);
+							tempProviderCounts.ajc_stories.push(x);
 						} else if (x.provider.name === 'www.ajc.com') {
 							isPhotoGallery(x);
 							tempProviderCounts.ajc_stories.push(x);
