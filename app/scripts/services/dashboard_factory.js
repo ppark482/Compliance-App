@@ -177,7 +177,6 @@
 						entities : noAutoLists, // change me for new filter
 						links : data.links
 					};
-					console.log(dataObj);
 					return dataObj;
 				};
 

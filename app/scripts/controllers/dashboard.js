@@ -59,7 +59,6 @@
 						});
 						$scope.stories = _.unique($scope.stories); // removes duplicate links
 						$scope.pages = newData.links;
-						console.log($scope.stories);
 						// keeping track of the time since:
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
 							DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].content_modified);
@@ -77,8 +76,28 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 350) {
+						if(aLcount < 250) {
 							autoLoad(data);
+						} else {
+							aLcount = 2;
+							function ForPrint(input) {
+								var self 				= this;
+								self.headline 	= input.headline,
+								self.author 		= input.by,
+								self.provider 	= input.provider.name,
+								self.url 				= input.canonical_url,
+								self.categories = input.categories,
+								self.topics 		= input.topics
+							};
+							var newArray = [];
+							console.log($scope.stories);
+							var stories = $scope.stories;
+							_.each(stories, function (x) {
+								console.log(x);
+								var forPrint = new ForPrint(x); 
+								newArray.push(forPrint);
+							});
+							console.log(newArray);
 						}
 					});
 				};
