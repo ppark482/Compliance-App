@@ -32,6 +32,7 @@ module.exports = function(config) {
       'bower_components/underscore/underscore.js',
       'bower_components/angular-busy/dist/angular-busy.js',
       'bower_components/angular-native-picker/build/angular-datepicker.js',
+      'bower_components/excellentexport/excellentexport.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

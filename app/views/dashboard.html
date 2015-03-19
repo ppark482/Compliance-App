@@ -1,6 +1,7 @@
 
 	<div class="data-view"> <!-- Feed viewer -->
-		<table class="large-12 info-table">
+		<a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a>
+		<table class="large-12 info-table" id="exportTable">
 		  <tr>
 		  	<th scope="column"></th>
 		    <th scope="column">Provider Name</th>
@@ -24,6 +25,7 @@
 
 		  </tr>	
 		</table>
+
 		<button class="large-12 medium-12 small-12 load-more" ng-click="loadMore(pages[1].href)">Load More <span class="entypo-cw"></span></button>
 	</div> <!-- end data view  -->
 
