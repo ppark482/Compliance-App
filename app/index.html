@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="complianceApp" ng-controller="ComplianceAppCtrl">
+  <body ng-app="complianceApp" ng-controller="ComplianceAppCtrl" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -69,11 +69,11 @@
                 <span class="entypo-search"></span>
               </button>
             </li>
-            <li>
+            <!-- <li>
               <button class="success calendar" ng-click="getTodaysFeed()">
                 {{ today | date:"MM/dd/yyyy @ h:mma"}}
               </button>
-            </li>
+            </li> -->
             <li>
               <button class="info">Results Count: <span ng-hide="!resultsCount">{{ resultsCount }}</span><span ng-hide="resultsCount">0</span></button>
             </li>
@@ -130,7 +130,7 @@
       <script src="scripts/directives/smooth_scroll_directive.js"></script>
       <script src="scripts/services/mapi_factory.js"></script>
       <script src="scripts/services/dashboard_factory.js"></script>
-      <script src="scripts/services/provider_modal_factory.js"></script>
+      <script src="scripts/services/details_factory.js"></script>
       <!-- endbuild -->
   </body>
 </html>

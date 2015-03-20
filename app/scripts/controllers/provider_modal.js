@@ -7,7 +7,7 @@
 			function ($scope, $modal, DashboardFactory, MapiFactory, ProviderModalFactory) {
 
 				$scope.openModal = function (provider) {
-					
+
 					var modalInstance = $modal.open({
 						templateUrl: 'views/provider_modal_template.html',
 						controller: 'ModalInstanceCtrl',
@@ -27,9 +27,9 @@
 
 		]) // end controller
 
-		.controller('ModalInstanceCtrl', ['$scope', '$rootScope', '$modalInstance', 'items', 'ProviderModalFactory', 'ProviderDetailedFactory',
+		.controller('ModalInstanceCtrl', ['$scope', '$rootScope', '$modalInstance', 'items', 'ProviderModalFactory', 'DetailsFactory',
 			
-			function ($scope, $rootScope, $modalInstance, items, ProviderModalFactory, ProviderDetailedFactory) {
+			function ($scope, $rootScope, $modalInstance, items, ProviderModalFactory, DetailsFactory) {
 
 				// array of provider objects found in modal
 				$scope.providers = items;
@@ -40,7 +40,7 @@
 				// on click routes to a full detail page of the provider
 				$scope.fullDetails = function () {
 					// pass to factory provider objects
-					ProviderDetailedFactory.fullDetails(items);
+					DetailsFactory.fullDetails(items);
 					$rootScope.$broadcast('full-details');
 					// close the modal too
 					$modalInstance.dismiss('cancel');
