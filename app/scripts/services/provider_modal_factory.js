@@ -1,6 +1,6 @@
 (function(){ 
 	angular.module('complianceApp')
-		.factory('ProviderDetailedFactory', ['$http', 
+		.factory('ProviderModalFactory', ['$http', 
 			function ($http) {
 
 				var detailedItems;

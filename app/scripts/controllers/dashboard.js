@@ -13,17 +13,6 @@
 					onClose: function () {
 						var passMe = $scope.date;
 						DashboardFactory.selectedDates(passMe);
-
-						// var start = $scope.date.setHours(04, 00, 00, 00);
-						// console.log(start);
-						// var newDate = $scope.date.getDate() - 1;
-						// console.log(newDate);
-						// var endDate = $scope.date.setDate(newDate);
-						// endDate = new Date(endDate).toISOString();
-						// console.log(endDate);
-
-						// var end = $scope.date.setHours(03, 59, 59, 59);
-						// console.log(end);
 					}
 				};
 
@@ -123,16 +112,6 @@
 						}
 					});
 				};
-
-				// Modifies counts on left bar
-				// var modifyCounts = function (data) {
-				// 	var providerCounts = DashboardFactory.modifyCounts(data);
-				// 	$scope.ajcStories 			= providerCounts.ajc_stories;
-				// 	$scope.photo_galleries 	= providerCounts.photo_galleries;
-				// 	$scope.wp_vip 					= providerCounts.wp_vip;
-				// 	$scope.publish_this 		= providerCounts.publish_this;
-				// 	$scope.ap_stories 			= providerCounts.ap_stories;
-				// };
 
 			} // end function block
 

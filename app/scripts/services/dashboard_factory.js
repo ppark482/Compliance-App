@@ -45,9 +45,7 @@
 				var selectedDateRange;
 
 				var selectedDates = function (passed) {
-					console.log(passed);
 					passed = new Date (passed);
-					console.log(passed);
 					var start = passed;
 					// start.setHours(04, 00, 00, 00);
 					start.setHours(00, 00, 00, 00);
@@ -102,23 +100,23 @@
 				var getTimeSince = function () {
 					return timeSince;
 				};
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	URL to Melvil API
+		Prepended by Nodejitsu's jsonp.js library (jsonp.nodejitsu.com)
+		Used to get around CORS and callback wrapping issue
+	Second URL for locally hosted json proxy
+// 
+//////////////////////////////////////////////////////////////////////////////*/
 
-								// using Nodejitsu's jsonp.js library
-								// to get around CORS and callback wrapping issue
-
-				// nodejitsu json proxy
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				// local json proxy
 				// var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
 				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
-							// need to prepend +AND+ if appending to filter
-							// prepend &f= if appending to another query or search
-							// attempts to filter out images and videos
-							// some queries here seem to get dropped or ignored
-				// var noImages = encodeURIComponent('&f=(-item_class:"https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/"+AND+-details_django_ct:"photos.medleyphoto"+AND+-details_django_ct:"list_o_rama.externalfeed"+AND+-item_class:"https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/")');
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 
+	Actual query
 	Gets AJC Stories from www.ajc.com OR PublishThis
 	OR WordPress VIP OR The Atlanta Journal-Constitution
 // 
@@ -131,9 +129,8 @@
 					} else {
 						dateRange = getDates();
 					}
-					console.log(selectedDateRange);
-					console.log(dateRange);
 					// +OR+provider_name:"The Associated Press"
+					// +OR+provider_name:"Pubish This"
 					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						var filteredData = filterResults(data);
@@ -179,8 +176,11 @@
 					};
 					return dataObj;
 				};
-
-
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	Provider Counts controls the data passed into the left-most display
+// 
+//////////////////////////////////////////////////////////////////////////////*/
 				var providerCounts = {};
 				// modify count displays
 				var modifyCounts = function (data) {

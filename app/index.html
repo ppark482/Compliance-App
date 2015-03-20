@@ -62,33 +62,6 @@
 
         <section class="large-12 medium-12 small-12 second-nav"> <!-- pseudo nav bar  -->
 
-<!--           <div class="daily-report">
-            <button class="search-button" ng-click="goToSearch()">
-              <span>Search</span>
-              <span class="entypo-search"></span>
-            </button>
-            <ul class="quick-info large-10 medium-8 small-8 inline-list">
-              <li class="large-2 medium-2 small-2 date-picker">
-                <input type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="options"/>
-              </li>
-              ng-click="getTodaysFeed()" 
-              <li>
-                <button class="success calendar">
-                  <span class="entypo-calendar icon"></span>
-                  <span>{{ today | date:"MM/dd/yyyy @ h:mma"}}</span>
-                </button>
-              </li>
-              <li>
-                <span class="entypo-list icon"></span> 
-                <span>Results Count: {{ resultsCount }}</span>
-              </li>
-              <li>
-                <span class="entypo-bell icon"></span> 
-                <span>Since: {{ timeSince | date: "h:mma" }}</span>
-              </li>
-            </ul>
-          </div> -->
-
           <ul class="daily-report inline-list">
             <li>
               <button class="search-button" ng-click="goToSearch()">
@@ -153,11 +126,11 @@
       <script src="scripts/controllers/compliance_app.js"></script>
       <script src="scripts/controllers/dashboard.js"></script>
       <script src="scripts/controllers/provider_modal.js"></script>
-      <script src="scripts/controllers/provider_detailed.js"></script>
+      <script src="scripts/controllers/details.js"></script>
       <script src="scripts/directives/smooth_scroll_directive.js"></script>
       <script src="scripts/services/mapi_factory.js"></script>
       <script src="scripts/services/dashboard_factory.js"></script>
-      <script src="scripts/services/provider_detailed_factory.js"></script>
+      <script src="scripts/services/provider_modal_factory.js"></script>
       <!-- endbuild -->
   </body>
 </html>
