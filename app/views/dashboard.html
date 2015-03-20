@@ -4,15 +4,17 @@
 			<h2 class="pleft15">Report By Date</h2>
 		  <p class="pleft15">1. Click "Select Date" and pick a date.</p>
 		  <p class="pleft15">2. Click "Get Selected Date" (only once!) and wait for data to load.</p>
-		  <p class="pleft15">3. Click "Export to Excel" to download results in an excel file.</p>
+		  <p class="pleft15">3. Click "Export to Excel" to download results in an excel file. (must use Chrome)</p>
 			<ul class="inline-list">
 		    <li>
 			    <input id="date-picker" type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="pickDateOptions"/>
 			  </li>
+			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
 			  <li>
 			    <button class="calendar success" ng-click="getSelectedDate()">Get Selected Date</button>
 			  </li>
-				<li><button><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
+			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
+				<li><button class="success"><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
 		  </ul>
 		 </div>
 		<table class="large-12 info-table" id="exportTable">

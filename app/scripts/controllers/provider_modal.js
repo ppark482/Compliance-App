@@ -27,9 +27,9 @@
 
 		]) // end controller
 
-		.controller('ModalInstanceCtrl', ['$scope', '$rootScope', '$modalInstance', 'items', 'ProviderModalFactory', 'DetailsFactory',
+		.controller('ModalInstanceCtrl', ['$scope', '$rootScope', '$modalInstance', 'items', 'ProviderModalFactory', 'DetailsFactory', '$location',
 			
-			function ($scope, $rootScope, $modalInstance, items, ProviderModalFactory, DetailsFactory) {
+			function ($scope, $rootScope, $modalInstance, items, ProviderModalFactory, DetailsFactory, $location) {
 
 				// array of provider objects found in modal
 				$scope.providers = items;
@@ -41,7 +41,7 @@
 				$scope.fullDetails = function () {
 					// pass to factory provider objects
 					DetailsFactory.fullDetails(items);
-					$rootScope.$broadcast('full-details');
+					$location.path('details');
 					// close the modal too
 					$modalInstance.dismiss('cancel');
 				};

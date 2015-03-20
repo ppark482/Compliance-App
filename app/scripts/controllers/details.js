@@ -1,13 +1,14 @@
 (function(){ 
 	angular.module('complianceApp')
-		.controller('DetailsCtrl', ['$scope', '$rootScope', 'ProviderModalFactory',
+		.controller('DetailsCtrl', ['$scope', '$rootScope', 'DetailsFactory', '$location',
 
-			function ($scope, $rootScope, ProviderModalFactory) {
+			function ($scope, $rootScope, DetailsFactory, $location) {
 
-				$rootScope.$on('full-details', function () {
-					$scope.detailedItem = ProviderModalFactory.getDetailedItems();
-					console.log($scope.detailedItem);
-				});
+				$scope.backHome = function () {
+					$location.path('/');
+				};
+
+				$scope.detailedItems = DetailsFactory.getDetailedItems();
 
 			} //end function block
 

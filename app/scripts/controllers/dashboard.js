@@ -90,7 +90,7 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 20) {
+						if(aLcount < 10) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;

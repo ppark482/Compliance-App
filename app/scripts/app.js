@@ -26,9 +26,9 @@
           templateUrl: 'views/dashboard.html',
           controller: 'DashboardCtrl'
         })
-        .when('/map', {
-          templateUrl: 'views/map.html',
-          controller: 'MapCtrl'
+        .when('/details', {
+          templateUrl: 'views/details.html',
+          controller: 'DetailsCtrl'
         })
         .when('/search', {
           templateUrl: 'views/main.html',

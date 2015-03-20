@@ -35,6 +35,10 @@ h2 {
   z-index: 9999;
 }
 
+.right-arrows {
+  line-height: 3rem;
+}
+
 .card-count {
   color: HSLA(0, 0%, 90%, 1);
   text-align: center;
@@ -99,6 +103,12 @@ h2 {
   padding: 2%;
   clear: both;
   border-radius: 2px;
+}
+
+.page-list-item {
+  td {
+    font-size: 12px;
+  }
 }
 
 .topics-text {
