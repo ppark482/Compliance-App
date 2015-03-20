@@ -1,6 +1,29 @@
 <div class="data-view">
 	<section class="panel">
-		<button ng-click="newSearch()">New Search</button>
-		<h2>{{ detailedItems[0].provider.name }}</h2>
+		<h2><button ng-click="backHome()">Back</button>{{ detailedItems[0].provider.name }}</h2>
 	</section>
+
+	<table class="large-12 info-table" id="exportTable">
+  <tr>
+  	<th scope="column"></th>
+    <th scope="column">Provider Name</th>
+    <th scope="column">Date Modified</th>
+    <th scope="column">Headline</th>
+    <th scope="column">Primary Category</th>
+    <th scope="column">Topics</th>
+    <th scope="column">Byline</th>
+    <th scope="column">URL</th>
+  </tr>
+
+  <tr ng-repeat="s in detailedItems" class="page-list-item">
+  	<td>{{ $index + 1 }}</td>
+  	<td>{{ s.provider.name }}</td>
+  	<td>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</td>
+  	<td>{{ s.headline }}</td>
+  	<td>{{ s.primary_category }}</td>
+  	<td><span class="topics-text" ng-repeat="t in s.topics">{{ t }}, </span></td>
+  	<td>{{ s.by[0].name }}</td>
+  	<td>{{ s.canonical_url }}</td>
+  </tr>	
+</table>
 </div>

@@ -4,12 +4,14 @@
 
 			function ($scope, $rootScope, DetailsFactory, $location) {
 
-				$scope.newSearch = function () {
+				$scope.backHome = function () {
 					$rootScope.$broadcast('reload-feed');
 					$location.path('/');
 				};
 
 				$scope.detailedItems = DetailsFactory.getDetailedItems();
+
+				console.log($scope.detailedItems);
 
 			} //end function block
 
