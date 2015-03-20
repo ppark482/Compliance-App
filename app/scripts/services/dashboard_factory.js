@@ -55,7 +55,6 @@
 					end = new Date(end);
 					// end.setHours(03, 59, 59, 59);
 					end.setHours(00, 00, 00, 00);
-					console.log(end);
 					end = end.toISOString();
 					selectedDateRange = encodeURIComponent('?s=content_modified:[' + start + ' TO ' + end + ']');
 				};
@@ -227,16 +226,16 @@
 				};
 
 				return {
-					getTheDate				: getTheDate,
-					selectedDates			: selectedDates,
-					sendCount					: sendCount,
-					getResultsCount		: getResultsCount,
-					sendTimeSince			: sendTimeSince,
-					getTimeSince			: getTimeSince,
-					getAJCstories			: getAJCstories,
-					modifyCounts 			: modifyCounts,
-					filterResults 		: filterResults,
-					getSidebarCounts 	: getSidebarCounts
+					getTheDate					: getTheDate,
+					selectedDates				: selectedDates,
+					sendCount						: sendCount,
+					getResultsCount			: getResultsCount,
+					sendTimeSince				: sendTimeSince,
+					getTimeSince				: getTimeSince,
+					getAJCstories				: getAJCstories,
+					modifyCounts 				: modifyCounts,
+					filterResults 			: filterResults,
+					getSidebarCounts 		: getSidebarCounts
 				};
 
 			} // end function block

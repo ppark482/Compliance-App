@@ -2,9 +2,9 @@
 
 	angular.module('complianceApp')
 
-		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope',
+		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope', '$route',
 
-			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope) {
+			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope, $route) {
 
 				var autoLoad;
 
@@ -29,34 +29,11 @@
 				var getTodaysFeed = function () {
 					DashboardFactory.getAJCstories().then( function (data) {
 						// data is filtered before being passed to DashboardCtrl
-						$scope.stories = data.entities;
-						$scope.pages = data.links;
-						DashboardFactory.sendCount($scope.stories.length);
+						$rootScope.stories = data.entities;
+						$rootScope.pages = data.links;
+						DashboardFactory.sendCount($rootScope.stories.length);
 						// modifyCounts($scope.stories);
 						autoLoad(data);
-					});
-				};
-
-				// Updates scope with more results on click of load more
-				$scope.loadMore = function (url) {
-					$scope.busy = MapiFactory.getNextPage(url).then( function (data) {
-						var newData = DashboardFactory.filterResults(data);
-						angular.forEach(newData.entities, function (x) {
-							$scope.stories.push(x);
-						});
-						$scope.stories = _.unique($scope.stories); // removes duplicate links
-						$scope.pages = newData.links;
-
-						// keeping track of the time since:
-						if($scope.stories[$scope.stories.length - 1].content_modified) {
-							DashboardFactory.sendTimeSince = $scope.stories[$scope.stories.length - 1].content_modified;
-						};
-						// keeping track of the results count
-						DashboardFactory.sendCount($scope.stories.length);
-						// keeping track of the number of stories
-						// stories for each provider category
-						DashboardFactory.modifyCounts($scope.stories);
-						$rootScope.$broadcast('feed-loaded');
 					});
 				};
 
@@ -71,17 +48,18 @@
 							$scope.stories.push(x);
 						});
 						$scope.stories = _.unique($scope.stories); // removes duplicate links
-						$scope.pages = newData.links;
+						$rootScope.stories = $scope.stories;
+						$rootScope.pages = newData.links;
 						// keeping track of the time since:
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
 							DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].content_modified);
 						};
 						// keeping track of the results count
-						DashboardFactory.sendCount($scope.stories.length);
+						DashboardFactory.sendCount($rootScope.stories.length);
 						// keeping track of the number of stories
 						// stories for each provider category
-						DashboardFactory.modifyCounts($scope.stories);
-						console.log($scope.stories);
+						DashboardFactory.modifyCounts($rootScope.stories);
+						// console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
 						aLcount++;
@@ -94,24 +72,9 @@
 							autoLoad(data);
 						} else {
 							aLcount = 2;
-							function Print(input) {
-								var self 				= this;
-								self.headline 	= input.headline,
-								self.author 		= input.by,
-								self.provider 	= input.provider.name,
-								self.url 				= input.canonical_url,
-								self.categories = input.categories,
-								self.topics 		= input.topics
-							};
-							var newArray = [];
-							var stories = $scope.stories;
-							_.each(stories, function (x) {
-								var forPrint = new Print(x); 
-								newArray.push(forPrint);
-							});
 						}
 					});
-				};
+				}; // end autoLoad
 
 			} // end function block
 

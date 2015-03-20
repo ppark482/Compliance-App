@@ -19,10 +19,10 @@
 				$scope.today = DashboardFactory.getTheDate();
 
 				$rootScope.$on('feed-loaded', function () {
-					$scope.resultsCount = DashboardFactory.getResultsCount();
-					$scope.timeSince = DashboardFactory.getTimeSince();
+					$scope.resultsCount 		= DashboardFactory.getResultsCount();
+					$scope.timeSince 				= DashboardFactory.getTimeSince();
 					// Modifies counts on left bar
-					var providerCounts = DashboardFactory.getSidebarCounts();
+					var providerCounts 			= DashboardFactory.getSidebarCounts();
 					$scope.ajcStories 			= providerCounts.ajc_stories;
 					$scope.photo_galleries 	= providerCounts.photo_galleries;
 					$scope.wp_vip 					= providerCounts.wp_vip;
