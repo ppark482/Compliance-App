@@ -7,6 +7,7 @@
 			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope, $route) {
 
 				var autoLoad;
+				$scope.searchResults = '';
 
 				$scope.pickDateOptions = {
 					max: new Date(),

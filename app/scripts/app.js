@@ -18,7 +18,8 @@
       'ngRoute',
       'mm.foundation',
       'cgBusy',
-      'angular-datepicker'
+      'angular-datepicker',
+      'smart-table'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $routeProvider
