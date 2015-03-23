@@ -127,11 +127,10 @@
 						dateRange = selectedDateRange;
 					} else {
 						dateRange = getDates();
-					}
-					// +OR+provider_name:"The Associated Press"
-					// +OR+provider_name:"Pubish This"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					} 
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"Publish This"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
+						console.log(data);
 						var filteredData = filterResults(data);
 
 						deferred.resolve(filteredData);
@@ -169,11 +168,11 @@
 					var noAutoLists = _.reject(noListORama, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
 					});
-					var noExternalLinks = _.reject(noAutoLists, function (x) {
+					var noExternalLinks = _.reject(noListORama, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/";
 					});
 					var dataObj = {
-						entities : noExternalLinks, // change me for new filter
+						entities : noStaff, // change me for new filter
 						links : data.links
 					};
 					return dataObj;

@@ -48,7 +48,8 @@
 						angular.forEach(newData.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						$scope.stories = _.unique($scope.stories); // removes duplicate links
+						// $scope.stories = _.unique($scope.stories); 
+						// removes duplicate links
 						$rootScope.stories = $scope.stories;
 						$rootScope.pages = newData.links;
 						// keeping track of the time since:
@@ -69,7 +70,7 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 10) {
+						if(aLcount < 150) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;
