@@ -147,11 +147,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var filterResults = function (data) {
-					var apStory = _.filter(data.entities, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/apjobs.apstory/";
-					});
-					var onlyAtl = _.filter(apStory, function (x) {
-						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/";
+					var onlyAtl = _.filter(data.entities, function (x) {
+						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/");
 					});
 					var noPics = _.reject(onlyAtl, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/";
