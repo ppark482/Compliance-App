@@ -29,7 +29,12 @@
 		    <th scope="column">Byline</th>
 		    <th scope="column">URL</th>
 		  </thead>
-		  <tr><input placeholder="Filter:" type="search" ng-model="searchResults"></tr>
+		  <ul class="inline-list panel callout">
+		  	<li><input placeholder="Search All:" type="search" ng-model="searchResults.$"></li>
+		  	<li><input placeholder="Search Headlines:" type="search" ng-model="searchResults.headline"></li>
+		  	<li><input placeholder="Search Categories:" type="search" ng-model="searchResults.primary_category"></li>
+		  	<li><input placeholder="Search Topics:" type="search" ng-model="searchResults.topics"></li>
+		  </ul>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>
 			<tbody>

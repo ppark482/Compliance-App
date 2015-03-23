@@ -128,7 +128,7 @@
 					} else {
 						dateRange = getDates();
 					} 
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"Publish This"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						console.log(data);
 						var filteredData = filterResults(data);
@@ -147,7 +147,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var filterResults = function (data) {
-					var onlyAtl = _.filter(data.entities, function (x) {
+					var apStory = _.filter(data.entities, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/apjobs.apstory/";
+					});
+					var onlyAtl = _.filter(apStory, function (x) {
 						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/";
 					});
 					var noPics = _.reject(onlyAtl, function (x) {
@@ -165,14 +168,14 @@
 					var noListORama = _.reject(noStaff, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/list_o_rama.externalfeed/";
 					});
-					var noAutoLists = _.reject(noListORama, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
-					});
+					// var noAutoLists = _.reject(noListORama, function (x) {
+					// 	return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
+					// });
 					var noExternalLinks = _.reject(noListORama, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/";
 					});
 					var dataObj = {
-						entities : noStaff, // change me for new filter
+						entities : noExternalLinks, // change me for new filter
 						links : data.links
 					};
 					return dataObj;
