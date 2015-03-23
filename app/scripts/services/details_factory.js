@@ -1,12 +1,13 @@
 (function(){ 
 	angular.module('complianceApp')
-		.factory('DetailsFactory', ['$http', 
-			function ($http) {
+		.factory('DetailsFactory', ['$http', '$rootScope',
+			function ($http, $rootScope) {
 
 				var detailedItems;
 
 				// get provider items from ModalInstanceCtrl
 				var fullDetails = function (items) {
+					detailedItems = '';
 					detailedItems = items;
 				};
 
