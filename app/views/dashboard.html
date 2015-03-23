@@ -20,20 +20,16 @@
 
 		<table class="large-12 info-table" id="exportTable">
 			<thead>
-				<tr>
-					<input placeholder="Search:" type="search" ng-model="searchResults">
-				</tr>
-			  <tr>
-			  	<th scope="column"></th>
-			    <th scope="column">Provider Name</th>
-			    <th scope="column">Date Modified</th>
-			    <th scope="column">Headline</th>
-			    <th scope="column">Primary Category</th>
-			    <th scope="column">Topics</th>
-			    <th scope="column">Byline</th>
-			    <th scope="column">URL</th>
-			  </tr>
+		  	<th scope="column"></th>
+		    <th scope="column">Provider</th>
+		    <th scope="column">Modified</th>
+		    <th scope="column">Headline</th>
+		    <th scope="column">Primary Category</th>
+		    <th scope="column">Topics</th>
+		    <th scope="column">Byline</th>
+		    <th scope="column">URL</th>
 		  </thead>
+		  <tr><input placeholder="Search:" type="search" ng-model="searchResults"></tr>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>
 			<tbody>
@@ -45,7 +41,7 @@
 			  	<td>{{ s.primary_category }}</td>
 			  	<td><span class="topics-text" ng-repeat="t in s.topics">{{ t }}, </span></td>
 			  	<td>{{ s.by[0].name }}</td>
-			  	<td>{{ s.canonical_url }}</td>
+			  	<td><a href="{{ s.canonical_url }}" target="_blank">Link</a></td>
 			  </tr>	
 			</tbody>
 		</table>

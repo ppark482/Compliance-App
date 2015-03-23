@@ -169,8 +169,11 @@
 					var noAutoLists = _.reject(noListORama, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
 					});
+					var noExternalLinks = _.reject(noAutoLists, function (x) {
+						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/";
+					});
 					var dataObj = {
-						entities : noAutoLists, // change me for new filter
+						entities : noExternalLinks, // change me for new filter
 						links : data.links
 					};
 					return dataObj;

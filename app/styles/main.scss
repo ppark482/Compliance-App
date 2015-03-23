@@ -100,12 +100,12 @@ h2 {
 .info-table {
   background-color: HSLA(0, 0%, 100%, 1);
   margin: 0;
-  padding: 2%;
   clear: both;
   border-radius: 2px;
 }
 
 .page-list-item {
+  border-bottom: 1px solid HSLA(0, 0%, 90%, 1);
   td {
     font-size: 12px;
   }

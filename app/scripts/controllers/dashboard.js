@@ -73,6 +73,7 @@
 							autoLoad(data);
 						} else {
 							aLcount = 2;
+							console.log($rootScope.stories);
 						}
 					});
 				}; // end autoLoad
