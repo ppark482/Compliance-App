@@ -20,6 +20,15 @@
 
 				$scope.dataAnalysis = AnalysisFactory.getStories();
 
+				var pieChart = AnalysisFactory.getPieChart();
+
+				console.log(pieChart);
+
+				angular.element('#pie-chart').highcharts(pieChart);
+
+				console.log($scope.dataAnalysis);
+
+
 				// console.log($scope.data);
 
 			} // end function block
