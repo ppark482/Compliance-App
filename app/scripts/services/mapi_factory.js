@@ -61,9 +61,9 @@
 				// Cycle Pagination
 				var getNextPage = function (url) {
 					var deferred = $q.defer();
-					// var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
+					var moddedUrl = 'https://jsonp.nodejitsu.com/?callback=?&url=' + encodeURIComponent(url);
 					// local json proxy
-					var moddedUrl = 'http://localhost:8000/?url=' + encodeURIComponent(url);
+					// var moddedUrl = 'http://localhost:8000/?url=' + encodeURIComponent(url);
 					$.getJSON(moddedUrl, function (data) {
 						deferred.resolve(data);
 					});

@@ -11,10 +11,10 @@
 			  </li>
 			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
 			  <li>
-			    <button class="calendar success" ng-click="getSelectedDate()">Get Selected Date</button>
+			    <button class="calendar" ng-class="{disabled: !date, success: date}" ng-click="getSelectedDate()">Get Selected Date</button>
 			  </li>
 			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
-				<li><button class="success"><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
+				<li><button ng-class="{disabled: !stories, success: stories}"><a ng-class="{disabled: !stories, success: stories}" download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
 		  </ul>
 		 </div>
 

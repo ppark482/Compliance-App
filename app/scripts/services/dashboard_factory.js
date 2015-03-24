@@ -174,12 +174,6 @@
 					var noStaff = _.reject(noVidLists, function (x) {
 						return x.details.django_ct === "staff.medleystaffmember";
 					});
-					// var noListORama = _.reject(noStaff, function (x) {
-					// 	return x.item_class === "https://cv.cmgdigital.com/item_class/composite/list_o_rama.externalfeed/";
-					// });
-					// var noAutoLists = _.reject(noListORama, function (x) {
-					// 	return x.item_class === "https://cv.cmgdigital.com/item_class/composite/medley_lists.fastautolist/";
-					// });
 					var noExternalLinks = _.reject(noStaff, function (x) {
 						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/";
 					});

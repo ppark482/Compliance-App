@@ -20,7 +20,13 @@ ul, li {
 button {
     outline: none;
 }
-
+a.disabled {
+  color: HSLA(0, 0%, 90%, 1);
+  cursor: default;
+}
+a.success {
+  color: HSLA(0, 0%, 100%, 1);
+}
 /*
 =================================== Dashboard Styling
 */
