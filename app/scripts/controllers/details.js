@@ -18,6 +18,8 @@
 
 				$scope.detailedItems = DetailsFactory.getDetailedItems();
 
+				$scope.topicCounts = DetailsFactory.getDetailedCounts();
+				console.log($scope.topicCounts);
 				console.log($scope.detailedItems);
 
 			} //end function block

@@ -21,13 +21,35 @@
 
 				// allow access to these items to other controllers/services
 				var getDetailedItems = function () {
-					console.log(detailedItems);
 					return detailedItems;
+				};
+
+				// counts by topic
+				var getDetailedCounts = function () {
+					var counter = {
+						featured 			: 0,
+						localMonitor 	: 0,
+						weirdNews			: 0
+					};
+					_.each(detailedItems, function (x) {
+						if(_.contains(x.topics, 'pt-featured')) {
+							counter.featured++;
+							return;
+						} else if (_.contains(x.topics, 'pt-local-monitor')) {
+							counter.localMonitor++;
+							return;
+						} else if (_.contains(x.topics, 'pt-weird-news')) {
+							counter.localMonitor++;
+							return;
+						}
+					});
+					return counter;
 				};
 
 				return {
 					fullDetails : fullDetails,
-					getDetailedItems : getDetailedItems
+					getDetailedItems : getDetailedItems,
+					getDetailedCounts : getDetailedCounts
 				}
 
 			} // end function block

@@ -17,6 +17,10 @@ ul, li {
   list-style-type: none;
 }
 
+button {
+    outline: none;
+}
+
 /*
 =================================== Dashboard Styling
 */
@@ -55,6 +59,15 @@ h2 {
   color: black;
   margin: 0;
 }
+
+/*
+=================================== Detailed View
+*/
+
+.catch-float {
+  overflow: auto;
+}
+
 /*
 =================================== ViewPort
 */
