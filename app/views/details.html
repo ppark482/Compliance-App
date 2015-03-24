@@ -1,8 +1,15 @@
 <div class="data-view">
 	<section class="panel">
-		<button ng-click="backHome()">Back to Full List</button>
-		<h2>{{ detailedItems[0].provider.name }}</h2>
-		<button class="success"><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'detailedTable', 'Feed From Date');">Export to Excel</a></button>
+		<ul class="large-4 left">
+			<li><button ng-click="backHome()">Back to Full List</button></li>
+			<li><h2>{{ detailedItems[0].provider.name }}</h2></li>
+			<li><button class="success"><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'detailedTable', 'Feed From Date');">Export to Excel</a></button></li>
+		</ul>
+		<ul class="large-7 right">
+			<li class="panel">Testinginrgoiergoseirhgeosirhg</li>
+			<li class="panel">Testinginrgoiergoseirhgeosirhg</li>
+			<li class="panel">Testinginrgoiergoseirhgeosirhg</li>
+		</ul>
 	</section>
 
 	<table class="large-12 info-table" id="detailedTable">
