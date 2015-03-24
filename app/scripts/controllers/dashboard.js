@@ -1,4 +1,4 @@
-(function(){ 
+(function () { 
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 
@@ -10,9 +10,9 @@
 
 	angular.module('complianceApp')
 
-		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope', '$route',
+		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope', '$route', 'AnalysisFactory',
 
-			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope, $route) {
+			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope, $route, AnalysisFactory) {
 
 				var autoLoad;
 				$scope.searchResults = '';
@@ -28,6 +28,10 @@
 				$rootScope.$on('get-feed', function () {
 					getTodaysFeed();
 				});
+
+				$scope.analyzeData = function () {
+					$location.path('analysis');
+				};
 
 				$scope.getSelectedDate = function () {
 					DashboardFactory.selectedDates($scope.date);
@@ -59,6 +63,7 @@
 						$scope.stories = _.unique($scope.stories); 
 						// removes duplicate links
 						$rootScope.stories = $scope.stories;
+						AnalysisFactory.sendStories($scope.stories);
 						$rootScope.pages = newData.links;
 						// keeping track of the time since:
 						if($scope.stories[$scope.stories.length - 1].content_modified) {
@@ -78,7 +83,7 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 50) {
+						if(aLcount < 20) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;

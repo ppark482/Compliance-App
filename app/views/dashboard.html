@@ -15,6 +15,7 @@
 			  </li>
 			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
 				<li><button ng-class="{disabled: !stories, success: stories}"><a ng-class="{disabled: !stories, success: stories}" download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
+				<li><button ng-class="{disabled: !stories, success: stories}" ng-click="analyzeData()">Analysis</button></li>
 		  </ul>
 		 </div>
 
@@ -30,10 +31,11 @@
 		    <th scope="column">URL</th>
 		  </thead>
 		  <ul class="inline-list panel callout">
-		  	<li><input placeholder="Search All:" type="search" ng-model="searchResults.$"></li>
-		  	<li><input placeholder="Search Headlines:" type="search" ng-model="searchResults.headline"></li>
-		  	<li><input placeholder="Search Categories:" type="search" ng-model="searchResults.primary_category"></li>
-		  	<li><input placeholder="Search Topics:" type="search" ng-model="searchResults.topics"></li>
+		  	<li>Filter through feed:</li>
+		  	<li><input placeholder="Filter by Any:" type="search" ng-model="searchResults.$"></li>
+		  	<li><input placeholder="Filter by Headline:" type="search" ng-model="searchResults.headline"></li>
+		  	<li><input placeholder="Filter by Category:" type="search" ng-model="searchResults.primary_category"></li>
+		  	<li><input placeholder="Filter by Topic:" type="search" ng-model="searchResults.topics"></li>
 		  </ul>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>

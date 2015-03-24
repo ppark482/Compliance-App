@@ -12,7 +12,8 @@
 			function ($scope, $rootScope, DetailsFactory, $location) {
 
 				$scope.backHome = function () {
-					$rootScope.$broadcast('reload-feed');
+					// $rootScope.$broadcast('reload-feed');
+					$rootScope.$broadcast('feed-loaded');
 					$location.path('/');
 				};
 
