@@ -1,5 +1,17 @@
 (function () { 
 
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+// Main service module
+	 	- determines current date
+		- handles date picking
+		- handles counting and counts for side / nav bars
+		- makes API call through JSON proxy
+		- handles filtering and counting results
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
+
 	angular.module('complianceApp')
 		.factory('DashboardFactory', ['$http', '$window', '$resource', '$q',
 

@@ -2,16 +2,13 @@
 
   'use strict';
 
-  /**
-   * @ngdoc overview
-   * @name decaturApp
-   * @description
-   * # complianceApp
-   *
-   * Main module of the application.
-   */
-  angular
-    .module('complianceApp', [
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+// App module initializer / router
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
+  angular.module('complianceApp', [
       'ngAnimate',
       'ngCookies',
       'ngResource',

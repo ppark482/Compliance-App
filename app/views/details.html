@@ -2,9 +2,10 @@
 	<section class="panel">
 		<button ng-click="backHome()">Back to Full List</button>
 		<h2>{{ detailedItems[0].provider.name }}</h2>
+		<button class="success"><a download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'detailedTable', 'Feed From Date');">Export to Excel</a></button>
 	</section>
 
-	<table class="large-12 info-table" id="exportTable">
+	<table class="large-12 info-table" id="detailedTable">
 	  <tr>
 	  	<th scope="column"></th>
 	    <th scope="column">Provider</th>

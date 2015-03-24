@@ -1,5 +1,14 @@
 (function(){
 
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+// Service & Controllers for Modal and Modal Instance
+		- handles modal logic
+		- directing to full details page
+		- displays authors and counts
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
 	angular.module('complianceApp')
 
 		.controller('ProviderModalCtrl', ['$scope', '$modal', 'DashboardFactory', 'MapiFactory', 'ProviderModalFactory',

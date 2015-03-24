@@ -1,5 +1,13 @@
 (function(){ 
 
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+// Controller for dashboard
+		- handles loading / auto loading of feed 
+		- date picker
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
 	angular.module('complianceApp')
 
 		.controller('DashboardCtrl', ['$scope', '$location', 'DashboardFactory', 'MapiFactory', '$rootScope', '$route',
@@ -48,7 +56,7 @@
 						angular.forEach(newData.entities, function (x) {
 							$scope.stories.push(x);
 						});
-						// $scope.stories = _.unique($scope.stories); 
+						$scope.stories = _.unique($scope.stories); 
 						// removes duplicate links
 						$rootScope.stories = $scope.stories;
 						$rootScope.pages = newData.links;

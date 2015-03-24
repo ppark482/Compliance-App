@@ -2,13 +2,13 @@
 
 	'use strict';
 
-	/**
-	 * @ngdoc function
-	 * @name decaturApp.controller:MainCtrl
-	 * @description
-	 * # MainCtrl
-	 * Controller of the decaturApp
-	 */
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+// Controller for search page
+// Directives for scrollOnClick & stopEvent
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
 	angular.module('complianceApp')
 	  .controller('MainCtrl', ['$scope', '$window', '$rootScope', '$http', 'MapiFactory', '$filter', '$location', '$anchorScroll',
 	  	function ($scope, $window, $rootScope, $http, MapiFactory, $filter, $location, $anchorScroll) {
