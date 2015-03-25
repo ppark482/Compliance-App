@@ -9,20 +9,23 @@
 	
 	angular.module('complianceApp')
 
-		.factory('AnalysisFactory', ['$rootScope',
+		.factory('AnalysisFactory', ['$rootScope', '$q',
 
-			function ($rootScope) {
+			function ($rootScope, $q) {
 
 				var currentStories;
 				var getPercentage;
 				var date = "Monday, 1/1/15";
+				var pieChart;
 
 				var sendStories = function (stories) {
 					currentStories = stories;
 				};
 
 				var getStories = function () {
-					return currentStories;
+					var deferred = $q.defer();
+					deferred.resolve(currentStories);
+					return deferred.promise;
 				};
 
 				var storyCount = {
@@ -62,52 +65,51 @@
 							storyCount.apStories++;
 						}
 					});
-
-					getPercentage = function (x) {
-						return (x/currentStories.entities.length)*100;
-					};
+					console.log(storyCount);
+					createPieChart();
 				}; // end findCounts
 
-				var pieChart = {
-					chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-	        },
-	        title: {
-	            text: 'Breakdown of Content for ' + date
-	        },
-	        tooltip: {
-	            pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
-	        },
-	        plotOptions: {
-	            pie: {
-	                allowPointSelect: true,
-	                cursor: 'pointer',
-	                dataLabels: {
-	                    enabled: true,
-	                    format: '<b>{point.name}</b>: {point.percentage:.1f}',
-	                    style: {
-	                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-	                    }
-	                }
-	            }
-	        },
-	        series: [{
-	            type: 'pie',
-	            name: 'Content Composition',
-	            data: [
-	                ['AJC',   getPercentage(storyCount.ajc)],
-	                ['MyAJC',       getPercentage(storyCount.myajc)],
-	                ['Access Stories',    getPercentage(storyCount.accessStories)],
-	                ['Wordpress VIP',     getPercentage(storyCount.wordpressVip)],
-	                ['PublishThis',     getPercentage(storyCount.publishThis)],
-	                ['AP Stories',     getPercentage(storyCount.apStories)],
-	                ['Galleries',   getPercentage(storyCount.galleries)]
-	            ]
-	        }]
-				}; // end piechart
-
+				var createPieChart = function () {
+					pieChart = {
+						chart: {
+	            plotBackgroundColor: null,
+	            plotBorderWidth: null,
+	            plotShadow: false
+		        },
+		        title: {
+		            text: 'Breakdown of Content'
+		        },
+		        tooltip: {
+		            pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+		        },
+		        plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                dataLabels: {
+		                    enabled: true,
+		                    format: '<b>{point.name}</b>: {point.percentage:.1f}',
+		                    style: {
+		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		                    }
+		                }
+		            }
+		        },
+		        series: [{
+		            type: 'pie',
+		            name: 'Content Composition',
+		            data: [
+		                ['AJC',   storyCount.ajc],
+		                ['MyAJC',       storyCount.myajc],
+		                ['Access Stories',    storyCount.accessStories],
+		                ['Wordpress VIP',     storyCount.wordpressVip],
+		                ['PublishThis',     storyCount.publishThis],
+		                ['AP Stories',     storyCount.apStories],
+		                ['Galleries',   storyCount.galleries]
+		            ]
+		        }]
+					}; // end piechart
+				};
 				// var chart = {
 				// 	chart: {
 	   //          zoomType: 'xy'
@@ -183,6 +185,7 @@
 	   //    };
 
 	      var getPieChart = function () {
+					findCounts();
 	      	return pieChart;
 	      };
 

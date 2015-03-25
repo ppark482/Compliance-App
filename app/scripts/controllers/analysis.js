@@ -1,4 +1,5 @@
 (function () {
+
 	'use strict'
 
 /*//////////////////////////////////////////////////////////////////////////////
@@ -18,16 +19,12 @@
 					$location.path('/');
 				};
 
-				$scope.dataAnalysis = AnalysisFactory.getStories();
-
-				var pieChart = AnalysisFactory.getPieChart();
-
-				console.log(pieChart);
-
-				angular.element('#pie-chart').highcharts(pieChart);
-
-				console.log($scope.dataAnalysis);
-
+				AnalysisFactory.getStories().then( function () {
+					var pieChart = AnalysisFactory.getPieChart();
+					console.log(pieChart);
+					angular.element('#pie-chart').highcharts(pieChart);
+					console.log($scope.dataAnalysis);
+				});
 
 				// console.log($scope.data);
 
