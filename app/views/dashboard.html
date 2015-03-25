@@ -40,7 +40,7 @@
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>
 			<tbody>
-			  <tr ng-repeat="s in stories | filter:searchResults" class="page-list-item">
+			  <tr ng-repeat="s in stories track by $index | filter:searchResults" class="page-list-item">
 			  	<td>{{ $index + 1 }}</td>
 			  	<td>{{ s.provider.name }}</td>
 			  	<td>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</td>
