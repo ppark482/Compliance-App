@@ -233,7 +233,6 @@
 					});
 					tempProviderCounts = sortAJC(tempProviderCounts);
 					providerCounts = tempProviderCounts;
-					console.log(providerCounts);
 				};
 
 				var sortAJC = function (data) {

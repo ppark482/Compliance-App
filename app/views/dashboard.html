@@ -30,10 +30,10 @@
 		    <th scope="column">Byline</th>
 		    <th scope="column">URL</th>
 		  </thead>
-		  <ul class="inline-list panel callout">
-		  	<li>Access Atlanta : {{displayBreakdown.ajc_breakdown.access.length}}</li>
-		  	<li>AJC.com : {{displayBreakdown.ajc_breakdown.ajccom.length}}</li>
-		  	<li>MyAJC : {{displayBreakdown.ajc_breakdown.myajc.length}}</li>
+		  <ul class="inline-list panel callout text-center">
+		  	<li class="panel">Access Atlanta<p>{{displayBreakdown.ajc_breakdown.access.length}}</p></li>
+		  	<li class="panel">AJC.com<p>{{displayBreakdown.ajc_breakdown.ajccom.length}}</p></li>
+		  	<li class="panel">MyAJC<p>{{displayBreakdown.ajc_breakdown.myajc.length}}</p></li>
 		  </ul>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>
