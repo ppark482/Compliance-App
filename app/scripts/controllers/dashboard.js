@@ -28,9 +28,9 @@
 					getTodaysFeed();
 				});
 
-				$scope.analyzeData = function () {
-					$location.path('analysis');
-				};
+				// $scope.analyzeData = function () {
+				// 	$location.path('analysis');
+				// };
 
 				$scope.getSelectedDate = function () {
 					DashboardFactory.selectedDates($scope.date);
@@ -66,7 +66,7 @@
 							// removes duplicate links
 							$scope.stories = _.unique($scope.stories); 
 							$rootScope.stories = $scope.stories;
-							AnalysisFactory.sendStories($scope.stories);
+							// AnalysisFactory.sendStories($scope.stories);
 							$rootScope.pages = newData.links;
 							// keeping track of the time since:
 							if($scope.stories[$scope.stories.length - 1].content_modified) {
@@ -78,6 +78,7 @@
 						// stories for each provider category
 						DashboardFactory.modifyCounts($rootScope.stories);
 						$scope.displayBreakdown = DashboardFactory.getSidebarCounts();
+						console.log($scope.displayBreakdown);
 						// console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
