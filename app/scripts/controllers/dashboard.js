@@ -15,7 +15,6 @@
 			function ($scope, $location, DashboardFactory, MapiFactory, $rootScope, $route, AnalysisFactory) {
 
 				var autoLoad;
-				$scope.searchResults = '';
 
 				$scope.pickDateOptions = {
 					max: new Date(),
@@ -56,24 +55,26 @@
 				// Auto Load next set of data until end of date range
 				var autoLoad = function (data) {
 					$scope.busy = MapiFactory.getNextPage(data.links[1].href).then( function (data) {
-						var newData = DashboardFactory.filterResults(data);
-						angular.forEach(newData.entities, function (x) {
-							$scope.stories.push(x);
-						});
-						$scope.stories = _.unique($scope.stories); 
-						// removes duplicate links
-						$rootScope.stories = $scope.stories;
-						AnalysisFactory.sendStories($scope.stories);
-						$rootScope.pages = newData.links;
-						// keeping track of the time since:
-						if($scope.stories[$scope.stories.length - 1].content_modified) {
-							DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].content_modified);
+							var newData = DashboardFactory.filterResults(data);
+							angular.forEach(newData.entities, function (x) {
+								$scope.stories.push(x);
+							});
+							$scope.stories = _.unique($scope.stories); 
+							// removes duplicate links
+							$rootScope.stories = $scope.stories;
+							AnalysisFactory.sendStories($scope.stories);
+							$rootScope.pages = newData.links;
+							// keeping track of the time since:
+							if($scope.stories[$scope.stories.length - 1].content_modified) {
+								DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].content_modified);
 						};
 						// keeping track of the results count
 						DashboardFactory.sendCount($rootScope.stories.length);
 						// keeping track of the number of stories
 						// stories for each provider category
 						DashboardFactory.modifyCounts($rootScope.stories);
+						$scope.displayBreakdown = DashboardFactory.getSidebarCounts();
+						console.log($scope.displayBreakdown);
 						// console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
@@ -83,7 +84,7 @@
 						// in one test, 300 provided results from 4:35PM back to 12AM
 						// retrieving results at 300 took about 10 mins
 						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 350) {
+						if(aLcount < 50) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;

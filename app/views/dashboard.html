@@ -31,11 +31,9 @@
 		    <th scope="column">URL</th>
 		  </thead>
 		  <ul class="inline-list panel callout">
-		  	<li>Filter through feed:</li>
-		  	<li><input placeholder="Filter by Any:" type="search" ng-model="searchResults.$"></li>
-		  	<li><input placeholder="Filter by Headline:" type="search" ng-model="searchResults.headline"></li>
-		  	<li><input placeholder="Filter by Category:" type="search" ng-model="searchResults.primary_category"></li>
-		  	<li><input placeholder="Filter by Topic:" type="search" ng-model="searchResults.topics"></li>
+		  	<li>Access Atlanta : {{displayBreakdown.ajc_breakdown.access.length}}</li>
+		  	<li>AJC.com : {{displayBreakdown.ajc_breakdown.ajccom.length}}</li>
+		  	<li>MyAJC : {{displayBreakdown.ajc_breakdown.myajc.length}}</li>
 		  </ul>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>

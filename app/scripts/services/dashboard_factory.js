@@ -140,7 +140,8 @@
 					} else {
 						dateRange = getDates();
 					} 
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"PublishThis"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					// +OR+provider_name:"PublishThis"
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						console.log(data);
 						var filteredData = filterResults(data);
@@ -163,22 +164,25 @@
 						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/");
 					});
 					var noPics = _.reject(onlyAtl, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/";
+						return x.item_class === 'https://cv.cmgdigital.com/item_class/picture/photos.medleyphoto/';
 					});
 					var noVids = _.reject(noPics, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/videos.vendorvideo/";
+						return x.item_class === 'https://cv.cmgdigital.com/item_class/composite/videos.vendorvideo/';
 					});
 					var noVidLists = _.reject(noVids, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/";
+						return x.item_class === 'https://cv.cmgdigital.com/item_class/composite/videos.vendorvideoplaylist/';
 					});
 					var noStaff = _.reject(noVidLists, function (x) {
-						return x.details.django_ct === "staff.medleystaffmember";
+						return x.details.django_ct === 'staff.medleystaffmember';
 					});
 					var noExternalLinks = _.reject(noStaff, function (x) {
-						return x.item_class === "https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/";
+						return x.item_class === 'https://cv.cmgdigital.com/item_class/composite/externallinks.medleylink/';
+					});
+					var noListORama = _.reject(noExternalLinks, function (x) {
+						return x.item_class === 'https://cv.cmgdigital.com/item_class/composite/list_o_rama.externalfeed/';
 					});
 					var dataObj = {
-						entities : noExternalLinks, // change me for new filter
+						entities : noListORama, // change me for new filter
 						links : data.links
 					};
 					return dataObj;
@@ -198,10 +202,11 @@
 						photo_galleries : [],
 						wp_vip 					: [],
 						publish_this 		: [],
-						ap_stories 			: []
+						ap_stories 			: [],
+						ajc_breakdown		: {}
 					};
 					var isPhotoGallery = function (x) {
-						if (x.item_class === "https://cv.cmgdigital.com/item_class/composite/photos.medleygallery/") {
+						if (x.item_class === 'https://cv.cmgdigital.com/item_class/composite/photos.medleygallery/') {
 							tempProviderCounts.photo_galleries.push(x);
 						}
 					};
@@ -226,7 +231,29 @@
 							tempProviderCounts.ap_stories.push(x);
 						}
 					});
+					tempProviderCounts = sortAJC(tempProviderCounts);
 					providerCounts = tempProviderCounts;
+					console.log(providerCounts);
+				};
+
+				var sortAJC = function (data) {
+					ajcStories = data.ajc_stories;
+					tempBreakdown = {
+						myajc 	: [],
+						access 	: [],
+						ajccom	: []
+					};
+					angular.forEach(ajcStories, function (x) {
+						if (x.provider.guid === 'https://cv.cmgdigital.com/provider/medleysite/prod/2001/') {
+							tempBreakdown.access.push(x);
+						} else if (x.provider.guid === 'https://cv.cmgdigital.com/provider/medleysite/prod/2000/') {
+							tempBreakdown.ajccom.push(x);
+						} else if (x.provider.guid === 'https://cv.cmgdigital.com/provider/medleysite/prod/2009/') {
+							tempBreakdown.myajc.push(x);
+						}
+					});
+					data.ajc_breakdown = tempBreakdown;
+					return data;
 				};
 
 				var getSidebarCounts = function () {
