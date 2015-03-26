@@ -51,7 +51,8 @@
 
 				// Counts for autoLoad
 				var aLcount = 2;
-				
+				var sharedCount = [];
+
 				// Auto Load next set of data until end of date range
 				var autoLoad = function (data) {
 					$scope.busy = MapiFactory.getNextPage(data.links[1].href).then( function (data) {
@@ -59,8 +60,11 @@
 							angular.forEach(newData.entities, function (x) {
 								$scope.stories.push(x);
 							});
-							$scope.stories = _.unique($scope.stories); 
+							// count for objects outside of atlanta properties
+							sharedCount.push(newData.sharedCount);
+							$scope.sharedCount = _.reduce(sharedCount, function (a,b) { return a + b }, 0);
 							// removes duplicate links
+							$scope.stories = _.unique($scope.stories); 
 							$rootScope.stories = $scope.stories;
 							AnalysisFactory.sendStories($scope.stories);
 							$rootScope.pages = newData.links;
@@ -74,7 +78,6 @@
 						// stories for each provider category
 						DashboardFactory.modifyCounts($rootScope.stories);
 						$scope.displayBreakdown = DashboardFactory.getSidebarCounts();
-						console.log($scope.displayBreakdown);
 						// console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
@@ -88,7 +91,7 @@
 							autoLoad(data);
 						} else {
 							aLcount = 2;
-							// console.log($rootScope.stories);
+							console.log($rootScope.stories);
 						}
 					});
 				}; // end autoLoad

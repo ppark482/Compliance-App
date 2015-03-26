@@ -143,7 +143,6 @@
 					// +OR+provider_name:"PublishThis"
 					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
-						console.log(data);
 						var filteredData = filterResults(data);
 
 						deferred.resolve(filteredData);
@@ -160,6 +159,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 				var filterResults = function (data) {
+					var sharedCount = 0;
+					angular.forEach(data.entities, function (x) {
+						if (x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/")) {
+								sharedCount++;
+						}
+					});
 					var onlyAtl = _.filter(data.entities, function (x) {
 						return x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/");
 					});
@@ -183,7 +188,8 @@
 					});
 					var dataObj = {
 						entities : noListORama, // change me for new filter
-						links : data.links
+						links : data.links,
+						sharedCount : sharedCount
 					};
 					return dataObj;
 				};
