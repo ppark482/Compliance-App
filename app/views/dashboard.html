@@ -31,19 +31,19 @@
 		    <th scope="column">Byline</th>
 		    <th scope="column">URL</th>
 		  </thead>
-		  <ul class="inline-list panel text-center">
-		  	<li>AJC Stories
-		  		<ul class="inline-list panel text-center">
-			  		<li class="panel callout">AJC.com<p class="red">{{displayBreakdown.ajc_breakdown.ajccom.length}}</p></li>
-			  		<li class="panel callout">MyAJC<p class="red">{{displayBreakdown.ajc_breakdown.myajc.length}}</p></li>
-			  		<li class="panel callout">Access Atlanta<p class="red">{{displayBreakdown.ajc_breakdown.access.length}}</p></li>
+		  <ul class="inline-list panel text-center counter-box">
+		  	<li id="ajc-count"><span class="label">AJC Stories</span>
+		  		<ul class="ajc-box inline-list">
+			  		<li class="large-3"><span class="info label">AJC.com</span><p class="red">{{ displayBreakdown.ajc_breakdown.ajccom.length }}</p></li>
+			  		<li class="large-3"><span class="info label">MyAJC</span><p class="red">{{ displayBreakdown.ajc_breakdown.myajc.length }}</p></li>
+			  		<li class="large-3"><span class="info label">AccessAtlanta</span><p class="red">{{ displayBreakdown.ajc_breakdown.access.length }}</p></li>
 		  		</ul>
 		  	</li>
-		  	<li class="panel callout">Photo Galleries<p class="red">{{ photo_galleries.length }}</p></li>
-		  	<li class="panel callout">WordPress VIP<p class="red">{{ wp_vip.length }}</p></li>
-		  	<li class="panel callout">AP Stories<p class="red">{{ ap_stories.length }}</p></li>
-		  	<li class="panel callout">Shared Content<p class="red">{{sharedCount}}</p></li>
-		  	<li class="panel callout"><span class="label">ATL Total</span><p class="red">{{displayBreakdown.ajc_stories.length + displayBreakdown.ap_stories.length + displayBreakdown.wp_vip.length}}</p></li>
+		  	<li class="large-2"><span class="info label">Photo Galleries</span><p class="red">{{ photo_galleries.length }}</p></li>
+		  	<li class="large-2"><span class="info label">WordPress VIP</span><p class="red">{{ wp_vip.length }}</p></li>
+		  	<li class="large-2"><span class="info label">AP Stories</span><p class="red">{{ ap_stories.length }}</p></li>
+		  	<li class="large-2"><span class="info label">Shared Content</span><p class="red">{{sharedCount}}</p></li>
+		  	<li class="large-2"><span class="label">ATL Total</span><p class="red">{{displayBreakdown.ajc_stories.length + displayBreakdown.ap_stories.length + displayBreakdown.wp_vip.length}}</p></li>
 		  </ul>
 		  						<!-- Loading Spinner  -->
 			<div cg-busy="{promise:busy, message:'Loading Data, Please Wait'}"></div>

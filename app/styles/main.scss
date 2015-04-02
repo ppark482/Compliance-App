@@ -28,9 +28,6 @@ a.success {
   color: HSLA(0, 0%, 100%, 1);
 }
 
-text {
-
-}
 /*
 =================================== Dashboard Styling
 */
@@ -68,6 +65,24 @@ h2 {
 .icon {
   color: black;
   margin: 0;
+}
+.counter-box {
+  font-size: 14px;
+}
+
+#ajc-count {
+  margin: 0;
+  padding: 0;
+  width: 22rem;
+}
+
+.ajc-box {
+  font-size: 14px;
+  overflow: auto;
+  margin: 0;
+  li {
+    display: block;
+  }
 }
 
 /*
