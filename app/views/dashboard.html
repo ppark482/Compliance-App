@@ -2,28 +2,29 @@
 	<div class="data-view"> <!-- Feed viewer -->
 		<div class="panel">
 			<h2 class="pleft15">Report By Date</h2>
-		  <p class="pleft15">1. Click "Select Date" and pick a date.</p>
-		  <p class="pleft15">2. Click "Get Selected Date" (only once!) and wait for data to load.</p>
-		  <p class="pleft15">3. Click "Export to Excel" to download results in an excel file. (must use Chrome)</p>
 			<ul class="inline-list">
-		    <li>
-			    <input id="date-picker" type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="pickDateOptions"/>
-			  </li>
-			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
-			  <li>
-			    <button class="calendar" ng-class="{disabled: !date, success: date}" ng-click="getSelectedDate()">Get Selected Date</button>
-			  </li>
-			  <li class="right-arrows"><span class="entypo-right-thin"></span></li>
-				<li><button ng-class="{disabled: !stories, success: stories}"><a ng-class="{disabled: !stories, success: stories}" download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
+				<li class="large-6"><p>1. Click "Select Date" and pick a date.</p></li>
+				<li class="large-1"><div class="right-arrows"><span class="entypo-right-thin"></span></div></li>
+				<li class="large-4"><input id="date-picker" type="text" pick-a-date="date" placeholder="Select Date" pick-a-date-options="pickDateOptions"/></li>
+			</ul>
+			<ul class="inline-list">
+				<li class="large-6"><p>2. Click "Get Selected Date" (only once!) and wait for data to load.</p></li>
+				<li class="large-1"><div class="right-arrows"><span class="entypo-right-thin"></span></div></li>
+				<li class="large-4"><button class="calendar" ng-class="{disabled: !date, success: date}" ng-click="getSelectedDate()">Get Selected Date</button></li>
+			</ul>
+			<ul class="inline-list">
+				<li class="large-6"><p>3. Click "Export to Excel" to download results in an excel file. (must use Chrome)</p></li>
+				<li class="large-1"><div class="right-arrows"><span class="entypo-right-thin"></span></div></li>
+				<li class="large-4"><button ng-class="{disabled: !stories, success: stories}"><a ng-class="{disabled: !stories, success: stories}" download="export.xls" href="#" onclick="return ExcellentExport.excel(this, 'exportTable', 'Feed From Date');">Export to Excel</a></button></li>
+			</ul>
 <!-- 				<li><button ng-class="{disabled: !stories, success: stories}" ng-click="analyzeData()">Analyze Results</button></li> -->
-		  </ul>
 		 </div>
 
 		<table class="large-12 info-table" id="exportTable">
 			<thead>
 		  	<th scope="column"></th>
 		    <th scope="column">Provider</th>
-		    <th scope="column">Modified</th>
+		    <th scope="column">Published</th>
 		    <th scope="column">Headline</th>
 		    <th scope="column">Primary Category</th>
 		    <th scope="column">Topics</th>

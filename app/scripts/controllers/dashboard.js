@@ -28,6 +28,7 @@
 					getTodaysFeed();
 				});
 
+				// analysis page disabled
 				// $scope.analyzeData = function () {
 				// 	$location.path('analysis');
 				// };
