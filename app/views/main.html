@@ -1,5 +1,6 @@
 <section class="row search-page">
 
+  <button class="info" ng-click="goToDashboard()">Back to Dashboard</button>
   <!-- Author Dropdown Box	-->
 
   <a class="button dropdown" dropdown-toggle="#group-toggle">Search By Author</a>
@@ -21,8 +22,6 @@
   </ul>
 
   <!-- End Topic Dropdown Box  -->
-
-  <button class="info" ng-click="goToDashboard()">Back to Dashboard</button>
 
   <p class="pleft15">Select topic or author from drop down lists. Or search by string of text or by author name below.</p>
   <p class="pleft15">The API maybe slow during certain times of the day, please be patient <span class="entypo-thumbs-up">.</span></p>
@@ -71,12 +70,12 @@
 	  	</div>
 <!-- ================================================== -->
 	  	<div class="large-2 medium-2 columns small-text">
-	  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }}</br></span>
+	  		<span class="category" ng-repeat="category in single.categories" ng-show="single.categories">{{ category }} <span class="red">+ </span></br></span>
 	  		<div class="red" ng-show="!single.categories">** No Categories Provided **</div>
 	  	</div>
 <!-- ================================================== -->
 	  	<div class="large-2 medium-2 columns small-text">
-	  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }}</br></span>
+	  		<span class="category" ng-repeat="topic in single.topics" ng-show="single.topics">{{ topic }} <span class="red">+</span></br></span>
 	  		<div class="red" ng-show="!single.topics">** No Topics Provided **</div>
 	  	</div>
 <!-- ================================================== -->

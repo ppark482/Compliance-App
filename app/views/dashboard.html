@@ -53,7 +53,7 @@
 			  	<td>{{ s.content_modified | date:"MM/dd/yyyy @ h:mma" }}</td>
 			  	<td>{{ s.headline }}</td>
 			  	<td>{{ s.primary_category }}</td>
-			  	<td><span class="topics-text" ng-repeat="t in s.topics">{{ t }}, </span></td>
+			  	<td><span class="topics-text" ng-repeat="t in s.topics">{{ t }} <span class="red">+</span> </span></td>
 			  	<td>{{ s.by[0].name }}</td>
 			  	<td><a href="{{ s.canonical_url }}" target="_blank">Link</a></td>
 			  </tr>	
