@@ -68,7 +68,7 @@
 					// end.setHours(03, 59, 59, 59);
 					end.setHours(00, 00, 00, 00);
 					end = end.toISOString();
-					selectedDateRange = encodeURIComponent('?s=content_modified:[' + start + ' TO ' + end + ']');
+					selectedDateRange = encodeURIComponent('?s=pub_date:[' + start + ' TO ' + end + ']');
 				};
 
 				var getDates = function () {
@@ -83,7 +83,7 @@
 					start.setHours(0,0,0,0);
 					// convert yesterday to UTC
 					start = start.toISOString();
-					return encodeURIComponent('?s=content_modified:[' + start + ' TO ' + today + ']');
+					return encodeURIComponent('?s=pub_date:[' + start + ' TO ' + today + ']');
 				}; // end getDates
 
 /*//////////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				// local json proxy
 				// var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
-				var sortByRecent = encodeURIComponent('&sort_by=content_modified');
+				var sortByRecent = encodeURIComponent('&sort_by=pub_date');
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 

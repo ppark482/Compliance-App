@@ -69,8 +69,8 @@
 							// AnalysisFactory.sendStories($scope.stories);
 							$rootScope.pages = newData.links;
 							// keeping track of the time since:
-							if($scope.stories[$scope.stories.length - 1].content_modified) {
-								DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].content_modified);
+							if($scope.stories[$scope.stories.length - 1].pub_date) {
+								DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].pub_date);
 						};
 						// keeping track of the results count
 						DashboardFactory.sendCount($rootScope.stories.length);
