@@ -35,8 +35,29 @@
 
 				$scope.topicList = [
 					'ajc-features',
+					'restaurants',
+					'ajc-hottopics',
+					'ajc-atlantanow',
+					'ajc-education',
+					'AJC sports',
+					'ajc-audience',
 					'ajc-localgovt',
-					'restaurants'
+					'ajc-fedstategovt',
+					'ajc-print',
+					'ajc-economics',
+					'ajc-investigative1',
+					'ajc-investigative2',
+					'ajc-visuals',
+					'ajc-data',
+					'buford',
+					'decatur',
+					'roswell',
+					'smyrna',
+					'marietta',
+					'peachtree city',
+					'buckhead',
+					'intown atlanta',
+					'sandy springs'
 				];
 
 				var scopeEm = function (data) {
