@@ -144,7 +144,8 @@
 						dateRange = getDates();
 					} 
 					// +OR+provider_name:"PublishThis"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"www.myajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2001/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2000/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2009/"');
+					// +OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2001/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2000/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2009/"
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"www.myajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						var filteredData = filterResults(data);
 
@@ -164,7 +165,7 @@
 				var filterResults = function (data) {
 					var sharedCount = 0;
 					angular.forEach(data.entities, function (x) {
-						if (x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/")) {
+						if (x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.provider.guid === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || x.originating_site === "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || x.originating_site === "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || x.originating_site === "https://cv.cmgdigital.com/provider/medleysite/prod/2009/" || _.contains(x.subcollections, "https://cv.cmgdigital.com/provider/medleysite/prod/2001/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2000/" || "https://cv.cmgdigital.com/provider/medleysite/prod/2009/")) {
 								sharedCount++;
 						}
 					});
