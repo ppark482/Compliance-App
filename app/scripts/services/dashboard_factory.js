@@ -144,7 +144,7 @@
 						dateRange = getDates();
 					} 
 					// +OR+provider_name:"PublishThis"
-					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"The Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"');
+					var query = encodeURIComponent('&f=provider_name:"www.ajc.com"+OR+provider_name:"For the AJC"+OR+provider_name:"www.myajc.com"+OR+provider_name:"The Associated Press"+OR+provider_name:"Associated Press"+OR+provider_name:"WordPress VIP"+OR+provider_name:"The Atlanta Journal-Constitution"+OR+item_class:"photo.medleygallery"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2001/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2000/"+OR+provider_guid:"https://cv.cmgdigital.com/provider/medleysite/prod/2009/"');
 					$.getJSON(url + dateRange + query + sortByRecent, function (data) {
 						var filteredData = filterResults(data);
 
