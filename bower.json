@@ -13,7 +13,7 @@
     "angular-foundation": "~0.5.1",
     "underscore": "~1.8.2",
     "angular-busy": "~4.1.2",
-    "angular-native-picker": "~1.0.4",
+    "angular-date-picker": "*",
     "excellentexport": "*"
   },
   "devDependencies": {
