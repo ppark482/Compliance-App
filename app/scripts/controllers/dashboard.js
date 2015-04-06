@@ -16,13 +16,15 @@
 
 				var autoLoad;
 
-				$scope.pickDateOptions = {
-					max: new Date(),
-					onClose: function () {
-						var passMe = $scope.date;
-						DashboardFactory.selectedDates(passMe);
-					}
-				};
+				// $scope.pickDateOptions = {
+				// 	max: new Date(),
+				// 	format: 'yyyy-mm-dd',
+				// 	onClose: function () {
+				// 		var passMe = $scope.date;
+				// 		console.log(passMe);
+				// 		DashboardFactory.selectedDates(passMe);
+				// 	}
+				// };
 
 				$rootScope.$on('get-feed', function () {
 					getTodaysFeed();
@@ -66,13 +68,14 @@
 							$scope.sharedCount = _.reduce(sharedCount, function (a,b) { return a + b }, 0);
 							// removes duplicate links
 							$scope.stories = _.unique($scope.stories); 
+							console.log($scope.stories);
 							$rootScope.stories = $scope.stories;
 							// AnalysisFactory.sendStories($scope.stories);
 							$rootScope.pages = newData.links;
 							// keeping track of the time since:
 							if($scope.stories[$scope.stories.length - 1].pub_date) {
 								DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].pub_date);
-						};
+							};
 						// keeping track of the results count
 						DashboardFactory.sendCount($rootScope.stories.length);
 						// keeping track of the number of stories
@@ -84,18 +87,15 @@
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
 						aLcount++;
-						// auto loads first # of pages
-						// setting aLcount range at 300 yields ~ 5000 results
-						// in one test, 300 provided results from 4:35PM back to 12AM
-						// retrieving results at 300 took about 10 mins
-						// setting aLcount higher will take longer/slow down the app
-						if(aLcount < 180) {
+						// aLcount defines number of pagination calls
+						// because api only returns 25 per page
+						if(aLcount < 200) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;
 							console.log($rootScope.stories);
 						}
-					});
+					}); // end spinner wrap
 				}; // end autoLoad
 
 			} // end function block
