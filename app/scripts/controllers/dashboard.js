@@ -16,27 +16,13 @@
 
 				var autoLoad;
 
-				// $scope.pickDateOptions = {
-				// 	max: new Date(),
-				// 	format: 'yyyy-mm-dd',
-				// 	onClose: function () {
-				// 		var passMe = $scope.date;
-				// 		console.log(passMe);
-				// 		DashboardFactory.selectedDates(passMe);
-				// 	}
-				// };
-
 				$rootScope.$on('get-feed', function () {
 					getTodaysFeed();
 				});
 
-				// analysis page disabled
-				// $scope.analyzeData = function () {
-				// 	$location.path('analysis');
-				// };
-
 				$scope.getSelectedDate = function () {
 					DashboardFactory.selectedDates($scope.date);
+					DashboardFactory.sendCount(0);
 					getTodaysFeed();
 				};
 
@@ -73,9 +59,9 @@
 							// AnalysisFactory.sendStories($scope.stories);
 							$rootScope.pages = newData.links;
 							// keeping track of the time since:
-							if($scope.stories[$scope.stories.length - 1].pub_date) {
+							if($scope.stories.length !== 0) {
 								DashboardFactory.sendTimeSince($scope.stories[$scope.stories.length - 1].pub_date);
-							};
+							}
 						// keeping track of the results count
 						DashboardFactory.sendCount($rootScope.stories.length);
 						// keeping track of the number of stories
