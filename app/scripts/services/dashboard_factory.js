@@ -60,14 +60,12 @@
 					passed = new Date (passed);
 					// passed is selected date
 					var start = passed;
-					// start.setHours(04, 00, 00, 00);
 					start.setHours(00, 00, 00, 00);
 					start = start.toISOString();
 					var endDate = passed.getDate();
 					console.log(endDate);
 					var end = passed.setDate(endDate);
 					end = new Date(end);
-					// end.setHours(03, 59, 59, 59);
 					end.setHours(23, 59, 59, 59);
 					console.log(end);
 					end = end.toISOString();
