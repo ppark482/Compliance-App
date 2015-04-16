@@ -68,7 +68,7 @@
 						// stories for each provider category
 						DashboardFactory.modifyCounts($rootScope.stories);
 						$scope.displayBreakdown = DashboardFactory.getSidebarCounts();
-						console.log($scope.displayBreakdown);
+						// console.log($scope.displayBreakdown);
 						// console.log($scope.stories);
 						$rootScope.$broadcast('feed-loaded');
 						// starts loop
