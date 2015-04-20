@@ -78,7 +78,7 @@
 						aLcount++;
 						// aLcount defines number of pagination calls
 						// because api only returns 25 per page
-						if(aLcount < 25) {
+						if(aLcount < 200) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;
