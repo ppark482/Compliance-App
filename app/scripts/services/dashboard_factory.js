@@ -267,6 +267,16 @@
 					return providerCounts;
 				};
 
+/*//////////////////////////////////////////////////////////////////////////////
+// 
+	Clean existing report on new Get Selected Date Click
+// 
+//////////////////////////////////////////////////////////////////////////////*/
+
+				var purgeCurrentData = function () {
+					providerCounts = {};
+				};
+
 				return {
 					getTheDate					: getTheDate,
 					selectedDates				: selectedDates,
@@ -277,7 +287,8 @@
 					getAJCstories				: getAJCstories,
 					modifyCounts 				: modifyCounts,
 					filterResults 			: filterResults,
-					getSidebarCounts 		: getSidebarCounts
+					getSidebarCounts 		: getSidebarCounts,
+					purgeCurrentData 		: purgeCurrentData
 				};
 
 			} // end function block

@@ -16,11 +16,14 @@
 
 				var autoLoad;
 
-				$rootScope.$on('get-feed', function () {
-					getTodaysFeed();
-				});
+				// $rootScope.$on('get-feed', function () {
+				// 	getTodaysFeed();
+				// });
 
 				$scope.getSelectedDate = function () {
+					if ($scope.stories) {
+						purgeCurrentData();
+					}
 					DashboardFactory.selectedDates($scope.date);
 					DashboardFactory.sendCount(0);
 					getTodaysFeed();
@@ -75,7 +78,7 @@
 						aLcount++;
 						// aLcount defines number of pagination calls
 						// because api only returns 25 per page
-						if(aLcount < 200) {
+						if(aLcount < 25) {
 							autoLoad(data);
 						} else {
 							aLcount = 2;
@@ -83,6 +86,15 @@
 						}
 					}); // end spinner wrap
 				}; // end autoLoad
+
+				var purgeCurrentData = function () {
+					aLcount = 2;
+					sharedCount = [];
+					$scope.stories = [];
+					$scope.displayBreakdown = {};
+					$scope.sharedCount = '';
+					DashboardFactory.purgeCurrentData();
+				};
 
 			} // end function block
 

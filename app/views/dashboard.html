@@ -20,7 +20,9 @@
 	  	<li class="large-2"><span class="info label">Photo Galleries</span><p class="red">{{ photo_galleries.length }}</p></li>
 	  	<li class="large-2"><span class="info label">WordPress VIP</span><p class="red">{{ wp_vip.length }}</p></li>
 	  	<li class="large-2"><span class="info label">AP Stories</span><p class="red">{{ ap_stories.length }}</p></li>
-	  	<li class="large-2"><span class="info label">Shared Content</span><p class="red">{{sharedCount}}</p></li>
+	  	<li class="large-2"><span class="info label">Shared Content</span>
+	  		<p class="red" ng-show="sharedCount">{{sharedCount}}</p>
+	  	</li>
 	  	<li class="large-2"><span class="label">ATL Total</span><p class="red">{{displayBreakdown.ajc_stories.length + displayBreakdown.ap_stories.length + displayBreakdown.wp_vip.length}}</p></li>
 	  </ul>
 	  <!-- Feed view  -->
