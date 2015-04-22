@@ -234,7 +234,7 @@
 						}	else if (x.provider.name === 'The Atlanta Journal-Constitution') {
 							isPhotoGallery(x);
 							tempProviderCounts.ajc_stories.push(x);
-						}	else if (x.provider.name === 'The Associated Press') {
+						}	else if (x.provider.name === 'The Associated Press' || x.provider.name === 'Associated Press') {
 							isPhotoGallery(x);
 							tempProviderCounts.ap_stories.push(x);
 						}
