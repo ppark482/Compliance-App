@@ -1,4 +1,4 @@
-(function () { 
+;(function () { 
 
 /*//////////////////////////////////////////////////////////////////////////////
 // 
@@ -121,6 +121,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////*/
 
+				// var url = 'https://jsonp.afeld.me/?callback=?&url=http://search.cmgdigital.com/v2/';
 				var url = 'https://jsonp.nodejitsu.com/?callback=?&url=http://search.cmgdigital.com/v2/';
 				// local json proxy
 				// var url = 'http://localhost:8000/?url=http://search.cmgdigital.com/v2/';
